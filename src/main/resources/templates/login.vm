@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MarkSpace Home Page</title>
+        <link rel="stylesheet" type="text/css" href="global.css">
+        <link rel="stylesheet" type="text/css" href="login.css">
+    </head>
+    <body>
+        <div id="login_box" class="decorated">
+            <h1>Login to MarkSpace</h1>
+            <form method="POST" action="/login">
+                <p id="message_p">$message</p>
+                <input type="text" name="username" placeholder="Username" id="username_input">
+                <br>
+                <input type="password" name="password" placeholder="Password" id="password_input">
+                <br>
+                <input type="submit" value="Login">
+            </form>
+        </divid>
+    </body>
+</html>

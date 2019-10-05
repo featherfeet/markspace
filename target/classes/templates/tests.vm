@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tests</title>
+        <link rel="stylesheet" type="text/css" href="global.css">
+        <link rel="stylesheet" type="text/css" href="tests.css">
+        <h1>Tests</h1>
+    </head>
+    <body>
+        <a href="/create_new_test"><button>Create New Test</button></a>
+        <table>
+            <tr>
+                <th>Tests</th>
+            </tr>
+            #foreach($test_name in $test_names)
+                <a href="/test?test_name=$test_name">
+                    <tr>$test_name</tr>
+                </a>
+            #end
+        </table>
+    </body>
+</html>
