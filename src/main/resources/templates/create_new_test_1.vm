@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="global.css">
+        <link rel="stylesheet" type="text/css" href="create_new_test_1.css">
+        <h1>Create New Test</h1>
+    </head>
+    <body>
+        <h2>Step 1: Set Up The Test</h2>
+        <p>You need to upload a PDF file of the test (with <b>and</b> without correct solutions) that has the exact <u>same</u> format as the test that will be given to students:</p>
+        <form method="post" action="/create_new_test_1" enctype="multipart/form-data">
+            <input type="file" accept=".pdf" name="answers_test_file_upload"> <span>Upload a PDF of the test with solutions.</span>
+            <br>
+            <input type="file" accept=".pdf" name="blank_test_file_upload"> <span>Also upload a PDF of the test without solutions.</span>
+            <br>
+            <p>Write a name for the test that will allow you to easily identify it:</p>
+            <input type="text" placeholder="Test Name" name="test_name">
+            <p>Write a description of the test (optional):</p>
+            <textarea rows="24" cols="80" name="test_description" placeholder="Description of the test."></textarea>
+            <br>
+            <button>Upload</button>
+        </form>
+    </body>
+</html>

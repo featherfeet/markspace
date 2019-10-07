@@ -44,10 +44,10 @@ public class LoginController {
             response.redirect("/tests");
         }
         else {
-            System.out.println("User " + username + " failed to log in successfully with password `" + password + "'.");
+            System.out.println("User " + username + " failed to log in.");
             request.session(true);
             request.session().attribute("username", username);
-            request.session().attribute("valid_user", "false");
+            request.session().attribute("valid_user", false);
             request.session().attribute("message", "Wrong user credentials. Please try again.");
             response.redirect("/login");
         }

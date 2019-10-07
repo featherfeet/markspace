@@ -14,11 +14,15 @@ public class Main {
         // Configure web pages.
         PersistentStorage persistentStorage = new DatabaseStorage();
         LoginController loginController = new LoginController(persistentStorage);
+        SignupController signupController = new SignupController(persistentStorage);
         TestsController testsController = new TestsController(persistentStorage);
-        CreateNewTestController createNewTestController = new CreateNewTestController(persistentStorage);
+        CreateNewTest1Controller createNewTest1Controller = new CreateNewTest1Controller(persistentStorage);
         get("/login", LoginController.serveLoginPageGet);
         post("/login", LoginController.serveLoginPagePost);
+        get("/signup", SignupController.serveSignupPageGet);
+        post("/signup", SignupController.serveSignupPagePost);
         get("/tests", TestsController.serveTestsPageGet);
-        get("/create_new_test", createNewTestController.serveCreateNewTestPageGet);
+        get("/create_new_test_1", createNewTest1Controller.serveCreateNewTest1PageGet);
+        post("/create_new_test_1", createNewTest1Controller.serveCreateNewTest1PagePost);
     }
 }

@@ -1,5 +1,7 @@
 package storage;
 
+import security.HashedPassword;
+import security.PasswordSecurity;
 import javax.sql.rowset.serial.SerialBlob;
 import java.util.*;
 import java.sql.*;
@@ -12,9 +14,15 @@ public class DatabaseStorage extends PersistentStorage {
     private PreparedStatement createTestFileStatement;
     private PreparedStatement createTestStatement;
 
-    private final String createUserSQL = "INSERT INTO users (user_id, username, password, email, permissions) VALUES (default, ?, ?, ?, ?)";
+    private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
-    private final String validateUserSQL = "SELECT * FROM users WHERE username = ? AND password = ?";
+    private final String validateUserSQL = "SELECT * FROM users WHERE username = ?";
+    private final int USERS_TABLE_USER_ID_COLUMN = 1;
+    private final int USERS_TABLE_USERNAME_COLUMN = 2;
+    private final int USERS_TABLE_PASSWORD_HASH_COLUMN = 3;
+    private final int USERS_TABLE_PASSWORD_SALT_COLUMN = 4;
+    private final int USERS_TABLE_EMAIL_COLUMN = 5;
+    private final int USERS_TABLE_PERMISSIONS_COLUMN = 6;
 
     private final String createTestFileSQL = "INSERT INTO test_files (test_file_id, test_file, test_file_name, test_file_type) VALUES (default, ?, ?, ?)";
 
@@ -51,13 +59,15 @@ public class DatabaseStorage extends PersistentStorage {
         }
         try {
             createUserStatement.setString(1, username);
-            createUserStatement.setString(2, password);
-            createUserStatement.setString(3, email);
+            HashedPassword hashedPassword = PasswordSecurity.hashPassword(password);
+            createUserStatement.setBytes(2,  hashedPassword.getHash());
+            createUserStatement.setBytes(3, hashedPassword.getSalt());
+            createUserStatement.setString(4, email);
             String userPermissions = "";
             for (UserPermission userPermission : permissions) {
                 userPermissions += userPermission.toString() + ";";
             }
-            createUserStatement.setString(4, userPermissions);
+            createUserStatement.setString(5, userPermissions);
             createUserStatement.executeUpdate();
             connection.commit();
         }
@@ -74,10 +84,12 @@ public class DatabaseStorage extends PersistentStorage {
         }
         try {
             validateUserStatement.setString(1, username);
-            validateUserStatement.setString(2, password);
             ResultSet validatedUsers = validateUserStatement.executeQuery();
             if (validatedUsers.first()) {
-                return validatedUsers.getInt(1);
+            	HashedPassword correctPassword = new HashedPassword(validatedUsers.getBytes(USERS_TABLE_PASSWORD_SALT_COLUMN), validatedUsers.getBytes(USERS_TABLE_PASSWORD_HASH_COLUMN));
+            	if (PasswordSecurity.validatePassword(password, correctPassword)) {
+            		return validatedUsers.getInt(USERS_TABLE_USER_ID_COLUMN);
+            	}
             }
             return -1;
         }
@@ -110,8 +122,8 @@ public class DatabaseStorage extends PersistentStorage {
             createTestStatement.setInt(1, user_id);
             createTestStatement.setString(2, name);
             createTestStatement.setString(3, description);
-            createTestStatement.setInt(5, createTestFile(blank_test_file, blank_test_file_name, blank_test_file_type));
-            createTestStatement.setInt(6, createTestFile(answers_test_file, answers_test_file_name, answers_test_file_type));
+            createTestStatement.setInt(4, createTestFile(blank_test_file, blank_test_file_name, blank_test_file_type));
+            createTestStatement.setInt(5, createTestFile(answers_test_file, answers_test_file_name, answers_test_file_type));
             createTestStatement.executeUpdate();
         }
         catch (SQLException e) {

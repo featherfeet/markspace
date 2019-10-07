@@ -3,7 +3,8 @@ CREATE TABLE users                                            -- The users table
 (
     user_id INT AUTO_INCREMENT PRIMARY KEY,                       -- Each user has a unique integer identification number.
     username VARCHAR(255),                                        -- The username used to log in as this user.
-    password VARCHAR(255),                                        -- The password used to log in as this user.
+    password_hash BINARY(64),                                     -- The hash (PBKDF2WithHmacSHA512) of the password used to log in as this user.
+    password_salt BINARY(64),                                     -- The salt (64 random bytes) used for the password hash.
     email VARCHAR(255),                                           -- The email used to send notifications/password change links to this user.
     permissions VARCHAR(255)                                      -- A string containing a semicolon-delimited list of permissions from UserPermission.java. Example: "CREATE_TEST;GRADE_TEST".
 );

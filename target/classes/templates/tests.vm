@@ -8,7 +8,7 @@
         <h1>Tests</h1>
     </head>
     <body>
-        <a href="/create_new_test"><button>Create New Test</button></a>
+        <a href="/create_new_test_1"><button>Create New Test</button></a>
         <table>
             <tr>
                 <th>Tests</th>

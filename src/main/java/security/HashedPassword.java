@@ -30,7 +30,7 @@ public class HashedPassword {
     }
 
     private void hashPassword(byte[] salt, String password) {
-        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+        KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, SecurityParameters.PASSWORD_HASH_ITERATION_COUNT, SecurityParameters.PASSWORD_HASH_LENGTH_BYTES * 8);
         SecretKeyFactory secretKeyFactory;
         try {
             secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
@@ -55,7 +55,7 @@ public class HashedPassword {
 
     public HashedPassword(String password) {
         SecureRandom rng = new SecureRandom();
-        salt = new byte[16];
+        salt = new byte[SecurityParameters.PASSWORD_SALT_LENGTH_BYTES];
         rng.nextBytes(salt);
         hashPassword(salt, password);
     }
