@@ -3,21 +3,33 @@
     <head>
         <meta charset="UTF-8">
         <title>Tests</title>
-        <link rel="stylesheet" type="text/css" href="global.css">
-        <link rel="stylesheet" type="text/css" href="tests.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/tests.css">
         <h1>Tests</h1>
     </head>
     <body>
         <a href="/create_new_test_1"><button>Create New Test</button></a>
-        <table>
-            <tr>
-                <th>Tests</th>
-            </tr>
-            #foreach($test_name in $test_names)
-                <a href="/test?test_name=$test_name">
-                    <tr>$test_name</tr>
-                </a>
-            #end
-        </table>
+        <br>
+        #if ($test_names.size() > 0)
+            <table>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Test Description</th>
+                </tr>
+                    #set($stop = $test_names.size() - 1)
+                    #foreach ($i in [0 .. $stop])
+                        <tr>
+                            <td>
+                                <a href="/test?test_id=$test_ids.get($i)">$test_names.get($i)</a>
+                            </td>
+                            <td>
+                                <pre>$test_descriptions[$i]</pre>
+                            </td>
+                        </tr>
+                    #end
+            </table>
+        #else
+            <p><i>You have not created any tests yet. Click "Create New Test" to start creating your first test.</i></p>
+        #end
     </body>
 </html>

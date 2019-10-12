@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>MarkSpace Home Page</title>
-        <link rel="stylesheet" type="text/css" href="global.css">
-        <link rel="stylesheet" type="text/css" href="login.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
     </head>
     <body>
         <div id="login_box" class="decorated">
@@ -17,6 +17,8 @@
                 <br>
                 <input type="submit" value="Login">
             </form>
+            <br>
+            <a href="/signup" id="signup_a">Don't have an account? Sign up here.</a>
         </div>
     </body>
 </html>

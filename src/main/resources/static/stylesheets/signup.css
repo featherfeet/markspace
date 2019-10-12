@@ -1,6 +1,6 @@
-#login_box {
+#signup_box {
     width: 30vw;
-    height: 45vh;
+    height: 70vh;
     position: absolute;
     left: 0;
     right: 0;
@@ -9,7 +9,7 @@
     margin: auto;
 }
 
-#username_input, #password_input {
+#username_input, #password_input, #duplicate_password_input, #email_input {
     display: block;
     border-radius: 30px;
     width: 25vw;
@@ -27,4 +27,8 @@ input[type=submit] {
 
 #message_p {
     color: red;
+}
+
+.red {
+	color: red;
 }

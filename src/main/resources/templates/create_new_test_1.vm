@@ -2,8 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="global.css">
-        <link rel="stylesheet" type="text/css" href="create_new_test_1.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/create_new_test_1.css">
         <h1>Create New Test</h1>
     </head>
     <body>

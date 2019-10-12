@@ -1,6 +1,6 @@
 #login_box {
     width: 30vw;
-    height: 45vh;
+    height: 55vh;
     position: absolute;
     left: 0;
     right: 0;
@@ -27,4 +27,8 @@ input[type=submit] {
 
 #message_p {
     color: red;
+}
+
+#signup_a {
+    text-align: center;
 }

@@ -25,8 +25,12 @@ public class SignupController {
 		String password = request.queryParams("password");
 		String duplicate_password = request.queryParams("duplicate_password");
 		String email = request.queryParams("email");
+		if (persistentStorage.checkUserWithUsernameExists(username)) {
+			model.put("message", "User already exists. Choose another username.<br>");
+			validated_input = false;
+		}
 		if (!password.equals(duplicate_password)) {
-			model.put("message", "Passwords must match.<br>");
+			model.put("message", model.get("message") + "Passwords must match.<br>");
 			validated_input = false;
 		}
 		if (password.equals(username) || duplicate_password.equals(username)) {

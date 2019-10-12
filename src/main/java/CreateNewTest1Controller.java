@@ -55,7 +55,8 @@ public class CreateNewTest1Controller {
         // Save the form data as a new test in the database.
         int user_id = request.session().attribute("user_id");
         if (test_name != null && test_description != null && blank_test_file_upload_data != null && blank_test_file_upload_name != null && answers_test_file_upload_data != null && answers_test_file_upload_name != null) {
-            persistentStorage.createTest(user_id, test_name, test_description, blank_test_file_upload_data, blank_test_file_upload_name, "pdf", answers_test_file_upload_data, answers_test_file_upload_name, "pdf");
+            int test_id = persistentStorage.createTest(user_id, test_name, test_description, blank_test_file_upload_data, blank_test_file_upload_name, "pdf", answers_test_file_upload_data, answers_test_file_upload_name, "pdf");
+            response.redirect("/create_new_test_2?test_id=" + test_id);
         }
         return "";
     };

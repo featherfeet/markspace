@@ -1,0 +1,2 @@
+1) Check if user exists before creating a user.
+2) /tests page error.
