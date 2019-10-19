@@ -10,5 +10,9 @@
         <h2>Step 2: Create Questions</h2>
         <p>You have uploaded the test called <i>$test_name</i>. Now, to finish creating this test, you must click-and-drag to highlight the regions of the page containing each question.</p>
         <p>This information will be used to split scans of students' tests into individual questions to be graded.</p>
+        <canvas id="test_canvas">
+            Your browser does not support the HTML5 canvas. Please find a web browser from this millennium.
+        </canvas>
+        <script type="text/javascript" src="/static/create_new_test_2.js"></script>
     </body>
 </html>

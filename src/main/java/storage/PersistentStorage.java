@@ -11,4 +11,5 @@ public abstract class PersistentStorage {
     public abstract int createTest(int user_id, String name, String description, byte[] blank_test_file, String blank_test_file_name, String blank_test_file_type, byte[] answers_test_file, String answers_test_file_name, String answers_test_file_type);
     public abstract Test[] getTestsByUser(int user_id);
     public abstract Test getTestById(int user_id, int test_id);
+    public abstract TestFile getTestFileById(int user_id, int test_file_id);
 }

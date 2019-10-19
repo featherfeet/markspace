@@ -20,6 +20,7 @@ CREATE TABLE tests                                            -- The tests table
 CREATE TABLE test_files                                       -- All Word documents, PDFs, and other document types that are used to store tests are kept here. Note that scans of student tests are NOT kept here.
 (
     test_file_id INT AUTO_INCREMENT PRIMARY KEY,                  -- Each file has a unique id number.
+    user_id INT,                                                  -- Id of the user who created the test file.
     test_file LONGBLOB,                                           -- The actual contents of the file as raw binary data.
     test_file_name TEXT,                                          -- The file's name (as it was uploaded).
     test_file_type VARCHAR(255)                                   -- The file's type as an all-lowercase string without the period. Examples: "pdf", "doc", "docx", "jpeg"

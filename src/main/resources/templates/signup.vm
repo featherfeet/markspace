@@ -22,7 +22,7 @@
                 <input type="submit" value="Sign Up" id="submit_button">
             </form>
         </div>
-        <script src="/scripts/jquery.js"></script>
+        <script src="/scripts/jquery-3.4.1.min.js"></script>
         <script src="/scripts/signup.js"></script>
         <noscript><p class="red">It appears that your browser does not support ECMAScript (JavaScript). Please find a browser from this millennium.</p></noscript>
     </body>

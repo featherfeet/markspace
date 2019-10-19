@@ -2,44 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Seems to be able to upload stuff to the DB.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/todo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/RenderTestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/storage/TestFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/canvasrenderer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/jquery-3.4.1.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/b9a717e4-eb31-4b1a-a432-6653b0e1a0ce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b9a717e4-eb31-4b1a-a432-6653b0e1a0ce.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseStorage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/markspace.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SignupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/SecurityParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/SecurityParameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/create_new_test_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/create_new_test_1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/tests.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_1.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_1.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/markspace.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/TestsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TestsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/global.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/tests.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/UserPermission.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/UserPermission.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +45,22 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="markspace@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="markspace@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="markspace@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="collations" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="ExecutionTargetDialog">
@@ -73,18 +75,26 @@
         <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="TypeScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
@@ -98,14 +108,17 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -218,6 +231,26 @@
       <workItem from="1570588634543" duration="1476000" />
       <workItem from="1570668664886" duration="2358000" />
       <workItem from="1570840759888" duration="3886000" />
+      <workItem from="1570908044824" duration="45000" />
+      <workItem from="1570908119125" duration="1375000" />
+      <workItem from="1570939309611" duration="1864000" />
+      <workItem from="1570941257000" duration="3538000" />
+      <workItem from="1571080667331" duration="229000" />
+      <workItem from="1571080919964" duration="128000" />
+      <workItem from="1571081181407" duration="290000" />
+      <workItem from="1571278027506" duration="1818000" />
+      <workItem from="1571334819225" duration="412000" />
+      <workItem from="1571335257651" duration="289000" />
+      <workItem from="1571345974835" duration="1118000" />
+      <workItem from="1571366196508" duration="85000" />
+      <workItem from="1571366304634" duration="81000" />
+      <workItem from="1571366411391" duration="3370000" />
+      <workItem from="1571370188484" duration="4295000" />
+      <workItem from="1571424126828" duration="1044000" />
+      <workItem from="1571425307957" duration="249000" />
+      <workItem from="1571425702075" duration="1111000" />
+      <workItem from="1571445402514" duration="1931000" />
+      <workItem from="1571448239263" duration="3466000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -231,6 +264,12 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/canvasrenderer.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -249,93 +288,5 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Seems to be able to upload stuff to the DB." />
     <option name="LAST_COMMIT_MESSAGE" value="Seems to be able to upload stuff to the DB." />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>markspace</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: com.sparkjava:spark-core:2.5</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

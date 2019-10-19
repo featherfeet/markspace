@@ -15,6 +15,7 @@ public class DatabaseStorage extends PersistentStorage {
     private PreparedStatement createTestFileStatement;
     private PreparedStatement createTestStatement;
     private PreparedStatement getTestByIdStatement;
+    private PreparedStatement getTestFileByIdStatement;
 
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
@@ -28,7 +29,7 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String checkUserWithUsernameExistsSQL = "SELECT username FROM users WHERE username = ?";
 
-    private final String createTestFileSQL = "INSERT INTO test_files (test_file_id, test_file, test_file_name, test_file_type) VALUES (default, ?, ?, ?)";
+    private final String createTestFileSQL = "INSERT INTO test_files (test_file_id, user_id, test_file, test_file_name, test_file_type) VALUES (default, ?, ?, ?, ?)";
 
     private final String createTestSQL = "INSERT INTO tests (test_id, user_id, test_name, test_description, blank_test_file, answers_test_file) VALUES (default, ?, ?, ?, ?, ?)";
 
@@ -42,6 +43,13 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getTestByIdSQL = "SELECT * FROM tests WHERE user_id = ? AND test_id = ?";
 
+    private final String getTestFileByIdSQL = "SELECT * FROM test_files WHERE user_id = ? AND test_file_id = ?";
+    private final int TEST_FILES_TABLE_TEST_FILE_ID_COLUMN = 1;
+    private final int TEST_FILES_TABLE_USER_ID_COLUMN = 2;
+    private final int TEST_FILES_TABLE_TEST_FILE_COLUMN = 3;
+    private final int TEST_FILES_TABLE_TEST_FILE_NAME_COLUMN = 4;
+    private final int TEST_FILES_TABLE_TEST_FILE_TYPE_COLUMN = 5;
+
     @Override
     protected void initializeStorageMethod() {
         try {
@@ -53,6 +61,7 @@ public class DatabaseStorage extends PersistentStorage {
             createTestStatement = connection.prepareStatement(createTestSQL, Statement.RETURN_GENERATED_KEYS);
             getTestsByUserStatement = connection.prepareStatement(getTestsByUserSQL);
             getTestByIdStatement = connection.prepareStatement(getTestByIdSQL);
+            getTestFileByIdStatement = connection.prepareStatement(getTestFileByIdSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -124,12 +133,13 @@ public class DatabaseStorage extends PersistentStorage {
         return false;
     }
 
-    private int createTestFile(byte[] test_file, String name, String file_type) {
+    private int createTestFile(int user_id, byte[] test_file, String name, String file_type) {
         try {
             SerialBlob test_file_blob = new SerialBlob(test_file);
-            createTestFileStatement.setBlob(1, test_file_blob);
-            createTestFileStatement.setString(2, name);
-            createTestFileStatement.setString(3, file_type);
+            createTestFileStatement.setInt(1, user_id);
+            createTestFileStatement.setBlob(2, test_file_blob);
+            createTestFileStatement.setString(3, name);
+            createTestFileStatement.setString(4, file_type);
             createTestFileStatement.executeUpdate();
             ResultSet generated_keys = createTestFileStatement.getGeneratedKeys();
             generated_keys.first();
@@ -148,8 +158,8 @@ public class DatabaseStorage extends PersistentStorage {
             createTestStatement.setInt(1, user_id);
             createTestStatement.setString(2, name);
             createTestStatement.setString(3, description);
-            createTestStatement.setInt(4, createTestFile(blank_test_file, blank_test_file_name, blank_test_file_type));
-            createTestStatement.setInt(5, createTestFile(answers_test_file, answers_test_file_name, answers_test_file_type));
+            createTestStatement.setInt(4, createTestFile(user_id, blank_test_file, blank_test_file_name, blank_test_file_type));
+            createTestStatement.setInt(5, createTestFile(user_id, answers_test_file, answers_test_file_name, answers_test_file_type));
             createTestStatement.executeUpdate();
             ResultSet generated_keys = createTestStatement.getGeneratedKeys();
             generated_keys.first();
@@ -183,6 +193,7 @@ public class DatabaseStorage extends PersistentStorage {
         }
     }
 
+    @Override
     public Test getTestById(int user_id, int test_id) {
         Test test = null;
         try {
@@ -202,5 +213,25 @@ public class DatabaseStorage extends PersistentStorage {
             exception.printStackTrace();
         }
         return test;
+    }
+
+    @Override
+    public TestFile getTestFileById(int user_id, int test_file_id) {
+        TestFile test_file = null;
+        try {
+            getTestFileByIdStatement.setInt(1, user_id);
+            getTestFileByIdStatement.setInt(2, test_file_id);
+            ResultSet test_files = getTestFileByIdStatement.executeQuery();
+            if (test_files.next()) {
+                byte[] data = test_files.getBytes(TEST_FILES_TABLE_TEST_FILE_COLUMN);
+                String name = test_files.getString(TEST_FILES_TABLE_TEST_FILE_NAME_COLUMN);
+                String type = test_files.getString(TEST_FILES_TABLE_TEST_FILE_TYPE_COLUMN);
+                test_file = new TestFile(test_file_id, data, name, type);
+            }
+        }
+        catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return test_file;
     }
 }
