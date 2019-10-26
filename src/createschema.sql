@@ -23,7 +23,8 @@ CREATE TABLE test_files                                       -- All Word docume
     user_id INT,                                                  -- Id of the user who created the test file.
     test_file LONGBLOB,                                           -- The actual contents of the file as raw binary data.
     test_file_name TEXT,                                          -- The file's name (as it was uploaded).
-    test_file_type VARCHAR(255)                                   -- The file's type as an all-lowercase string without the period. Examples: "pdf", "doc", "docx", "jpeg"
+    test_file_type VARCHAR(255),                                  -- The file's type as an all-lowercase string without the period. Examples: "pdf", "doc", "docx", "jpeg"
+    number_of_pages INT                                           -- The number of pages in the file.
 );
 CREATE TABLE questions                                        -- All test questions are stored here.
 (

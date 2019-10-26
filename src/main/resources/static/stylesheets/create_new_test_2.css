@@ -1,0 +1,25 @@
+canvas {
+    float: left;
+}
+
+div#questions {
+    float: right;
+    width: calc(100% - 1000px);
+}
+
+input.point_value_input {
+    display: inline;
+}
+
+table {
+    border: 3px solid #3b5998;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+tr, td, th {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    padding: 10px 10px 10px 10px;
+}

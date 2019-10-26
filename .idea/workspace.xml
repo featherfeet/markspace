@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Seems to be able to upload stuff to the DB.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/RenderTestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/TestFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/canvasrenderer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/jquery-3.4.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b9a717e4-eb31-4b1a-a432-6653b0e1a0ce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b9a717e4-eb31-4b1a-a432-6653b0e1a0ce.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works.">
+      <change afterPath="$PROJECT_DIR$/src/files" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQuery.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQueryStatic.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/dist/jquery.slim.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/legacy.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/misc.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/create_new_test_2.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/markspace.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RenderTestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/canvasrenderer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/markspace.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/TestsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TestsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/UserPermission.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/UserPermission.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,11 +58,6 @@
         <item name="markspace@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="markspace@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="collations" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
     </expand>
     <select />
   </component>
@@ -72,16 +70,21 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="Enum" />
         <option value="HTML File" />
         <option value="TypeScript File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Oliver Lok Trevor &lt;featherfeet5436@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsFlowSettings">
@@ -117,7 +120,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -125,6 +128,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/scripts" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/stylesheets" />
       <recent name="$PROJECT_DIR$/src/main/resources/templates" />
@@ -186,7 +190,7 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@70ccf20f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@764ca0c5" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
           </expand>
           <select />
@@ -250,7 +254,20 @@
       <workItem from="1571425307957" duration="249000" />
       <workItem from="1571425702075" duration="1111000" />
       <workItem from="1571445402514" duration="1931000" />
-      <workItem from="1571448239263" duration="3466000" />
+      <workItem from="1571448239263" duration="3564000" />
+      <workItem from="1571507656489" duration="232000" />
+      <workItem from="1571507912210" duration="1342000" />
+      <workItem from="1571542540491" duration="832000" />
+      <workItem from="1571543414377" duration="10219000" />
+      <workItem from="1571592577534" duration="9307000" />
+      <workItem from="1571619363377" duration="690000" />
+      <workItem from="1571684482407" duration="610000" />
+      <workItem from="1571768927743" duration="1059000" />
+      <workItem from="1571799737077" duration="342000" />
+      <workItem from="1571800149604" duration="152000" />
+      <workItem from="1571887969258" duration="599000" />
+      <workItem from="1571973130996" duration="599000" />
+      <workItem from="1572050137946" duration="2712000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -259,13 +276,23 @@
       <option name="project" value="LOCAL" />
       <updated>1570411345365</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works.">
+      <created>1571461843954</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571461843954</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
     <option name="exactExcludedFiles">
       <list>
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/canvasrenderer.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/canvasrenderer.js" />
       </list>
@@ -287,6 +314,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Seems to be able to upload stuff to the DB." />
-    <option name="LAST_COMMIT_MESSAGE" value="Seems to be able to upload stuff to the DB." />
+    <MESSAGE value="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works." />
+    <option name="LAST_COMMIT_MESSAGE" value="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works." />
   </component>
 </project>

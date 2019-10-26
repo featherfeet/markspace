@@ -49,3 +49,7 @@ button.disabled, input[type=submit].disabled {
     color: gray;
     opacity: 0.5;
 }
+
+.hidden {
+    display: none;
+}

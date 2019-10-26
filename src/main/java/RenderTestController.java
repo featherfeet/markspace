@@ -33,6 +33,23 @@ public class RenderTestController {
         boolean answers = Boolean.parseBoolean(request.queryParamOrDefault("answers", "false"));
         int page = Integer.parseInt(request.queryParamOrDefault("page", "-1"));
         float dpi = Float.parseFloat(request.queryParamOrDefault("dpi", "-1"));
+        boolean get_number_of_pages = Boolean.parseBoolean(request.queryParamOrDefault("get_number_of_pages", "false"));
+
+        // If the client is requesting the number of pages in the document, send it back and DON'T render anything.
+        if (get_number_of_pages) {
+            System.out.println("answers: " + answers);
+            Test test = persistentStorage.getTestById(user_id, test_id);
+            int test_file_id;
+            if (answers) {
+                test_file_id = test.getAnswersTestFile();
+            }
+            else {
+                test_file_id = test.getBlankTestFile();
+            }
+            int number_of_pages = persistentStorage.getNumberOfPagesInTestFileById(user_id, test_file_id);
+            response.type("text/html");
+            return String.valueOf(number_of_pages);
+        }
 
         // If any of the required parameters were not supplied, send an error and stop.
         if (test_id == -1 || page == -1 || dpi == -1) {
