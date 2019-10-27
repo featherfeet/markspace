@@ -202,19 +202,25 @@ class CanvasImage extends CanvasDrawable {
 }
 
 class TestQuestion {
-    private points: number;
+    private page: number;
+    private points: string;
     private regions: CanvasRectangle[];
 
-    constructor(points: number, regions: CanvasRectangle[]) {
+    constructor(points: string, page: number, regions: CanvasRectangle[]) {
         this.points = points;
+        this.page = page;
         this.regions = regions;
     }
 
-    getPoints(): number {
+    getPoints(): string {
         return this.points;
     }
 
-    setPoints(points: number): void {
+    getPage(): number {
+        return this.page;
+    }
+
+    setPoints(points: string): void {
         this.points = points;
     }
 
@@ -231,6 +237,7 @@ const active_selection_color: string = "rgba(0, 0, 255, 0.3)";
 const active_selection_outline_color: string = "rgb(0, 0, 255)";
 const inactive_selection_color: string = "rgba(0, 0, 0, 0.3)";
 const inactive_selection_outline_color: string = "rgb(0, 0, 0)";
+const page_render_dpi: number = 100;
 let number_of_pages: number = 0;
 let current_page: number = 0;
 let current_selection: CanvasRectangle = null;
@@ -286,7 +293,7 @@ jQuery(function($): void {
         number_of_pages = parseInt(response);
         renderer.createPages(number_of_pages);
         for (let i: number = 0; i < number_of_pages; i++) {
-            renderer.addImageToPage(i, 0, 0, `/render_test?test_id=${test_id}&answers=true&page=${i}&dpi=100`, 0);
+            renderer.addImageToPage(i, 0, 0, `/render_test?test_id=${test_id}&answers=true&page=${i}&dpi=${page_render_dpi}`, 0);
         }
     });
     // Continuously re-render the canvas at 30 fps.
@@ -311,16 +318,38 @@ jQuery(function($): void {
     $(canvas).on("mouseup", function(): void {
         current_selection.setColor(inactive_selection_color);
         current_selection.setOutlineColor(inactive_selection_outline_color);
-        questions.push(new TestQuestion(1.0, [current_selection]));
+        const test_question: TestQuestion = new TestQuestion("1.0", current_page, [current_selection]);
+        questions.push(test_question);
         $("#current_question_number").text(`question ${questions.length + 1}`);
         $("#no_questions_p").hide();
         $(".submit_button").show();
         $("#questions_table").append(`
         <tr>
             <td>${questions.length}</td>
-            <td><input type="number" value="1.0" class="point_value_input" name="point_value_input_${questions.length}" /></td>
+            <td><input type="text" value="1.0" class="point_value_input" name="point_value_input_${questions.length}" /></td>
             <td><input type="checkbox" name="extra_credit_input_${questions.length}" /></td>
         </tr>`);
+        $(`input[name=point_value_input_${questions.length}]`).on("focus", function(event) {
+            const target: HTMLInputElement = <HTMLInputElement> event.target;
+            if (target.value == target.defaultValue) {
+                target.value = "";
+            }
+        });
+        $(`input[name=point_value_input_${questions.length}]`).on("input", null, test_question, function(event) {
+            let pointValue = <string> $(event.target).val();
+            if (!$.isNumeric(pointValue)) {
+                $(event.target).addClass("wrong");
+                $(".submit_button").addClass("disabled");
+                $(".submit_button").attr("disabled", "true");
+                pointValue = "1.0";
+            }
+            else {
+                $(event.target).removeClass("wrong");
+                $(".submit_button").removeClass("disabled");
+                $(".submit_button").attr("disabled", "false");
+            }
+            event.data.setPoints(pointValue);
+        });
         current_selection = null;
     });
 });

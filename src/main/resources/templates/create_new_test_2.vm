@@ -22,6 +22,7 @@
             <p id="no_questions_p"><i>No questions have been created yet. Click-and-drag on the document to create a question.</i></p>
             <form method="post" action="/create_new_test_2">
                 <input type="submit" value="Finish Creating Questions" class="submit_button hidden" />
+                <p><i>Negative, decimal, and zero point values for questions are permitted.</i></p>
                 <table id="questions_table">
                     <tr>
                         <th>Question Number</th>

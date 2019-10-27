@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works.">
-      <change afterPath="$PROJECT_DIR$/src/files" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQuery.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQueryStatic.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/dist/jquery.slim.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/legacy.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/misc.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/index.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/create_new_test_2.css" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RenderTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/canvasrenderer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +242,8 @@
       <workItem from="1571800149604" duration="152000" />
       <workItem from="1571887969258" duration="599000" />
       <workItem from="1571973130996" duration="599000" />
-      <workItem from="1572050137946" duration="2712000" />
+      <workItem from="1572050137946" duration="3173000" />
+      <workItem from="1572147135178" duration="5147000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -283,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571461843954</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions.">
+      <created>1572052984316</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572052984316</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,6 +298,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Seems to be able to upload stuff to the DB." />
     <MESSAGE value="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works." />
+    <MESSAGE value="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions." />
   </component>
 </project>
