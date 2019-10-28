@@ -75,8 +75,8 @@ abstract class CanvasDrawable {
 }
 
 class CanvasRectangle extends CanvasDrawable {
-    private readonly x: number;
-    private readonly y: number;
+    private x: number;
+    private y: number;
     private readonly layer: number;
     private width: number;
     private height: number;
@@ -130,6 +130,14 @@ class CanvasRectangle extends CanvasDrawable {
 
     getLayer(): number {
         return this.layer;
+    }
+
+    setX(x: number) {
+        this.x = x;
+    }
+
+    setY(y: number) {
+        this.y = y;
     }
 
     render(ctx: CanvasRenderingContext2D): void {
@@ -318,6 +326,10 @@ jQuery(function($): void {
     $(canvas).on("mouseup", function(): void {
         current_selection.setColor(inactive_selection_color);
         current_selection.setOutlineColor(inactive_selection_outline_color);
+        current_selection.setX(current_selection.getX() / page_render_dpi);
+        current_selection.setY(current_selection.getY() / page_render_dpi);
+        current_selection.setWidth(current_selection.getWidth() / page_render_dpi);
+        current_selection.setHeight(current_selection.getHeight() / page_render_dpi);
         const test_question: TestQuestion = new TestQuestion("1.0", current_page, [current_selection]);
         questions.push(test_question);
         $("#current_question_number").text(`question ${questions.length + 1}`);
@@ -351,5 +363,10 @@ jQuery(function($): void {
             event.data.setPoints(pointValue);
         });
         current_selection = null;
+    });
+    // Set up form submit handler that adds the selected region's data (the questions that the user selected with the mouse) to a hidden input that will be sent to the server.
+    $(".submit_button").on("submit", function() {
+        $("#test_questions_json").val(JSON.stringify(questions));
+        $("#test_id").val(test_id.toString());
     });
 });

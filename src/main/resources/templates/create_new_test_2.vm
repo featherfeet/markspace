@@ -23,6 +23,8 @@
             <form method="post" action="/create_new_test_2">
                 <input type="submit" value="Finish Creating Questions" class="submit_button hidden" />
                 <p><i>Negative, decimal, and zero point values for questions are permitted.</i></p>
+                <input type="hidden" id="test_questions_json" name="test_questions_json" />
+                <input type="hidden" id="test_id" name="test_id" />
                 <table id="questions_table">
                     <tr>
                         <th>Question Number</th>

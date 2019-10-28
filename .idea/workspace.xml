@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions.">
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Worked on improving the JS behind the form that gets the point values of each question when creating a test. It now has input validation, placeholder values, and disables submission if there is invalid input (also turns the box red). Still a JDBC error being thrown on the server, though (not fixed yet).">
+      <change afterPath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
     </list>
@@ -49,8 +52,8 @@
         <option value="Enum" />
         <option value="HTML File" />
         <option value="TypeScript File" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -95,7 +98,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -243,7 +246,8 @@
       <workItem from="1571887969258" duration="599000" />
       <workItem from="1571973130996" duration="599000" />
       <workItem from="1572050137946" duration="3173000" />
-      <workItem from="1572147135178" duration="5147000" />
+      <workItem from="1572147135178" duration="5256000" />
+      <workItem from="1572222019939" duration="3430000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -266,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572052984316</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Worked on improving the JS behind the form that gets the point values of each question when creating a test. It now has input validation, placeholder values, and disables submission if there is invalid input (also turns the box red). Still a JDBC error being thrown on the server, though (not fixed yet).">
+      <created>1572152665575</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1572152665575</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,6 +310,7 @@
     <MESSAGE value="Seems to be able to upload stuff to the DB." />
     <MESSAGE value="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works." />
     <MESSAGE value="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions." />
+    <MESSAGE value="Worked on improving the JS behind the form that gets the point values of each question when creating a test. It now has input validation, placeholder values, and disables submission if there is invalid input (also turns the box red). Still a JDBC error being thrown on the server, though (not fixed yet)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on improving the JS behind the form that gets the point values of each question when creating a test. It now has input validation, placeholder values, and disables submission if there is invalid input (also turns the box red). Still a JDBC error being thrown on the server, though (not fixed yet)." />
   </component>
 </project>
