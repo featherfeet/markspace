@@ -294,6 +294,8 @@ jQuery(function($): void {
     const raw_url = window.location.href;
     const url = new URL(raw_url);
     const test_id: number = parseInt(url.searchParams.get("test_id"));
+    // Put the test ID into a hidden input to be sent back to the server.
+    $("#test_id").val(test_id.toString());
     // Set the renderer to render the test (with answers).
     // Get the number of pages in the PDF of the test with answers.
     // Once the number of pages has been retrieved, then start downloading rendered pages.
@@ -326,10 +328,6 @@ jQuery(function($): void {
     $(canvas).on("mouseup", function(): void {
         current_selection.setColor(inactive_selection_color);
         current_selection.setOutlineColor(inactive_selection_outline_color);
-        current_selection.setX(current_selection.getX() / page_render_dpi);
-        current_selection.setY(current_selection.getY() / page_render_dpi);
-        current_selection.setWidth(current_selection.getWidth() / page_render_dpi);
-        current_selection.setHeight(current_selection.getHeight() / page_render_dpi);
         const test_question: TestQuestion = new TestQuestion("1.0", current_page, [current_selection]);
         questions.push(test_question);
         $("#current_question_number").text(`question ${questions.length + 1}`);
@@ -352,21 +350,30 @@ jQuery(function($): void {
             if (!$.isNumeric(pointValue)) {
                 $(event.target).addClass("wrong");
                 $(".submit_button").addClass("disabled");
-                $(".submit_button").attr("disabled", "true");
+                $(".submit_button").attr("disabled", "disabled");
                 pointValue = "1.0";
             }
             else {
                 $(event.target).removeClass("wrong");
                 $(".submit_button").removeClass("disabled");
-                $(".submit_button").attr("disabled", "false");
+                $(".submit_button").removeAttr("disabled");
             }
             event.data.setPoints(pointValue);
         });
         current_selection = null;
     });
     // Set up form submit handler that adds the selected region's data (the questions that the user selected with the mouse) to a hidden input that will be sent to the server.
-    $(".submit_button").on("submit", function() {
+    $(".submit_button").on("click", function(event) {
+        for (let question of questions) {
+            for (let region of question.getRegions()) {
+                region.setX(region.getX() / page_render_dpi);
+                region.setY(region.getY() / page_render_dpi);
+                region.setWidth(region.getWidth() / page_render_dpi);
+                region.setHeight(region.getHeight() / page_render_dpi);
+            }
+        }
         $("#test_questions_json").val(JSON.stringify(questions));
         $("#test_id").val(test_id.toString());
+        $("#questions_form").trigger("submit");
     });
 });

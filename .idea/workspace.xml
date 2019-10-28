@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Worked on improving the JS behind the form that gets the point values of each question when creating a test. It now has input validation, placeholder values, and disables submission if there is invalid input (also turns the box red). Still a JDBC error being thrown on the server, though (not fixed yet).">
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
     </list>
@@ -248,6 +247,8 @@
       <workItem from="1572050137946" duration="3173000" />
       <workItem from="1572147135178" duration="5256000" />
       <workItem from="1572222019939" duration="3430000" />
+      <workItem from="1572243715795" duration="370000" />
+      <workItem from="1572244108795" duration="1717000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
