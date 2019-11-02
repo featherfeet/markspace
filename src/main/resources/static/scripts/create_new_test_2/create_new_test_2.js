@@ -287,14 +287,14 @@ jQuery(function ($) {
         $("#current_question_number").text("question " + (questions.length + 1));
         $("#no_questions_p").hide();
         $(".submit_button").show();
-        $("#questions_table").append("\n        <tr>\n            <td>" + questions.length + "</td>\n            <td><input type=\"text\" value=\"1.0\" class=\"point_value_input\" name=\"point_value_input_" + questions.length + "\" /></td>\n            <td><input type=\"checkbox\" name=\"extra_credit_input_" + questions.length + "\" /></td>\n        </tr>");
-        $("input[name=point_value_input_" + questions.length + "]").on("focus", function (event) {
+        $("#questions_table").append("\n        <tr>\n            <td>" + questions.length + "</td>\n            <td><input type=\"text\" value=\"1.0\" class=\"point_value_input\" id=\"point_value_input_" + questions.length + "\" /></td>\n            <td><input type=\"checkbox\" id=\"extra_credit_input_" + questions.length + "\" /></td>\n        </tr>");
+        $("#point_value_input_" + questions.length).on("focus", function (event) {
             var target = event.target;
             if (target.value == target.defaultValue) {
                 target.value = "";
             }
         });
-        $("input[name=point_value_input_" + questions.length + "]").on("input", null, test_question, function (event) {
+        $("#point_value_input_" + questions.length).on("input", null, test_question, function (event) {
             var pointValue = $(event.target).val();
             if (!$.isNumeric(pointValue)) {
                 $(event.target).addClass("wrong");

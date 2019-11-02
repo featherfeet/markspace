@@ -336,16 +336,16 @@ jQuery(function($): void {
         $("#questions_table").append(`
         <tr>
             <td>${questions.length}</td>
-            <td><input type="text" value="1.0" class="point_value_input" name="point_value_input_${questions.length}" /></td>
-            <td><input type="checkbox" name="extra_credit_input_${questions.length}" /></td>
+            <td><input type="text" value="1.0" class="point_value_input" id="point_value_input_${questions.length}" /></td>
+            <td><input type="checkbox" id="extra_credit_input_${questions.length}" /></td>
         </tr>`);
-        $(`input[name=point_value_input_${questions.length}]`).on("focus", function(event) {
+        $(`#point_value_input_${questions.length}`).on("focus", function(event) {
             const target: HTMLInputElement = <HTMLInputElement> event.target;
             if (target.value == target.defaultValue) {
                 target.value = "";
             }
         });
-        $(`input[name=point_value_input_${questions.length}]`).on("input", null, test_question, function(event) {
+        $(`#point_value_input_${questions.length}`).on("input", null, test_question, function(event) {
             let pointValue = <string> $(event.target).val();
             if (!$.isNumeric(pointValue)) {
                 $(event.target).addClass("wrong");

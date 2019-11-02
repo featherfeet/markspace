@@ -13,4 +13,5 @@ public abstract class PersistentStorage {
     public abstract Test getTestById(int user_id, int test_id);
     public abstract TestFile getTestFileById(int user_id, int test_file_id);
     public abstract int getNumberOfPagesInTestFileById(int user_id, int test_file_id);
+    public abstract void createQuestions(int test_file_id, TestQuestion[] questions);
 }

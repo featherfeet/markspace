@@ -1,6 +1,7 @@
+import org.apache.pdfbox.rendering.PDFRenderer;
 import storage.DatabaseStorage;
 import storage.PersistentStorage;
-
+import java.util.*;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 
@@ -18,7 +19,8 @@ public class Main {
         TestsController testsController = new TestsController(persistentStorage);
         CreateNewTest1Controller createNewTest1Controller = new CreateNewTest1Controller(persistentStorage);
         CreateNewTest2Controller createNewTest2Controller = new CreateNewTest2Controller(persistentStorage);
-        RenderTestController renderTestController = new RenderTestController(persistentStorage);
+        Map<String, PDFRenderer> pdfRendererCache = new HashMap<>();
+        RenderTestController renderTestController = new RenderTestController(persistentStorage, pdfRendererCache);
         get("/login", LoginController.serveLoginPageGet);
         post("/login", LoginController.serveLoginPagePost);
         get("/signup", SignupController.serveSignupPageGet);

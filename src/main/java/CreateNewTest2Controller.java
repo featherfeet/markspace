@@ -29,9 +29,7 @@ public class CreateNewTest2Controller {
         if (test_id == -1) {
             return "ERROR: test_id not provided in query.";
         }
-        System.out.println("Starting query for test with id " + test_id);
         Test currentTest = persistentStorage.getTestById(user_id, test_id);
-        System.out.println("Finished query. currentTest = " + currentTest);
         if (currentTest == null) {
             return "ERROR: The test you are trying to access either does not exist or does not belong to your user.";
         }
@@ -46,18 +44,22 @@ public class CreateNewTest2Controller {
             response.redirect("/login");
             return "";
         }
+        int user_id = request.session().attribute("user_id");
         int test_id = Integer.parseInt(request.queryParamOrDefault("test_id", "-1"));
         if (test_id == -1) {
             return "ERROR: test_id not provided in query.";
         }
+        Test test = persistentStorage.getTestById(user_id, test_id);
+        int test_file_id = test.getAnswersTestFile();
         String test_questions_json_raw = request.queryParamOrDefault("test_questions_json", "not_provided");
         if (test_questions_json_raw.equals("not_provided")) {
             return "ERROR: test_questions_json not provided in query.";
         }
-        System.out.println("raw: " + test_questions_json_raw);
+        //System.out.println("raw: " + test_questions_json_raw);
         String test_questions_json = JsonSanitizer.sanitize(test_questions_json_raw);
-        System.out.println(test_questions_json);
+        //System.out.println(test_questions_json);
         TestQuestion[] test_questions = gson.fromJson(test_questions_json, TestQuestion[].class);
+        /*
         System.out.println(test_questions);
         System.out.println("~~~~~");
         for (TestQuestion test_question : test_questions) {
@@ -65,6 +67,8 @@ public class CreateNewTest2Controller {
             System.out.println("");
         }
         System.out.println("~~~~~");
+        */
+        persistentStorage.createQuestions(test_file_id, test_questions);
         return "";
     };
 }

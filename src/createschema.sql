@@ -30,5 +30,5 @@ CREATE TABLE questions                                        -- All test questi
 (
     question_id INT AUTO_INCREMENT PRIMARY KEY,                   -- Each test question has a unique id.
     test_file_id INT,                                             -- The id of the test file that this corresponds to.
-    location TEXT                                                 -- JSON describing where in the test file the question is located.
+    information TEXT                                              -- JSON describing where in the test file the question is located and other info.
 );

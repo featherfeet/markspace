@@ -13,9 +13,9 @@ public class RenderTestController {
     private static Map<String, PDFRenderer> pdfRendererCache;
     private static PersistentStorage persistentStorage;
 
-    public RenderTestController(PersistentStorage persistentStorage) {
+    public RenderTestController(PersistentStorage persistentStorage, Map<String, PDFRenderer> pdfRendererCache) {
         this.persistentStorage = persistentStorage;
-        pdfRendererCache = new HashMap<>();
+        this.pdfRendererCache = pdfRendererCache;
     }
 
     public static Route serveRenderTestPageGet = (Request request, Response response) -> {
@@ -37,7 +37,6 @@ public class RenderTestController {
 
         // If the client is requesting the number of pages in the document, send it back and DON'T render anything.
         if (get_number_of_pages) {
-            System.out.println("answers: " + answers);
             Test test = persistentStorage.getTestById(user_id, test_id);
             int test_file_id;
             if (answers) {
@@ -59,7 +58,7 @@ public class RenderTestController {
 
         // Check if a PDFRenderer has already been created and cached for the requested document.
         String rendererCacheKey = user_id + ":" + test_id + ":" + answers;
-        PDFRenderer renderer = null;
+        PDFRenderer renderer;
         // If a PDFRenderer has already been created, retrieve it.
         if (pdfRendererCache.containsKey(rendererCacheKey)) {
             System.out.println("Loading PDF renderer from cache.");
@@ -81,7 +80,6 @@ public class RenderTestController {
             TestFile test_file = persistentStorage.getTestFileById(user_id, test_file_id);
 
             byte[] test_file_data = test_file.getData();
-
 
             PDDocument document = PDDocument.load(test_file_data);
 

@@ -3,12 +3,17 @@ package storage;
 import security.HashedPassword;
 import security.PasswordSecurity;
 import javax.sql.rowset.serial.SerialBlob;
+
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.util.*;
 import java.sql.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
 public class DatabaseStorage extends PersistentStorage {
+    private Gson gson;
+
     private Connection connection;
     private PreparedStatement createUserStatement;
     private PreparedStatement validateUserStatement;
@@ -19,6 +24,7 @@ public class DatabaseStorage extends PersistentStorage {
     private PreparedStatement getTestByIdStatement;
     private PreparedStatement getTestFileByIdStatement;
     private PreparedStatement getNumberOfPagesInTestFileByIdStatement;
+    private PreparedStatement createQuestionStatement;
 
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
@@ -56,9 +62,12 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getNumberOfPagesInTestFileByIdSQL = "SELECT number_of_pages FROM test_files WHERE user_id = ? AND test_file_id = ?";
 
+    private final String createQuestionSQL = "INSERT INTO questions (question_id, test_file_id, information) VALUES (default, ?, ?)";
+
     @Override
     protected void initializeStorageMethod() {
         try {
+            gson = new Gson();
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/markspace", "root", "GradingIsFunForYouXDXD42069!!!");
             createUserStatement = connection.prepareStatement(createUserSQL);
             validateUserStatement = connection.prepareStatement(validateUserSQL);
@@ -69,6 +78,7 @@ public class DatabaseStorage extends PersistentStorage {
             getTestByIdStatement = connection.prepareStatement(getTestByIdSQL);
             getTestFileByIdStatement = connection.prepareStatement(getTestFileByIdSQL);
             getNumberOfPagesInTestFileByIdStatement = connection.prepareStatement(getNumberOfPagesInTestFileByIdSQL);
+            createQuestionStatement = connection.prepareStatement(createQuestionSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -237,7 +247,7 @@ public class DatabaseStorage extends PersistentStorage {
             getTestFileByIdStatement.setInt(1, user_id);
             getTestFileByIdStatement.setInt(2, test_file_id);
             ResultSet test_files = getTestFileByIdStatement.executeQuery();
-            if (test_files.next()) {
+            if (test_files.first()) {
                 byte[] data = test_files.getBytes(TEST_FILES_TABLE_TEST_FILE_COLUMN);
                 String name = test_files.getString(TEST_FILES_TABLE_TEST_FILE_NAME_COLUMN);
                 String type = test_files.getString(TEST_FILES_TABLE_TEST_FILE_TYPE_COLUMN);
@@ -265,5 +275,24 @@ public class DatabaseStorage extends PersistentStorage {
             e.printStackTrace();
         }
         return number_of_pages;
+    }
+
+    @Override
+    public void createQuestions(int test_file_id, TestQuestion[] questions) {
+        try {
+            int batch_count = 0;
+            for (TestQuestion question : questions) {
+                createQuestionStatement.setInt(1, test_file_id);
+                createQuestionStatement.setString(2, gson.toJson(question));
+                createQuestionStatement.addBatch();
+                batch_count++;
+                if (batch_count % 100 == 0 || batch_count == questions.length) {
+                    createQuestionStatement.executeUpdate();
+                }
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
