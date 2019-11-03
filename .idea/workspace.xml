@@ -1,32 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Split create_new_test_2.ts into multiple files so that the CanvasRenderer and TestQuestion classes can be reused elsewhere.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQuery.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQueryStatic.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/dist/jquery.slim.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/legacy.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/misc.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -213,7 +189,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572765408422" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572809507153" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -383,7 +359,7 @@
       <workItem from="1572655084269" duration="452000" />
       <workItem from="1572655589999" duration="111000" />
       <workItem from="1572665510589" duration="2414000" />
-      <workItem from="1572749715712" duration="5636000" />
+      <workItem from="1572749715712" duration="6402000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -434,11 +410,18 @@
       <option name="project" value="LOCAL" />
       <updated>1572752659184</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Split create_new_test_2.ts into multiple files so that the CanvasRenderer and TestQuestion classes can be reused elsewhere.">
+      <created>1572765460683</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1572765460683</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8050000" />
+    <option name="totallyTimeSpent" value="8816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -525,7 +508,8 @@
     <MESSAGE value="Client-side create_new_test_2 TypeScript now correctly sends JSON of the questions' data to the server-side Java, which correctly deserializes the JSON into Java objects." />
     <MESSAGE value="Worked on why RenderTestController's renderer cache doesn't save across requests. It's emptying the HashMap each time, probably." />
     <MESSAGE value="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache." />
-    <option name="LAST_COMMIT_MESSAGE" value="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache." />
+    <MESSAGE value="Split create_new_test_2.ts into multiple files so that the CanvasRenderer and TestQuestion classes can be reused elsewhere." />
+    <option name="LAST_COMMIT_MESSAGE" value="Split create_new_test_2.ts into multiple files so that the CanvasRenderer and TestQuestion classes can be reused elsewhere." />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/com/sparkjava/spark-core/2.9.1/spark-core-2.9.1-sources.jar!/spark/http/matching/Routes.java">
@@ -613,13 +597,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-741" />
@@ -653,6 +630,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
         </state>
       </provider>
     </entry>
