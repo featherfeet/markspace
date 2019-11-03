@@ -1,7 +1,6 @@
-import org.apache.pdfbox.rendering.PDFRenderer;
+import freemarker.template.Configuration;
 import storage.DatabaseStorage;
 import storage.PersistentStorage;
-import java.util.*;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 
@@ -12,6 +11,9 @@ public class Main {
         staticFiles.externalLocation("/home/oliver/Projects/Web Projects/markspace/src/main/resources/static"); // TODO: Change to staticFiles.location("/static");
         staticFiles.expireTime(1L);
         enableDebugScreen();
+        // Configure the FreeMarker template engine used by the error page. All the pages that I programmed in this project (those under src/main/rsources/templates) use the Velocity template engine.
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_23);
+        configuration.setBooleanFormat("truebool,falsebool");
         // Configure web pages.
         PersistentStorage persistentStorage = new DatabaseStorage();
         LoginController loginController = new LoginController(persistentStorage);
@@ -19,8 +21,7 @@ public class Main {
         TestsController testsController = new TestsController(persistentStorage);
         CreateNewTest1Controller createNewTest1Controller = new CreateNewTest1Controller(persistentStorage);
         CreateNewTest2Controller createNewTest2Controller = new CreateNewTest2Controller(persistentStorage);
-        Map<String, PDFRenderer> pdfRendererCache = new HashMap<>();
-        RenderTestController renderTestController = new RenderTestController(persistentStorage, pdfRendererCache);
+        RenderTestController renderTestController = new RenderTestController(persistentStorage);
         get("/login", LoginController.serveLoginPageGet);
         post("/login", LoginController.serveLoginPagePost);
         get("/signup", SignupController.serveSignupPageGet);

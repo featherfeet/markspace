@@ -8,14 +8,17 @@ import java.util.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.concurrent.TimeUnit;
 
 public class RenderTestController {
+    private static Set<String> renderersBeingCreated;
     private static Map<String, PDFRenderer> pdfRendererCache;
     private static PersistentStorage persistentStorage;
 
-    public RenderTestController(PersistentStorage persistentStorage, Map<String, PDFRenderer> pdfRendererCache) {
+    public RenderTestController(PersistentStorage persistentStorage) {
         this.persistentStorage = persistentStorage;
-        this.pdfRendererCache = pdfRendererCache;
+        this.pdfRendererCache = new HashMap<>();
+        this.renderersBeingCreated = new HashSet<>();
     }
 
     public static Route serveRenderTestPageGet = (Request request, Response response) -> {
@@ -59,14 +62,18 @@ public class RenderTestController {
         // Check if a PDFRenderer has already been created and cached for the requested document.
         String rendererCacheKey = user_id + ":" + test_id + ":" + answers;
         PDFRenderer renderer;
+        // If another parallel request processor is creating a renderer, wait for it:
+        while (renderersBeingCreated.contains(rendererCacheKey)) {
+            TimeUnit.MILLISECONDS.sleep(150);
+        }
         // If a PDFRenderer has already been created, retrieve it.
         if (pdfRendererCache.containsKey(rendererCacheKey)) {
-            System.out.println("Loading PDF renderer from cache.");
+            System.out.println("Loading PDF renderer from cache with key: " + rendererCacheKey);
             renderer = pdfRendererCache.get(rendererCacheKey);
         }
         // If a PDFRenderer has not been created, retrieve the PDF from the database and create a renderer.
         else {
-            System.out.println("Creating PDF renderer.");
+            renderersBeingCreated.add(rendererCacheKey);
             Test test = persistentStorage.getTestById(user_id, test_id);
 
             int test_file_id = -1;
@@ -85,7 +92,9 @@ public class RenderTestController {
 
             renderer = new PDFRenderer(document);
 
+            System.out.println("Creating PDF renderer with key: " + rendererCacheKey);
             pdfRendererCache.put(rendererCacheKey, renderer);
+            renderersBeingCreated.remove(rendererCacheKey);
         }
 
         // Render the requested page of the PDF into PNG image data.
