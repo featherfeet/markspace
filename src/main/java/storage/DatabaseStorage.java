@@ -287,7 +287,7 @@ public class DatabaseStorage extends PersistentStorage {
                 createQuestionStatement.addBatch();
                 batch_count++;
                 if (batch_count % 100 == 0 || batch_count == questions.length) {
-                    createQuestionStatement.executeUpdate();
+                    createQuestionStatement.executeBatch();
                 }
             }
         }

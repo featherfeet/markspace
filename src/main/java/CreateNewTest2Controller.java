@@ -55,19 +55,8 @@ public class CreateNewTest2Controller {
         if (test_questions_json_raw.equals("not_provided")) {
             return "ERROR: test_questions_json not provided in query.";
         }
-        //System.out.println("raw: " + test_questions_json_raw);
         String test_questions_json = JsonSanitizer.sanitize(test_questions_json_raw);
-        //System.out.println(test_questions_json);
         TestQuestion[] test_questions = gson.fromJson(test_questions_json, TestQuestion[].class);
-        /*
-        System.out.println(test_questions);
-        System.out.println("~~~~~");
-        for (TestQuestion test_question : test_questions) {
-            System.out.println(gson.toJson(test_question));
-            System.out.println("");
-        }
-        System.out.println("~~~~~");
-        */
         persistentStorage.createQuestions(test_file_id, test_questions);
         return "";
     };

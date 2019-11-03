@@ -2,14 +2,14 @@ package storage;
 
 public class TestQuestion {
     private int page;
-    private double points;
+    private String points;
     private CanvasRectangle[] regions;
 
     public int getPage() {
         return page;
     }
 
-    public double getPoints() {
+    public String getPoints() {
         return points;
     }
 
@@ -21,7 +21,7 @@ public class TestQuestion {
         this.page = page;
     }
 
-    public void setPoints(double points) {
+    public void setPoints(String points) {
         this.points = points;
     }
 
@@ -87,11 +87,11 @@ public class TestQuestion {
             this.color = color;
         }
 
-        public String getOutline_color() {
+        public String getOutlineColor() {
             return outline_color;
         }
 
-        public void setOutline_color(String outline_color) {
+        public void setOutlineColor(String outline_color) {
             this.outline_color = outline_color;
         }
 

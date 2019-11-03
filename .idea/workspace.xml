@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Worked on why RenderTestController's renderer cache doesn't save across requests. It's emptying the HashMap each time, probably.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache.">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RenderTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQuery.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/JQueryStatic.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/dist/jquery.slim.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/legacy.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/misc.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/jquery/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/node_modules/@types/sizzle/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,80 +65,7 @@
     </checked>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="691">
-              <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/RenderTestController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6631">
-              <caret line="349" column="42" selection-start-line="349" selection-start-column="42" selection-end-line="349" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" column="94" selection-start-line="23" selection-start-column="94" selection-end-line="23" selection-end-column="94" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2432">
-              <caret line="266" column="15" selection-start-line="266" selection-start-column="15" selection-end-line="266" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-              <folding>
-                <element signature="e#132#133#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$MAVEN_REPOSITORY$/com/sparkjava/spark-core/2.9.1/spark-core-2.9.1-sources.jar!/spark/http/matching/MatcherFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2014">
-              <caret line="140" selection-start-line="140" selection-end-line="140" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -127,9 +74,9 @@
         <option value="JavaScript File" />
         <option value="Enum" />
         <option value="HTML File" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -145,11 +92,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts" />
-        <option value="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/RenderTestController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" />
+        <option value="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" />
       </list>
     </option>
   </component>
@@ -212,14 +164,6 @@
               <item name="markspace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="markspace" type="b2602c69:ProjectViewProjectNode" />
-              <item name="markspace" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -247,7 +191,7 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="create_new_test_2" type="462c0819:PsiDirectoryNode" />
+              <item name="typescript" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="markspace" type="b2602c69:ProjectViewProjectNode" />
@@ -269,7 +213,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572752469657" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572765408422" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -439,7 +383,7 @@
       <workItem from="1572655084269" duration="452000" />
       <workItem from="1572655589999" duration="111000" />
       <workItem from="1572665510589" duration="2414000" />
-      <workItem from="1572749715712" duration="2704000" />
+      <workItem from="1572749715712" duration="5636000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -483,15 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572667894842</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache.">
+      <created>1572752659184</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1572752659184</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5118000" />
+    <option name="totallyTimeSpent" value="8050000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2524013" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -501,14 +451,14 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32969433" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32969433" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3995633" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32969433" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32969433" />
@@ -527,6 +477,12 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -568,12 +524,10 @@
     <MESSAGE value="Worked on improving the JS behind the form that gets the point values of each question when creating a test. It now has input validation, placeholder values, and disables submission if there is invalid input (also turns the box red). Still a JDBC error being thrown on the server, though (not fixed yet)." />
     <MESSAGE value="Client-side create_new_test_2 TypeScript now correctly sends JSON of the questions' data to the server-side Java, which correctly deserializes the JSON into Java objects." />
     <MESSAGE value="Worked on why RenderTestController's renderer cache doesn't save across requests. It's emptying the HashMap each time, probably." />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on why RenderTestController's renderer cache doesn't save across requests. It's emptying the HashMap each time, probably." />
+    <MESSAGE value="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache." />
+    <option name="LAST_COMMIT_MESSAGE" value="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/sparkjava/spark-core/2.9.1/spark-core-2.9.1-sources.jar!/spark/http/matching/Routes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -605,13 +559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2432">
-          <caret line="266" column="15" selection-start-line="266" selection-start-column="15" selection-end-line="266" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/create_new_test_2.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6631">
@@ -619,30 +566,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/RenderTestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1273">
+          <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/createschema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="33" column="2" lean-forward="true" selection-start-line="33" selection-start-column="2" selection-end-line="33" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/storage/TestQuestion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1102">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="289" column="55" selection-start-line="289" selection-start-column="55" selection-end-line="289" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="691">
-          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
+        <state relative-caret-position="370">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-741" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="39" column="75" selection-start-line="39" selection-start-column="75" selection-end-line="39" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="94" selection-start-line="23" selection-start-column="94" selection-end-line="23" selection-end-column="94" />
+        <state relative-caret-position="627">
+          <caret line="33" column="72" selection-start-line="33" selection-start-column="72" selection-end-line="33" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/RenderTestController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="38">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
