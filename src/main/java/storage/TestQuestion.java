@@ -4,6 +4,7 @@ public class TestQuestion {
     private int page;
     private String points;
     private CanvasRectangle[] regions;
+    private boolean extra_credit;
 
     public int getPage() {
         return page;
@@ -11,6 +12,14 @@ public class TestQuestion {
 
     public String getPoints() {
         return points;
+    }
+
+    public boolean getExtraCredit() {
+        return extra_credit;
+    }
+
+    public void setExtraCredit(boolean extra_credit) {
+        this.extra_credit = extra_credit;
     }
 
     public CanvasRectangle[] getRegions() {
