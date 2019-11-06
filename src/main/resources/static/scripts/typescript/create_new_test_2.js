@@ -3,72 +3,24 @@ var active_selection_outline_color = "rgb(0, 0, 255)";
 var inactive_selection_color = "rgba(0, 0, 0, 0.3)";
 var inactive_selection_outline_color = "rgb(0, 0, 0)";
 var page_render_dpi = 100;
-var number_of_pages = 0;
-var current_page = 0;
+var page_render_fps = 30;
 var current_selection = null;
 var questions = [];
-function disableOrEnableButtons() {
-    var previous_page_button = $("#previous_page_button");
-    var next_page_button = $("#next_page_button");
-    if (current_page == 0) {
-        previous_page_button.prop("disabled", true);
-        previous_page_button.addClass("disabled");
-    }
-    else {
-        previous_page_button.prop("disabled", false);
-        previous_page_button.removeClass("disabled");
-    }
-    if (current_page == number_of_pages - 1) {
-        next_page_button.prop("disabled", true);
-        next_page_button.addClass("disabled");
-    }
-    else {
-        next_page_button.prop("disabled", false);
-        next_page_button.removeClass("disabled");
-    }
-}
-function nextPage() {
-    if (current_page + 1 <= number_of_pages - 1) {
-        current_page++;
-        disableOrEnableButtons();
-    }
-}
-function previousPage() {
-    if (current_page - 1 >= 0) {
-        current_page--;
-        disableOrEnableButtons();
-    }
-}
 jQuery(function ($) {
-    // Get canvas and set up renderer.
-    var canvas = $("canvas")[0];
-    var renderer = new CanvasRenderer(canvas);
     // Get the test ID of the test being created.
     var raw_url = window.location.href;
     var url = new URL(raw_url);
     var test_id = parseInt(url.searchParams.get("test_id"));
+    // Set up the object that handles viewing of the PDF of the test.
+    var canvas = $("canvas")[0];
+    var next_page_button = $("#next_page_button")[0];
+    var previous_page_button = $("#previous_page_button")[0];
+    var test_viewer = new TestViewer(canvas, next_page_button, previous_page_button, test_id, page_render_dpi, page_render_fps);
     // Put the test ID into a hidden input to be sent back to the server.
     $("#test_id").val(test_id.toString());
-    // Set the renderer to render the test (with answers).
-    // Get the number of pages in the PDF of the test with answers.
-    // Once the number of pages has been retrieved, then start downloading rendered pages.
-    $.get("/render_test?test_id=" + test_id + "&answers=true&get_number_of_pages=true", function (response) {
-        number_of_pages = parseInt(response);
-        renderer.createPages(number_of_pages);
-        for (var i = 0; i < number_of_pages; i++) {
-            renderer.addImageToPage(i, 0, 0, "/render_test?test_id=" + test_id + "&answers=true&page=" + i + "&dpi=" + page_render_dpi, 0);
-        }
-    });
-    // Continuously re-render the canvas at 30 fps.
-    setInterval(function () {
-        renderer.renderPage(current_page);
-    }, (1.0 / 30.0) * 1000.0);
-    // Set up page change buttons.
-    $("#next_page_button").on("click", nextPage);
-    $("#previous_page_button").on("click", previousPage);
     // Set up mousedown handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousedown", function (event) {
-        current_selection = renderer.addRectangleToPage(current_page, event.offsetX, event.offsetY, 0, 0, active_selection_color, active_selection_outline_color, "Q" + (questions.length + 1), 1);
+        current_selection = test_viewer.getRenderer().addRectangleToPage(test_viewer.getCurrentPage(), event.offsetX, event.offsetY, 0, 0, active_selection_color, active_selection_outline_color, "Q" + (questions.length + 1), 1);
     });
     // Set up mousemove handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousemove", function (event) {
@@ -81,7 +33,7 @@ jQuery(function ($) {
     $(canvas).on("mouseup", function () {
         current_selection.setColor(inactive_selection_color);
         current_selection.setOutlineColor(inactive_selection_outline_color);
-        var test_question = new TestQuestion("1.0", current_page, [current_selection], false);
+        var test_question = new TestQuestion("1.0", test_viewer.getCurrentPage(), [current_selection], false);
         questions.push(test_question);
         $("#current_question_number").text("question " + (questions.length + 1));
         $("#no_questions_p").hide();

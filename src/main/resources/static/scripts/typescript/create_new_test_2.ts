@@ -3,76 +3,25 @@ const active_selection_outline_color: string = "rgb(0, 0, 255)";
 const inactive_selection_color: string = "rgba(0, 0, 0, 0.3)";
 const inactive_selection_outline_color: string = "rgb(0, 0, 0)";
 const page_render_dpi: number = 100;
-let number_of_pages: number = 0;
-let current_page: number = 0;
+const page_render_fps: number = 30;
 let current_selection: CanvasRectangle = null;
 let questions: TestQuestion[] = [];
 
-function disableOrEnableButtons(): void {
-    const previous_page_button: JQuery = $("#previous_page_button");
-    const next_page_button: JQuery = $("#next_page_button");
-    if (current_page == 0) {
-        previous_page_button.prop("disabled", true);
-        previous_page_button.addClass("disabled");
-    }
-    else {
-        previous_page_button.prop("disabled", false);
-        previous_page_button.removeClass("disabled");
-    }
-    if (current_page == number_of_pages - 1) {
-        next_page_button.prop("disabled", true);
-        next_page_button.addClass("disabled");
-    }
-    else {
-        next_page_button.prop("disabled", false);
-        next_page_button.removeClass("disabled");
-    }
-}
-
-function nextPage(): void {
-    if (current_page + 1 <= number_of_pages - 1) {
-        current_page++;
-        disableOrEnableButtons();
-    }
-}
-
-function previousPage(): void {
-    if (current_page - 1 >= 0) {
-        current_page--;
-        disableOrEnableButtons();
-    }
-}
-
 jQuery(function($): void {
-    // Get canvas and set up renderer.
-    const canvas: HTMLCanvasElement = <HTMLCanvasElement> $("canvas")[0];
-    const renderer: CanvasRenderer = new CanvasRenderer(canvas);
     // Get the test ID of the test being created.
     const raw_url = window.location.href;
     const url = new URL(raw_url);
     const test_id: number = parseInt(url.searchParams.get("test_id"));
+    // Set up the object that handles viewing of the PDF of the test.
+    const canvas: HTMLCanvasElement = <HTMLCanvasElement> $("canvas")[0];
+    const next_page_button: HTMLButtonElement = <HTMLButtonElement> $("#next_page_button")[0];
+    const previous_page_button: HTMLButtonElement = <HTMLButtonElement> $("#previous_page_button")[0];
+    const test_viewer: TestViewer = new TestViewer(canvas, next_page_button, previous_page_button, test_id, page_render_dpi, page_render_fps);
     // Put the test ID into a hidden input to be sent back to the server.
     $("#test_id").val(test_id.toString());
-    // Set the renderer to render the test (with answers).
-    // Get the number of pages in the PDF of the test with answers.
-    // Once the number of pages has been retrieved, then start downloading rendered pages.
-    $.get(`/render_test?test_id=${test_id}&answers=true&get_number_of_pages=true`, function(response) {
-        number_of_pages = parseInt(response);
-        renderer.createPages(number_of_pages);
-        for (let i: number = 0; i < number_of_pages; i++) {
-            renderer.addImageToPage(i, 0, 0, `/render_test?test_id=${test_id}&answers=true&page=${i}&dpi=${page_render_dpi}`, 0);
-        }
-    });
-    // Continuously re-render the canvas at 30 fps.
-    setInterval(function() {
-        renderer.renderPage(current_page);
-    }, (1.0 / 30.0) * 1000.0);
-    // Set up page change buttons.
-    $("#next_page_button").on("click", nextPage);
-    $("#previous_page_button").on("click", previousPage);
     // Set up mousedown handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousedown", function(event): void {
-        current_selection = renderer.addRectangleToPage(current_page, event.offsetX, event.offsetY, 0, 0, active_selection_color, active_selection_outline_color, `Q${questions.length + 1}`,1);
+        current_selection = test_viewer.getRenderer().addRectangleToPage(test_viewer.getCurrentPage(), event.offsetX, event.offsetY, 0, 0, active_selection_color, active_selection_outline_color, `Q${questions.length + 1}`,1);
     });
     // Set up mousemove handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousemove", function(event): void {
@@ -85,7 +34,7 @@ jQuery(function($): void {
     $(canvas).on("mouseup", function(): void {
         current_selection.setColor(inactive_selection_color);
         current_selection.setOutlineColor(inactive_selection_outline_color);
-        const test_question: TestQuestion = new TestQuestion("1.0", current_page, [current_selection], false);
+        const test_question: TestQuestion = new TestQuestion("1.0", test_viewer.getCurrentPage(), [current_selection], false);
         questions.push(test_question);
         $("#current_question_number").text(`question ${questions.length + 1}`);
         $("#no_questions_p").hide();

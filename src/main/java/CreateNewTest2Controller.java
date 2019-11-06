@@ -57,7 +57,7 @@ public class CreateNewTest2Controller {
         }
         String test_questions_json = JsonSanitizer.sanitize(test_questions_json_raw);
         TestQuestion[] test_questions = gson.fromJson(test_questions_json, TestQuestion[].class);
-        persistentStorage.createQuestions(test_file_id, test_questions);
+        persistentStorage.createQuestions(test_file_id, user_id, test_questions);
         return "";
     };
 }

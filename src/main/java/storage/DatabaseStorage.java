@@ -62,7 +62,7 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getNumberOfPagesInTestFileByIdSQL = "SELECT number_of_pages FROM test_files WHERE user_id = ? AND test_file_id = ?";
 
-    private final String createQuestionSQL = "INSERT INTO questions (question_id, test_file_id, information) VALUES (default, ?, ?)";
+    private final String createQuestionSQL = "INSERT INTO questions (question_id, test_file_id, user_id, information) VALUES (default, ?, ?, ?)";
 
     @Override
     protected void initializeStorageMethod() {
@@ -278,12 +278,13 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public void createQuestions(int test_file_id, TestQuestion[] questions) {
+    public void createQuestions(int test_file_id, int user_id, TestQuestion[] questions) {
         try {
             int batch_count = 0;
             for (TestQuestion question : questions) {
                 createQuestionStatement.setInt(1, test_file_id);
-                createQuestionStatement.setString(2, gson.toJson(question));
+                createQuestionStatement.setInt(2, user_id);
+                createQuestionStatement.setString(3, gson.toJson(question));
                 createQuestionStatement.addBatch();
                 batch_count++;
                 if (batch_count % 100 == 0 || batch_count == questions.length) {
