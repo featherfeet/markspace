@@ -22,6 +22,7 @@ public class Main {
         CreateNewTest1Controller createNewTest1Controller = new CreateNewTest1Controller(persistentStorage);
         CreateNewTest2Controller createNewTest2Controller = new CreateNewTest2Controller(persistentStorage);
         RenderTestController renderTestController = new RenderTestController(persistentStorage);
+        TestController testController = new TestController(persistentStorage);
         get("/login", LoginController.serveLoginPageGet);
         post("/login", LoginController.serveLoginPagePost);
         get("/signup", SignupController.serveSignupPageGet);
@@ -32,5 +33,6 @@ public class Main {
         get("/create_new_test_2", createNewTest2Controller.serveCreateNewTest2PageGet);
         post("/create_new_test_2", createNewTest2Controller.serveCreateNewTest2PagePost);
         get("/render_test", renderTestController.serveRenderTestPageGet);
+        get("/test", testController.serveTestPageGet);
     }
 }

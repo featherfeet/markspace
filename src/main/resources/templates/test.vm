@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Test: ${test_name}</title>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <h1>Test: ${test_name}</h1>
+    </head>
+    <body>
+        <p>${test_description}</p>
+        <button id="previous_page_button"><< Previous Page</button>
+        <button id="next_page_button">Next Page >></button>
+        <br>
+        <canvas id="test_canvas">
+            Your browser does not support the HTML5 canvas. Please find a web browser from this millennium.
+        </canvas>
+        <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/global_parameters.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/canvasrenderer.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/testviewer.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/testquestion.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/test.js"></script>
+    </body>
+</html>

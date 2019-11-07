@@ -36,6 +36,7 @@
             </form>
         </div>
         <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/global_parameters.js"></script>
         <script type="text/javascript" src="/scripts/typescript/canvasrenderer.js"></script>
         <script type="text/javascript" src="/scripts/typescript/testviewer.js"></script>
         <script type="text/javascript" src="/scripts/typescript/testquestion.js"></script>

@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Deleted some Eclipse-related and VSCode-related files that weren't necessary. Added package-lock.json to Git.">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.ts" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Moved all of the client-side TypeScript code for viewing rendered tests (PDF files) into a separate class (the TestViewer class in testviewer.ts). This allows the test viewer to be reused for multiple pages without repeating code.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/global_parameters.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/global_parameters.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/test.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,6 +104,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/scripts/typescript" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/scripts" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/stylesheets" />
@@ -262,7 +266,9 @@
       <workItem from="1572935303351" duration="41000" />
       <workItem from="1572935369623" duration="1410000" />
       <workItem from="1572980490942" duration="862000" />
-      <workItem from="1573009199740" duration="4138000" />
+      <workItem from="1573009199740" duration="4890000" />
+      <workItem from="1573071584213" duration="575000" />
+      <workItem from="1573100172815" duration="2715000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -334,18 +340,28 @@
       <option name="project" value="LOCAL" />
       <updated>1572939958655</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Moved all of the client-side TypeScript code for viewing rendered tests (PDF files) into a separate class (the TestViewer class in testviewer.ts). This allows the test viewer to be reused for multiple pages without repeating code.">
+      <created>1573013561747</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1573013561747</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
     <option name="exactExcludedFiles">
       <list>
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/parameters.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testfileviewer.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.js" />
         <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/testviewer.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/global_parameters.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/test.js" />
       </list>
     </option>
   </component>
@@ -387,6 +403,7 @@
     <MESSAGE value="Split create_new_test_2.ts into multiple files so that the CanvasRenderer and TestQuestion classes can be reused elsewhere." />
     <MESSAGE value="Added a tsconfig.json so that the TypeScript checker would be able to see classes from other files." />
     <MESSAGE value="Deleted some Eclipse-related and VSCode-related files that weren't necessary. Added package-lock.json to Git." />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted some Eclipse-related and VSCode-related files that weren't necessary. Added package-lock.json to Git." />
+    <MESSAGE value="Moved all of the client-side TypeScript code for viewing rendered tests (PDF files) into a separate class (the TestViewer class in testviewer.ts). This allows the test viewer to be reused for multiple pages without repeating code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved all of the client-side TypeScript code for viewing rendered tests (PDF files) into a separate class (the TestViewer class in testviewer.ts). This allows the test viewer to be reused for multiple pages without repeating code." />
   </component>
 </project>
