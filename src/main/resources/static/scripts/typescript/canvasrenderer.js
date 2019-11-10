@@ -41,6 +41,9 @@ var CanvasRenderer = /** @class */ (function () {
         this.pages[page].push(rectangle);
         return rectangle;
     };
+    CanvasRenderer.prototype.addCanvasRectangleToPage = function (page, canvas_rectangle) {
+        this.pages[page].push(canvas_rectangle);
+    };
     CanvasRenderer.prototype.renderPage = function (page) {
         // Clear the canvas.
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -113,6 +116,9 @@ var CanvasRectangle = /** @class */ (function (_super) {
     CanvasRectangle.prototype.getLayer = function () {
         return this.layer;
     };
+    CanvasRectangle.prototype.setLabel = function (label) {
+        this.label = label;
+    };
     CanvasRectangle.prototype.setX = function (x) {
         this.x = x;
     };
@@ -133,6 +139,8 @@ var CanvasRectangle = /** @class */ (function (_super) {
         // Draw the text of the rectangle.
         ctx.font = "25px Verdana";
         ctx.fillStyle = this.outline_color;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
         ctx.fillText(this.label, this.getX() + this.getWidth() / 2, this.getY() + this.getHeight() / 2);
     };
     return CanvasRectangle;

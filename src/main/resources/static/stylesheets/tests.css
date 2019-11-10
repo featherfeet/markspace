@@ -10,3 +10,12 @@ tr, td, th {
     border-radius: 15px;
     vertical-align: top;
 }
+
+.delete_test_button {
+    border-color: red;
+    transition: background-color 0.5s;
+}
+
+.delete_test_button:hover {
+    background-color: red;
+}

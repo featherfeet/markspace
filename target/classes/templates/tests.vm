@@ -18,12 +18,15 @@
                 </tr>
                     #set($stop = $test_names.size() - 1)
                     #foreach ($i in [0 .. $stop])
-                        <tr>
+                        <tr id="test_row_$test_ids.get($i)">
                             <td>
                                 <a href="/test?test_id=$test_ids.get($i)">$test_names.get($i)</a>
                             </td>
                             <td>
                                 <pre>$test_descriptions[$i]</pre>
+                            </td>
+                            <td>
+                                <button class="delete_test_button" data-test-id="$test_ids.get($i)">Delete Test</button>
                             </td>
                         </tr>
                     #end
@@ -31,5 +34,7 @@
         #else
             <p><i>You have not created any tests yet. Click "Create New Test" to start creating your first test.</i></p>
         #end
+        <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/tests.js"></script>
     </body>
 </html>

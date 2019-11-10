@@ -38,6 +38,7 @@ jQuery(function($): void {
             <td>${questions.length}</td>
             <td><input type="text" value="1.0" class="point_value_input" id="point_value_input_${questions.length}" /></td>
             <td><input type="checkbox" id="extra_credit_input_${questions.length}" /></td>
+            <td><input type="radio" name="student_identification" id="student_identification_input_${questions.length}" /></td>
         </tr>`);
         $(`#point_value_input_${questions.length}`).on("focus", function(event) {
             const target: HTMLInputElement = <HTMLInputElement> event.target;
@@ -63,6 +64,20 @@ jQuery(function($): void {
         $(`#extra_credit_input_${questions.length}`).on("input", null, test_question, function(event) {
             const checked: boolean = $(event.target).is(":checked");
             test_question.setExtraCredit(checked);
+        });
+        $(`#student_identification_input_${questions.length}`).on("click", null, test_question, function(event) {
+            for (let i: number = 0; i < questions.length; i++) {
+                for (let region of questions[i].getRegions()) {
+                    region.setColor(inactive_selection_color);
+                    region.setOutlineColor(inactive_selection_outline_color);
+                    region.setLabel(`Q${i + 1}`);
+                }
+            }
+            for (let region of test_question.getRegions()) {
+                region.setColor("rgb(0, 255, 0, 0.2)");
+                region.setOutlineColor("rgb(0, 150, 0)");
+                region.setLabel("NAME");
+            }
         });
         current_selection = null;
     });

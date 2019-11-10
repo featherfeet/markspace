@@ -30,6 +30,7 @@
                         <th>Question Number</th>
                         <th>Point Value</th>
                         <th>Extra Credit</th>
+                        <th>Name</th>
                     </tr>
                 </table>
                 <button class="submit_button hidden">Finish Creating Questions</button>

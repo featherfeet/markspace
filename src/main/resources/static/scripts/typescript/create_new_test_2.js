@@ -32,7 +32,7 @@ jQuery(function ($) {
         $("#current_question_number").text("question " + (questions.length + 1));
         $("#no_questions_p").hide();
         $(".submit_button").show();
-        $("#questions_table").append("\n        <tr>\n            <td>" + questions.length + "</td>\n            <td><input type=\"text\" value=\"1.0\" class=\"point_value_input\" id=\"point_value_input_" + questions.length + "\" /></td>\n            <td><input type=\"checkbox\" id=\"extra_credit_input_" + questions.length + "\" /></td>\n        </tr>");
+        $("#questions_table").append("\n        <tr>\n            <td>" + questions.length + "</td>\n            <td><input type=\"text\" value=\"1.0\" class=\"point_value_input\" id=\"point_value_input_" + questions.length + "\" /></td>\n            <td><input type=\"checkbox\" id=\"extra_credit_input_" + questions.length + "\" /></td>\n            <td><input type=\"radio\" name=\"student_identification\" id=\"student_identification_input_" + questions.length + "\" /></td>\n        </tr>");
         $("#point_value_input_" + questions.length).on("focus", function (event) {
             var target = event.target;
             if (target.value == target.defaultValue) {
@@ -57,6 +57,22 @@ jQuery(function ($) {
         $("#extra_credit_input_" + questions.length).on("input", null, test_question, function (event) {
             var checked = $(event.target).is(":checked");
             test_question.setExtraCredit(checked);
+        });
+        $("#student_identification_input_" + questions.length).on("click", null, test_question, function (event) {
+            for (var i = 0; i < questions.length; i++) {
+                for (var _i = 0, _a = questions[i].getRegions(); _i < _a.length; _i++) {
+                    var region = _a[_i];
+                    region.setColor(inactive_selection_color);
+                    region.setOutlineColor(inactive_selection_outline_color);
+                    region.setLabel("Q" + (i + 1));
+                }
+            }
+            for (var _b = 0, _c = test_question.getRegions(); _b < _c.length; _b++) {
+                var region = _c[_b];
+                region.setColor("rgb(0, 255, 0, 0.2)");
+                region.setOutlineColor("rgb(0, 150, 0)");
+                region.setLabel("NAME");
+            }
         });
         current_selection = null;
     });

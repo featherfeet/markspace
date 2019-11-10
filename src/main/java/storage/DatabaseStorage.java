@@ -25,6 +25,10 @@ public class DatabaseStorage extends PersistentStorage {
     private PreparedStatement getTestFileByIdStatement;
     private PreparedStatement getNumberOfPagesInTestFileByIdStatement;
     private PreparedStatement createQuestionStatement;
+    private PreparedStatement getQuestionsByTestFileIdStatement;
+    private PreparedStatement deleteTestByIdStatement;
+    private PreparedStatement deleteTestFileByIdStatement;
+    private PreparedStatement deleteQuestionsByTestFileIdStatement;
 
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
@@ -64,6 +68,18 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String createQuestionSQL = "INSERT INTO questions (question_id, test_file_id, user_id, information) VALUES (default, ?, ?, ?)";
 
+    private final String getQuestionsByTestFileIdSQL = "SELECT * FROM questions WHERE user_id = ? AND test_file_id = ?";
+    private final int QUESTIONS_TABLE_QUESTION_ID_COLUMN = 1;
+    private final int QUESTIONS_TABLE_TEST_FILE_ID_COLUMN = 2;
+    private final int QUESTIONS_TABLE_USER_ID_COLUMN = 3;
+    private final int QUESTIONS_TABLE_INFORMATION_COLUMN = 4;
+
+    private final String deleteTestByIdSQL = "DELETE FROM tests WHERE user_id = ? AND test_id = ?";
+
+    private final String deleteTestFileByIdSQL = "DELETE FROM test_files WHERE user_id = ? AND test_file_id = ?";
+
+    private final String deleteQuestionsByTestFileIdSQL = "DELETE FROM questions WHERE user_id = ? AND test_file_id = ?";
+
     @Override
     protected void initializeStorageMethod() {
         try {
@@ -79,6 +95,10 @@ public class DatabaseStorage extends PersistentStorage {
             getTestFileByIdStatement = connection.prepareStatement(getTestFileByIdSQL);
             getNumberOfPagesInTestFileByIdStatement = connection.prepareStatement(getNumberOfPagesInTestFileByIdSQL);
             createQuestionStatement = connection.prepareStatement(createQuestionSQL);
+            getQuestionsByTestFileIdStatement = connection.prepareStatement(getQuestionsByTestFileIdSQL);
+            deleteTestByIdStatement = connection.prepareStatement(deleteTestByIdSQL);
+            deleteTestFileByIdStatement = connection.prepareStatement(deleteTestFileByIdSQL);
+            deleteQuestionsByTestFileIdStatement = connection.prepareStatement(deleteQuestionsByTestFileIdSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -290,6 +310,63 @@ public class DatabaseStorage extends PersistentStorage {
                 if (batch_count % 100 == 0 || batch_count == questions.length) {
                     createQuestionStatement.executeBatch();
                 }
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public TestQuestion[] getQuestionsByTestFileId(int user_id, int test_file_id) {
+        try {
+            getQuestionsByTestFileIdStatement.setInt(1, user_id);
+            getQuestionsByTestFileIdStatement.setInt(2, test_file_id);
+            ResultSet resultSet = getQuestionsByTestFileIdStatement.executeQuery();
+            List<TestQuestion> testQuestions = new ArrayList<>();
+            while (resultSet.next()) {
+                String raw_json = resultSet.getString(QUESTIONS_TABLE_INFORMATION_COLUMN);
+                TestQuestion testQuestion = gson.fromJson(raw_json, TestQuestion.class);
+                testQuestions.add(testQuestion);
+            }
+            return testQuestions.toArray(new TestQuestion[testQuestions.size()]);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new TestQuestion[0];
+    }
+
+    @Override
+    public TestQuestion[] getQuestionsByTestId(int user_id, int test_id) {
+        Test test = getTestById(user_id, test_id);
+        return getQuestionsByTestFileId(user_id, test.getAnswersTestFile());
+    }
+
+    private void deleteTestFileById(int user_id, int test_file_id) {
+        try {
+            deleteTestFileByIdStatement.setInt(1, user_id);
+            deleteTestFileByIdStatement.setInt(2, test_file_id);
+            deleteTestFileByIdStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteTestById(int user_id, int test_id) {
+        try {
+            Test test_to_delete = getTestById(user_id, test_id);
+            if (test_to_delete != null) {
+                deleteTestFileById(user_id, test_to_delete.getAnswersTestFile());
+                deleteTestFileById(user_id, test_to_delete.getBlankTestFile());
+                deleteTestByIdStatement.setInt(1, user_id);
+                deleteTestByIdStatement.setInt(2, test_id);
+                deleteTestByIdStatement.executeUpdate();
+                deleteQuestionsByTestFileIdStatement.setInt(1, user_id);
+                deleteQuestionsByTestFileIdStatement.setInt(2, test_to_delete.getAnswersTestFile());
+                deleteQuestionsByTestFileIdStatement.executeUpdate();
             }
         }
         catch (SQLException e) {

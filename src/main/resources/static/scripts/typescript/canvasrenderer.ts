@@ -37,6 +37,10 @@ class CanvasRenderer {
         return rectangle;
     }
 
+    addCanvasRectangleToPage(page: number, canvas_rectangle: CanvasRectangle): void {
+        this.pages[page].push(canvas_rectangle);
+    }
+
     renderPage(page: number): void {
         // Clear the canvas.
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -132,6 +136,10 @@ class CanvasRectangle extends CanvasDrawable {
         return this.layer;
     }
 
+    setLabel(label: string): void {
+        this.label = label;
+    }
+
     setX(x: number) {
         this.x = x;
     }
@@ -154,6 +162,8 @@ class CanvasRectangle extends CanvasDrawable {
         // Draw the text of the rectangle.
         ctx.font = "25px Verdana";
         ctx.fillStyle = this.outline_color;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
         ctx.fillText(this.label, this.getX() + this.getWidth() / 2, this.getY() + this.getHeight() / 2);
     }
 }
