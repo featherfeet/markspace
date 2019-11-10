@@ -16,14 +16,16 @@ public class LoginController {
             response.redirect("/tests");
         }
         Map<String, Object> model = new HashMap<>();
-        String message = request.session().attribute("message");
-        if (message == null) {
-            model.put("message", "");
+        if (request.session().attribute("message") == null) {
+            request.session().attribute("message", "");
         }
-        else {
-            model.put("message", message);
+        if (request.session().attribute("message_color") == null) {
+            request.session().attribute("message_color", "");
         }
-        request.session().removeAttribute("message");
+        model.put("message", request.session().attribute("message"));
+        model.put("message_color", request.session().attribute("message_color"));
+        request.session().attribute("message", "");
+        request.session().attribute("message_color", "");
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/login.vm"));
     };
 
@@ -41,6 +43,10 @@ public class LoginController {
             request.session().attribute("username", username);
             request.session().attribute("valid_user", true);
             request.session().attribute("user_id", validated_user_id);
+            // These two session attributes are used to flash messages to the user. They persist across multiple pages, making them useful for "wrong username" or "form submit successful" type messages.
+            request.session().attribute("message_color", "");
+            request.session().attribute("message", "");
+            // Redirect to the tests page if the user logged in successfully.
             response.redirect("/tests");
         }
         else {

@@ -8,6 +8,7 @@
         <h1>Tests</h1>
     </head>
     <body>
+        <p style="color: $message_color;"><i>$message</i></p>
         <a href="/create_new_test_1"><button>Create New Test</button></a>
         <br>
         #if ($test_names.size() > 0)

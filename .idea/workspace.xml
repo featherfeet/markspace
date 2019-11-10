@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Created the /test?test_id= page that lets users view tests that have already been created. Moved some global configuration of client-side PDF rendering code into global_parameters.ts.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/DeleteTestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GetQuestionsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/todo.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -280,7 +267,7 @@
       <workItem from="1573263550070" duration="1875000" />
       <workItem from="1573323278102" duration="3382000" />
       <workItem from="1573326692550" duration="7505000" />
-      <workItem from="1573360901971" duration="3016000" />
+      <workItem from="1573360901971" duration="6476000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -366,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573102957867</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;.">
+      <created>1573364340315</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1573364340315</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,6 +419,7 @@
     <MESSAGE value="Deleted some Eclipse-related and VSCode-related files that weren't necessary. Added package-lock.json to Git." />
     <MESSAGE value="Moved all of the client-side TypeScript code for viewing rendered tests (PDF files) into a separate class (the TestViewer class in testviewer.ts). This allows the test viewer to be reused for multiple pages without repeating code." />
     <MESSAGE value="Created the /test?test_id= page that lets users view tests that have already been created. Moved some global configuration of client-side PDF rendering code into global_parameters.ts." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created the /test?test_id= page that lets users view tests that have already been created. Moved some global configuration of client-side PDF rendering code into global_parameters.ts." />
+    <MESSAGE value="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;." />
   </component>
 </project>

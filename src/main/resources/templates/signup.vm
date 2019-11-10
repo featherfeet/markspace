@@ -10,7 +10,7 @@
         <div id="signup_box" class="decorated">
             <h1>Sign Up for MarkSpace</h1>
             <form method="POST" action="/signup">
-                <p id="message_p">$message</p>
+                <p style="color: $message_color;" id="message_p">$message</p>
                 <input type="text" name="username" placeholder="Choose a Username" id="username_input">
                 <br>
                 <input type="password" name="password" placeholder="Choose a Password" id="password_input">

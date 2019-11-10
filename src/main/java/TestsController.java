@@ -28,6 +28,10 @@ public class TestsController {
             test_descriptions[i] = tests[i].getDescription();
             test_ids[i] = tests[i].getId();
         }
+        model.put("message_color", request.session().attribute("message_color"));
+        model.put("message", request.session().attribute("message"));
+        request.session().attribute("message_color", "");
+        request.session().attribute("message", "");
         model.put("test_names", test_names);
         model.put("test_descriptions", test_descriptions);
         model.put("test_ids", test_ids);
