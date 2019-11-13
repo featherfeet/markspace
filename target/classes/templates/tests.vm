@@ -8,6 +8,9 @@
         <h1>Tests</h1>
     </head>
     <body>
+        <div id="signout_div">
+            <a href="/signout" class="buttonlike">Sign Out</a>
+        </div>
         <p style="color: $message_color;"><i>$message</i></p>
         <a href="/create_new_test_1"><button>Create New Test</button></a>
         <br>

@@ -6,13 +6,7 @@ h1 {
     text-align: center;
 }
 
-.decorated {
-    border: 3px solid #3b5998;
-    border-radius: 15px;
-    padding: 5px 5px 5px 5px;
-}
-
-button, input, textarea {
+.buttonlike, .decorated, button, input, textarea {
     border: 3px solid #3b5998;
     border-radius: 15px;
     padding: 5px 5px 5px 5px;
@@ -32,18 +26,18 @@ input.wrong {
     background-color: palevioletred;
 }
 
-button, input[type=submit] {
+.buttonlike, button, input[type=submit] {
     background-color: white;
     color: black;
     transition: background-color 0.5s, color 0.5s;
 }
 
-button:hover, input[type=submit]:hover {
+.buttonlike:hover, button:hover, input[type=submit]:hover {
     background-color: #3b5998;
     color: white;
 }
 
-button.disabled, input[type=submit].disabled {
+.buttonlike.disabled, button.disabled, input[type=submit].disabled {
     background-color: white;
     border-color: gray;
     color: gray;

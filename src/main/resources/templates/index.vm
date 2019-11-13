@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+        <title>Welcome to MarkSpace!</title>
+        <h1>Welcome to MarkSpace!</h1>
+    </head>
+    <body>
+        <p>MarkSpace is a web app for efficiently grading written assessments. Teachers upload scans of student answers and an answer key, and the software anonymizes the responses and gives them to graders.</p>
+        <a class="buttonlike bigbutton" href="/login">I Already Have An Account</a>
+        <a class="buttonlike bigbutton" href="/signup">I Don't Have an Account Yet</a>
+    </body>
+</html>

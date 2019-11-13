@@ -54,6 +54,7 @@ public class LoginController {
             request.session(true);
             request.session().attribute("username", username);
             request.session().attribute("valid_user", false);
+            request.session().attribute("message_color", "red");
             request.session().attribute("message", "Wrong user credentials. Please try again.");
             response.redirect("/login");
         }

@@ -17,6 +17,7 @@ public class CreateNewTest1Controller {
     public static Route serveCreateNewTest1PageGet = (Request request, Response response) -> {
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
+            request.session().attribute("message_color", "red");
             request.session().attribute("message", "You must be logged in to access tests.");
             response.redirect("/login");
             return "";
@@ -31,6 +32,7 @@ public class CreateNewTest1Controller {
         // Check for a valid user.
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
+            request.session().attribute("message_color", "red");
             request.session().attribute("message", "You must be logged in to access tests.");
             response.redirect("/login");
             return "";

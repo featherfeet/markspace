@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;.">
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure).">
+      <change afterPath="$PROJECT_DIR$/src/main/java/IndexController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SignoutController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DeleteTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DeleteTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GetQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GetQuestionsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RenderTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/TestsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TestsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,9 +57,9 @@
         <option value="JavaScript File" />
         <option value="Enum" />
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="TypeScript File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -267,7 +280,9 @@
       <workItem from="1573263550070" duration="1875000" />
       <workItem from="1573323278102" duration="3382000" />
       <workItem from="1573326692550" duration="7505000" />
-      <workItem from="1573360901971" duration="6476000" />
+      <workItem from="1573360901971" duration="6970000" />
+      <workItem from="1573412743907" duration="3770000" />
+      <workItem from="1573623043635" duration="1022000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -360,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573364340315</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure).">
+      <created>1573374077234</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1573374077234</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,6 +442,7 @@
     <MESSAGE value="Moved all of the client-side TypeScript code for viewing rendered tests (PDF files) into a separate class (the TestViewer class in testviewer.ts). This allows the test viewer to be reused for multiple pages without repeating code." />
     <MESSAGE value="Created the /test?test_id= page that lets users view tests that have already been created. Moved some global configuration of client-side PDF rendering code into global_parameters.ts." />
     <MESSAGE value="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;." />
+    <MESSAGE value="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure)." />
   </component>
 </project>

@@ -19,3 +19,18 @@ tr, td, th {
 .delete_test_button:hover {
     background-color: red;
 }
+
+#signout_div {
+    text-align: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 15px;
+    padding-right: 5px;
+    position: absolute;
+    float: right;
+}
+
+a.buttonlike {
+    text-decoration: none;
+}

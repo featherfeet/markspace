@@ -25,8 +25,13 @@ public class Main {
         TestController testController = new TestController(persistentStorage);
         GetQuestionsController getQuestionsController = new GetQuestionsController(persistentStorage);
         DeleteTestController deleteTestController = new DeleteTestController(persistentStorage);
+        SignoutController signoutController = new SignoutController(persistentStorage);
+        IndexController indexController = new IndexController(persistentStorage);
+        get("/", IndexController.serveIndexPageGet);
+        get("/index", IndexController.serveIndexPageGet);
         get("/login", LoginController.serveLoginPageGet);
         post("/login", LoginController.serveLoginPagePost);
+        get("/signout", SignoutController.serveSignoutPageGet);
         get("/signup", SignupController.serveSignupPageGet);
         post("/signup", SignupController.serveSignupPagePost);
         get("/tests", TestsController.serveTestsPageGet);

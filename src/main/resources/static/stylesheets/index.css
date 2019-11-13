@@ -1,0 +1,10 @@
+a.bigbutton {
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    width: 47vw;
+    height: 50vh;
+    line-height: 50vh;
+    text-decoration: none;
+    font-size: 18pt;
+}

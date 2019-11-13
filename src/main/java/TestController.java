@@ -16,6 +16,7 @@ public class TestController {
         // Check for valid user and get their user id.
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
+            request.session().attribute("message_color", "red");
             request.session().attribute("message", "You must be logged in to access tests.");
             response.redirect("/login");
             return "";
@@ -28,6 +29,9 @@ public class TestController {
         }
         // Retrive the requested test from the database.
         Test test = persistentStorage.getTestById(user_id, test_id);
+        if (test == null) {
+            return "ERROR: No such test found. Does the test you are requesting belong to another user? If so, you must be signed in as that user to access it.";
+        }
         // Render the template.
         Map<String, Object> model = new HashMap<>();
         model.put("test_name", test.getName());

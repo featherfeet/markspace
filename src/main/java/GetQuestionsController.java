@@ -15,6 +15,7 @@ public class GetQuestionsController {
     public static Route serveGetQuestionsPageGet = (Request request, Response response) -> {
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
+            request.session().attribute("message_color", "red");
             request.session().attribute("message", "You must be logged in to access tests.");
             response.redirect("/login");
             return "";
