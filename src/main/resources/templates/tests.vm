@@ -30,6 +30,9 @@
                                 <pre>$test_descriptions[$i]</pre>
                             </td>
                             <td>
+                                <a class="buttonlike" href="/upload_student_answers?test_id=$test_ids.get($i)">Upload Student Answers for Grading</a>
+                            </td>
+                            <td>
                                 <button class="delete_test_button" data-test-id="$test_ids.get($i)">Delete Test</button>
                             </td>
                         </tr>

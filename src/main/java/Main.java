@@ -27,6 +27,7 @@ public class Main {
         DeleteTestController deleteTestController = new DeleteTestController(persistentStorage);
         SignoutController signoutController = new SignoutController(persistentStorage);
         IndexController indexController = new IndexController(persistentStorage);
+        UploadStudentAnswersController uploadStudentAnswersController = new UploadStudentAnswersController(persistentStorage);
         get("/", IndexController.serveIndexPageGet);
         get("/index", IndexController.serveIndexPageGet);
         get("/login", LoginController.serveLoginPageGet);
@@ -43,5 +44,7 @@ public class Main {
         get("/test", testController.serveTestPageGet);
         get("/get_questions", getQuestionsController.serveGetQuestionsPageGet);
         get("/delete_test", deleteTestController.serveDeleteTestPageGet);
+        get("/upload_student_answers", uploadStudentAnswersController.serveUploadStudentAnswersPageGet);
+        post("/upload_student_answers", uploadStudentAnswersController.serveUploadStudentAnswersPagePost);
     }
 }

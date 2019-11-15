@@ -6,6 +6,10 @@ h1 {
     text-align: center;
 }
 
+.buttonlike {
+    display: block;
+}
+
 .buttonlike, .decorated, button, input, textarea {
     border: 3px solid #3b5998;
     border-radius: 15px;

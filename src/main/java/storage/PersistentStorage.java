@@ -17,4 +17,5 @@ public abstract class PersistentStorage {
     public abstract TestQuestion[] getQuestionsByTestFileId(int user_id, int test_file_id);
     public abstract TestQuestion[] getQuestionsByTestId(int user_id, int test_id);
     public abstract void deleteTestById(int user_id, int test_id);
+    public abstract void createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages);
 }

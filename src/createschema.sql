@@ -33,3 +33,21 @@ CREATE TABLE questions                                        -- All test questi
     user_id INT,                                                  -- The id of the user who created this question.
     information TEXT                                              -- JSON describing where in the test file the question is located and other info.
 );
+CREATE TABLE student_answer_files                             -- All scans of student responses to questions are stored here.
+(
+    student_answer_file_id INT AUTO_INCREMENT PRIMARY KEY,        -- Each scanned set of student responses has a unique id.
+    user_id INT,                                                  -- User id of the user who uploaded the scan.
+    test_id INT,                                                  -- Id of the test that these answers correspond to.
+    student_answer_file LONGBLOB,                                 -- The actual contents of the uploaded file as binary data.
+    student_answer_file_name TEXT,                                -- The file's name (as it was uploaded).
+    student_answer_file_type VARCHAR(255),                        -- The file's type as a string like 'pdf' or 'docx' or 'jpeg'.
+    number_of_pages INT                                           -- Number of pages in the file.
+);
+CREATE TABLE student_answers                                  -- All student answers to test questions are stored here.
+(
+    student_answer_id INT AUTO_INCREMENT PRIMARY KEY,              -- Each student answer has a unique id.
+    question_id INT,                                               -- The ID of the question that this answer answers.
+    student_identification TEXT,                                   -- The name/ID number/other identification of the student who made this answer.
+    student_answer_file_id INT,                                    -- The ID of the student answer file that this answer is from.
+    information TEXT                                               -- JSON describing the student's score and any other relevant data about their answer. Null if not yet graded.
+);

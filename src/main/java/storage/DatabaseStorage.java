@@ -29,6 +29,7 @@ public class DatabaseStorage extends PersistentStorage {
     private PreparedStatement deleteTestByIdStatement;
     private PreparedStatement deleteTestFileByIdStatement;
     private PreparedStatement deleteQuestionsByTestFileIdStatement;
+    private PreparedStatement createStudentAnswerFileStatement;
 
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
@@ -80,6 +81,8 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String deleteQuestionsByTestFileIdSQL = "DELETE FROM questions WHERE user_id = ? AND test_file_id = ?";
 
+    private final String createStudentAnswerFileSQL = "INSERT INTO student_answer_files (student_answer_file_id, user_id, test_id, student_answer_file, student_answer_file_name, student_answer_file_type, number_of_pages) VALUES (default, ?, ?, ?, ?, ?, ?)";
+
     @Override
     protected void initializeStorageMethod() {
         try {
@@ -99,6 +102,7 @@ public class DatabaseStorage extends PersistentStorage {
             deleteTestByIdStatement = connection.prepareStatement(deleteTestByIdSQL);
             deleteTestFileByIdStatement = connection.prepareStatement(deleteTestFileByIdSQL);
             deleteQuestionsByTestFileIdStatement = connection.prepareStatement(deleteQuestionsByTestFileIdSQL);
+            createStudentAnswerFileStatement = connection.prepareStatement(createStudentAnswerFileSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -368,6 +372,23 @@ public class DatabaseStorage extends PersistentStorage {
                 deleteQuestionsByTestFileIdStatement.setInt(2, test_to_delete.getAnswersTestFile());
                 deleteQuestionsByTestFileIdStatement.executeUpdate();
             }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages) {
+        try {
+            createStudentAnswerFileStatement.setInt(1, user_id);
+            createStudentAnswerFileStatement.setInt(2, test_id);
+            SerialBlob student_answer_file_blob = new SerialBlob(student_answer_file);
+            createStudentAnswerFileStatement.setBlob(3, student_answer_file_blob);
+            createStudentAnswerFileStatement.setString(4, student_answer_file_name);
+            createStudentAnswerFileStatement.setString(5, student_answer_file_type);
+            createStudentAnswerFileStatement.setInt(6, number_of_pages);
+            createStudentAnswerFileStatement.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();

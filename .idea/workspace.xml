@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure).">
-      <change afterPath="$PROJECT_DIR$/src/main/java/IndexController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SignoutController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/index.vm" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;).">
+      <change afterPath="$PROJECT_DIR$/src/main/java/UploadStudentAnswersController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/upload_student_answers.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/upload_student_answers.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DeleteTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DeleteTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GetQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GetQuestionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RenderTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/TestsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TestsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -282,7 +274,8 @@
       <workItem from="1573326692550" duration="7505000" />
       <workItem from="1573360901971" duration="6970000" />
       <workItem from="1573412743907" duration="3770000" />
-      <workItem from="1573623043635" duration="1022000" />
+      <workItem from="1573623043635" duration="1415000" />
+      <workItem from="1573774551016" duration="6223000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -382,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573374077234</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;).">
+      <created>1573624248210</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1573624248210</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,6 +443,7 @@
     <MESSAGE value="Created the /test?test_id= page that lets users view tests that have already been created. Moved some global configuration of client-side PDF rendering code into global_parameters.ts." />
     <MESSAGE value="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;." />
     <MESSAGE value="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure)." />
+    <MESSAGE value="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;)." />
   </component>
 </project>
