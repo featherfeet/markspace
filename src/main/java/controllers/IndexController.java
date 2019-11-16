@@ -1,3 +1,5 @@
+package controllers;
+
 import spark.*;
 import spark.template.velocity.VelocityTemplateEngine;
 import storage.PersistentStorage;

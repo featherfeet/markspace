@@ -1,3 +1,5 @@
+package controllers;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import spark.*;
 import spark.template.velocity.VelocityTemplateEngine;

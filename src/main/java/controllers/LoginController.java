@@ -1,3 +1,5 @@
+package controllers;
+
 import spark.*;
 import java.util.*;
 import spark.template.velocity.*;
@@ -31,7 +33,7 @@ public class LoginController {
 
     public static Route serveLoginPagePost = (Request request, Response response) -> {
         if (persistentStorage == null) {
-            System.out.println("You must instantiate a LoginController object to be able to use the database.");
+            System.out.println("You must instantiate a controllers.LoginController object to be able to use the database.");
             return "";
         }
         String username = request.queryParams("username");

@@ -1,6 +1,14 @@
+import controllers.*;
 import freemarker.template.Configuration;
+import org.apache.pdfbox.rendering.PDFRenderer;
 import storage.DatabaseStorage;
 import storage.PersistentStorage;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 
@@ -21,7 +29,9 @@ public class Main {
         TestsController testsController = new TestsController(persistentStorage);
         CreateNewTest1Controller createNewTest1Controller = new CreateNewTest1Controller(persistentStorage);
         CreateNewTest2Controller createNewTest2Controller = new CreateNewTest2Controller(persistentStorage);
-        RenderTestController renderTestController = new RenderTestController(persistentStorage);
+        Map<String, PDFRenderer> pdfRendererCache = new HashMap<>();
+        Set<String> renderersBeingCreated = new HashSet<>();
+        RenderTestController renderTestController = new RenderTestController(persistentStorage, pdfRendererCache, renderersBeingCreated);
         TestController testController = new TestController(persistentStorage);
         GetQuestionsController getQuestionsController = new GetQuestionsController(persistentStorage);
         DeleteTestController deleteTestController = new DeleteTestController(persistentStorage);
@@ -29,6 +39,7 @@ public class Main {
         IndexController indexController = new IndexController(persistentStorage);
         UploadStudentAnswersController uploadStudentAnswersController = new UploadStudentAnswersController(persistentStorage);
         StudentAnswerFileController studentAnswerFileController = new StudentAnswerFileController(persistentStorage);
+        RenderQuestionController renderQuestionController = new RenderQuestionController(persistentStorage, pdfRendererCache, renderersBeingCreated);
         get("/", indexController.serveIndexPageGet);
         get("/index", indexController.serveIndexPageGet);
         get("/login", loginController.serveLoginPageGet);
@@ -48,5 +59,6 @@ public class Main {
         get("/upload_student_answers", uploadStudentAnswersController.serveUploadStudentAnswersPageGet);
         post("/upload_student_answers", uploadStudentAnswersController.serveUploadStudentAnswersPagePost);
         get("/student_answer_file", studentAnswerFileController.serveStudentAnswerFilePageGet);
+        get("/render_question", renderQuestionController.serveRenderQuestionPageGet);
     }
 }

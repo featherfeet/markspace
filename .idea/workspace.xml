@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/StudentAnswerFileController.java" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="The /tests page now shows a list of uploaded student answer files with a button to upload more. Clicking on any of the already uploaded ones goes to /student_answer_file?student_answer_file_id=#, which sends back the raw PDF data for the user's browser to view.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderQuestionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest1Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest2Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DeleteTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DeleteTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GetQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GetQuestionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SignoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SignoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/TestsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TestsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SignoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/SignoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/SignupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StudentAnswerFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/StudentAnswerFileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TestsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -275,7 +278,7 @@
       <workItem from="1573412743907" duration="3770000" />
       <workItem from="1573623043635" duration="1415000" />
       <workItem from="1573774551016" duration="8489000" />
-      <workItem from="1573863603279" duration="5535000" />
+      <workItem from="1573863603279" duration="7947000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -389,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573793274223</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="The /tests page now shows a list of uploaded student answer files with a button to upload more. Clicking on any of the already uploaded ones goes to /student_answer_file?student_answer_file_id=#, which sends back the raw PDF data for the user's browser to view.">
+      <created>1573881622324</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1573881622324</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,6 +462,7 @@
     <MESSAGE value="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure)." />
     <MESSAGE value="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;)." />
     <MESSAGE value="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading." />
+    <MESSAGE value="The /tests page now shows a list of uploaded student answer files with a button to upload more. Clicking on any of the already uploaded ones goes to /student_answer_file?student_answer_file_id=#, which sends back the raw PDF data for the user's browser to view." />
+    <option name="LAST_COMMIT_MESSAGE" value="The /tests page now shows a list of uploaded student answer files with a button to upload more. Clicking on any of the already uploaded ones goes to /student_answer_file?student_answer_file_id=#, which sends back the raw PDF data for the user's browser to view." />
   </component>
 </project>

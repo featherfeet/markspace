@@ -1,28 +1,32 @@
+package controllers;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import spark.*;
 import storage.PersistentStorage;
 import storage.Test;
 import storage.TestFile;
-import java.util.*;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class RenderTestController {
-    private static Set<String> renderersBeingCreated;
-    private static Map<String, PDFRenderer> pdfRendererCache;
+public class RenderQuestionController {
     private static PersistentStorage persistentStorage;
+    private static Map<String, PDFRenderer> pdfRendererCache;
+    private static Set<String> renderersBeingCreated;
 
-    public RenderTestController(PersistentStorage persistentStorage) {
+    public RenderQuestionController(PersistentStorage persistentStorage, Map<String, PDFRenderer> pdfRendererCache, Set<String> renderersBeingCreated) {
         this.persistentStorage = persistentStorage;
-        this.pdfRendererCache = new HashMap<>();
-        this.renderersBeingCreated = new HashSet<>();
+        this.pdfRendererCache = pdfRendererCache;
+        this.renderersBeingCreated = renderersBeingCreated;
     }
 
-    public static Route serveRenderTestPageGet = (Request request, Response response) -> {
-        // Check if the user is valid. If not, send them back to the login page.
+    public static Route serveRenderQuestionPageGet = (Request request, Response response) -> {
+        // Check that the user is valid.
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
             request.session().attribute("message_color", "red");
@@ -30,36 +34,37 @@ public class RenderTestController {
             response.redirect("/login");
             return "";
         }
-
-        // Gather information about what page of what document the client wants rendered.
         int user_id = request.session().attribute("user_id");
-        int test_id = Integer.parseInt(request.queryParamOrDefault("test_id", "-1"));
-        boolean answers = Boolean.parseBoolean(request.queryParamOrDefault("answers", "false"));
+        // Get the parameters of the request.
         int page = Integer.parseInt(request.queryParamOrDefault("page", "-1"));
-        float dpi = Float.parseFloat(request.queryParamOrDefault("dpi", "-1"));
-        boolean get_number_of_pages = Boolean.parseBoolean(request.queryParamOrDefault("get_number_of_pages", "false"));
-
-        // If the client is requesting the number of pages in the document, send it back and DON'T render anything.
-        if (get_number_of_pages) {
-            Test test = persistentStorage.getTestById(user_id, test_id);
-            int test_file_id;
-            if (answers) {
-                test_file_id = test.getAnswersTestFile();
-            }
-            else {
-                test_file_id = test.getBlankTestFile();
-            }
-            int number_of_pages = persistentStorage.getNumberOfPagesInTestFileById(user_id, test_file_id);
-            response.type("text/html");
-            return String.valueOf(number_of_pages);
+        if (page < 0) {
+            return "ERROR: This API endpoint requires the 'page' parameter.";
         }
-
-        // If any of the required parameters were not supplied, send an error and stop.
-        if (test_id == -1 || page == -1 || dpi == -1) {
-            response.type("text/html");
-            return "This API endpoint requires more parameters than were given.";
+        int test_id = Integer.parseInt(request.queryParamOrDefault("test_id", "-1"));
+        if (test_id < 0) {
+            return "ERROR: This API endpoint requires the 'test_id' parameter.";
         }
-
+        boolean answers = Boolean.parseBoolean(request.queryParamOrDefault("answers", "false"));
+        double x = Double.parseDouble(request.queryParamOrDefault("x", "-1.0"));
+        if (x < 0.0) {
+            return "ERROR: This API endpoint requires the 'x' parameter (a double greater than or equal to 0.0).";
+        }
+        double y = Double.parseDouble(request.queryParamOrDefault("y", "-1.0"));
+        if (y < 0.0) {
+            return "ERROR: This API endpoint requires the 'y' parameter (a double greater than or equal to 0.0).";
+        }
+        double width = Double.parseDouble(request.queryParamOrDefault("width", "-1.0"));
+        if (width < 0.0) {
+            return "ERROR: This API endpoint requires the 'width' parameter (a double greater than or equal to 0.0).";
+        }
+        double height = Double.parseDouble(request.queryParamOrDefault("height", "-1.0"));
+        if (height < 0.0) {
+            return "ERROR: This API endpoint requires the 'height' parameter (a double greater than or equal to 0.0).";
+        }
+        float dpi = Float.parseFloat(request.queryParamOrDefault("dpi", "-1.0"));
+        if (dpi < 0.0) {
+            return "ERROR: This API endpoint requires the 'dpi' parameter.";
+        }
         // Check if a PDFRenderer has already been created and cached for the requested document.
         String rendererCacheKey = user_id + ":" + test_id + ":" + answers;
         PDFRenderer renderer;
@@ -97,11 +102,11 @@ public class RenderTestController {
             pdfRendererCache.put(rendererCacheKey, renderer);
             renderersBeingCreated.remove(rendererCacheKey);
         }
-
-        // Render the requested page of the PDF into PNG image data.
+        // Use the PDF renderer that was just created/retrieved from cache to render the question and send back the raw PNG data.
         BufferedImage image = renderer.renderImageWithDPI(page, dpi);
+        BufferedImage question_image = image.getSubimage((int) (x * dpi), (int) (y * dpi), (int) (width * dpi), (int) (height * dpi));
         ByteArrayOutputStream png_data = new ByteArrayOutputStream();
-        ImageIO.write(image, "PNG", png_data);
+        ImageIO.write(question_image, "PNG", png_data);
         byte[] png_data_raw = png_data.toByteArray();
         response.type("image/png");
         return png_data_raw;

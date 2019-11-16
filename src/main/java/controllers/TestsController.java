@@ -1,3 +1,5 @@
+package controllers;
+
 import spark.*;
 import java.util.*;
 import spark.template.velocity.*;
