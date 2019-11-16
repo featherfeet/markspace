@@ -14,13 +14,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class RenderQuestionController {
-    private static PersistentStorage persistentStorage;
+public class RenderQuestionController extends Controller {
     private static Map<String, PDFRenderer> pdfRendererCache;
     private static Set<String> renderersBeingCreated;
 
     public RenderQuestionController(PersistentStorage persistentStorage, Map<String, PDFRenderer> pdfRendererCache, Set<String> renderersBeingCreated) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
         this.pdfRendererCache = pdfRendererCache;
         this.renderersBeingCreated = renderersBeingCreated;
     }

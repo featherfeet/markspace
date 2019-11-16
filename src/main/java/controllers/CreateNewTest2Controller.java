@@ -18,24 +18,18 @@ import storage.TestQuestion;
  * Controller for the /create_new_test_2 page. This page shows the test (with answers) and allows the teacher to select
  * regions of the pages to be test questions. It also allows the teacher to assign point values to each question.
  */
-public class CreateNewTest2Controller {
+public class CreateNewTest2Controller extends Controller {
     /**
      * This uses the Google Gson library to decode JSON. To reduce overhead, we only create one Gson object per controller.
      */
     private static Gson gson;
 
     /**
-     * This PersistentStorage object is shared with all other controllers and used to permanently store data.
-     * @see storage.PersistentStorage
-     */
-    private static PersistentStorage persistentStorage;
-
-    /**
      * Construct a new controller with the given PersistentStorage.
      * @param persistentStorage A PersistentStorage object shared between all controllers and used to store permanent data.
      */
     public CreateNewTest2Controller(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
         this.gson = new Gson();
     }
 

@@ -12,13 +12,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.TimeUnit;
 
-public class RenderTestController {
+public class RenderTestController extends Controller {
     private static Set<String> renderersBeingCreated;
     private static Map<String, PDFRenderer> pdfRendererCache;
-    private static PersistentStorage persistentStorage;
 
     public RenderTestController(PersistentStorage persistentStorage, Map<String, PDFRenderer> pdfRendererCache, Set<String> renderersBeingCreated) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
         this.pdfRendererCache = pdfRendererCache;
         this.renderersBeingCreated = renderersBeingCreated;
     }

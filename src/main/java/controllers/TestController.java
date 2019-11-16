@@ -7,11 +7,14 @@ import storage.Test;
 
 import java.util.*;
 
-public class TestController {
-    private static PersistentStorage persistentStorage;
-
+public class TestController extends Controller {
+    /**
+     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     *
+     * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
+     */
     public TestController(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
     }
 
     public static Route serveTestPageGet = (Request request, Response response) -> {

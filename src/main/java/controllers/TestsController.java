@@ -6,11 +6,14 @@ import spark.template.velocity.*;
 import storage.PersistentStorage;
 import storage.Test;
 
-public class TestsController {
-    private static PersistentStorage persistentStorage = null;
-
+public class TestsController extends Controller {
+    /**
+     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     *
+     * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
+     */
     public TestsController(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
     }
 
     public static Route serveTestsPageGet = (Request request, Response response) -> {

@@ -5,11 +5,14 @@ import spark.template.velocity.VelocityTemplateEngine;
 import storage.PersistentStorage;
 import java.util.*;
 
-public class IndexController {
-    private static PersistentStorage persistentStorage;
-
+public class IndexController extends Controller {
+    /**
+     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     *
+     * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
+     */
     public IndexController(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
     }
 
     public static Route serveIndexPageGet = (Request request, Response response) -> {

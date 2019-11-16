@@ -11,11 +11,14 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UploadStudentAnswersController {
-    private static PersistentStorage persistentStorage;
-
+public class UploadStudentAnswersController extends Controller {
+    /**
+     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     *
+     * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
+     */
     public UploadStudentAnswersController(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
     }
 
     public Route serveUploadStudentAnswersPageGet = (Request request, Response response) -> {

@@ -5,12 +5,11 @@ import spark.*;
 import storage.PersistentStorage;
 import storage.TestQuestion;
 
-public class GetQuestionsController {
+public class GetQuestionsController extends Controller {
     private static Gson gson;
-    private static PersistentStorage persistentStorage;
 
     public GetQuestionsController(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
         this.gson = new Gson();
     }
 

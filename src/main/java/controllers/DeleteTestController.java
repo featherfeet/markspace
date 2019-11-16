@@ -1,13 +1,25 @@
 package controllers;
 
+/**
+ * @file DeleteTestController.java
+ * Controller for the /delete_test page.
+ * @see controllers.DeleteTestController
+ */
+
 import spark.*;
 import storage.PersistentStorage;
 
-public class DeleteTestController {
-    private static PersistentStorage persistentStorage;
-
+/**
+ * Controller for GET requests to the /delete_test page, used to delete tests that have already been created.
+ */
+public class DeleteTestController extends Controller {
+    /**
+     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     *
+     * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
+     */
     public DeleteTestController(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
     }
 
     public static Route serveDeleteTestPageGet = (Request request, Response response) -> {

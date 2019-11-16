@@ -5,11 +5,14 @@ import java.util.*;
 import spark.template.velocity.*;
 import storage.PersistentStorage;
 
-public class LoginController {
-    private static PersistentStorage persistentStorage = null;
-
+public class LoginController extends Controller {
+    /**
+     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     *
+     * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
+     */
     public LoginController(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
     }
 
     public static Route serveLoginPageGet = (Request request, Response response) -> {

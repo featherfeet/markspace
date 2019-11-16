@@ -19,19 +19,14 @@ import javax.servlet.MultipartConfigElement;
  * This controller class handles GET and POST requests to the /create_new_test_1 page. GET requests show a form for
  * uploading the PDFs, name, and description of a test. POST requests are used to submit that form.
  */
-public class CreateNewTest1Controller {
+public class CreateNewTest1Controller extends Controller {
     /**
-     * This PersistentStorage object is shared with all other controllers and used to permanently store data.
-     * @see storage.PersistentStorage
-     */
-    private static PersistentStorage persistentStorage;
-
-    /**
-     * Construct a new controller with the given PersistentStorage.
-     * @param persistentStorage A PersistentStorage object shared between all controllers and used to store permanent data.
+     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     *
+     * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
      */
     public CreateNewTest1Controller(PersistentStorage persistentStorage) {
-        this.persistentStorage = persistentStorage;
+        super(persistentStorage);
     }
 
     /**

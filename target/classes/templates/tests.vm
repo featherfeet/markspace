@@ -19,7 +19,7 @@
                 <tr>
                     <th>Test Name</th>
                     <th>Test Description</th>
-                    <th>Student Answers</th>
+                    <th>Student Answer Files</th>
                     <th>Delete</th>
                 </tr>
                     #set($stop = $test_names.size() - 1)

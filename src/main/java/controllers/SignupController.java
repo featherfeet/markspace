@@ -6,13 +6,16 @@ import java.util.*;
 import storage.PersistentStorage;
 import storage.UserPermission;
 
-public class SignupController {
-	private static PersistentStorage persistentStorage;
-	
+public class SignupController extends Controller {
+	/**
+	 * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+	 *
+	 * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
+	 */
 	public SignupController(PersistentStorage persistentStorage) {
-		this.persistentStorage = persistentStorage;
+		super(persistentStorage);
 	}
-	
+
 	public static Route serveSignupPageGet = (Request request, Response response) -> {
 		Map<String, Object> model = new HashMap<>();
 		model.put("message", "");
