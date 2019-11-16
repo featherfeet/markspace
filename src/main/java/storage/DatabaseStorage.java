@@ -30,6 +30,8 @@ public class DatabaseStorage extends PersistentStorage {
     private PreparedStatement deleteTestFileByIdStatement;
     private PreparedStatement deleteQuestionsByTestFileIdStatement;
     private PreparedStatement createStudentAnswerFileStatement;
+    private PreparedStatement getStudentAnswerFilesStatement;
+    private PreparedStatement getStudentAnswerFileByIdStatement;
 
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
@@ -83,6 +85,10 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String createStudentAnswerFileSQL = "INSERT INTO student_answer_files (student_answer_file_id, user_id, test_id, student_answer_file, student_answer_file_name, student_answer_file_type, number_of_pages) VALUES (default, ?, ?, ?, ?, ?, ?)";
 
+    private final String getStudentAnswerFilesSQL = "SELECT student_answer_file_id,student_answer_file_name FROM student_answer_files WHERE user_id = ? AND test_id = ?";
+
+    private final String getStudentAnswerFileByIdSQL = "SELECT student_answer_file FROM student_answer_files WHERE user_id = ? AND student_answer_file_id = ?";
+
     @Override
     protected void initializeStorageMethod() {
         try {
@@ -103,6 +109,8 @@ public class DatabaseStorage extends PersistentStorage {
             deleteTestFileByIdStatement = connection.prepareStatement(deleteTestFileByIdSQL);
             deleteQuestionsByTestFileIdStatement = connection.prepareStatement(deleteQuestionsByTestFileIdSQL);
             createStudentAnswerFileStatement = connection.prepareStatement(createStudentAnswerFileSQL);
+            getStudentAnswerFilesStatement = connection.prepareStatement(getStudentAnswerFilesSQL);
+            getStudentAnswerFileByIdStatement = connection.prepareStatement(getStudentAnswerFileByIdSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -393,5 +401,41 @@ public class DatabaseStorage extends PersistentStorage {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Map<Integer, String> getStudentAnswerFilesByTestId(int user_id, int test_id) {
+        Map<Integer, String> student_answer_files = new HashMap<>();
+        try {
+            getStudentAnswerFilesStatement.setInt(1, user_id);
+            getStudentAnswerFilesStatement.setInt(2, test_id);
+            ResultSet resultSet = getStudentAnswerFilesStatement.executeQuery();
+            while (resultSet.next()) {
+                int student_answer_file_id = resultSet.getInt(1);
+                String student_answer_file_name = resultSet.getString(2);
+                student_answer_files.put(student_answer_file_id, student_answer_file_name);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return student_answer_files;
+    }
+
+    @Override
+    public byte[] getStudentAnswerFileById(int user_id, int student_answer_file_id) {
+        byte[] file_contents = null;
+        try {
+            getStudentAnswerFileByIdStatement.setInt(1, user_id);
+            getStudentAnswerFileByIdStatement.setInt(2, student_answer_file_id);
+            ResultSet resultSet = getStudentAnswerFileByIdStatement.executeQuery();
+            if (resultSet.first()) {
+                file_contents = resultSet.getBytes(1);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return file_contents;
     }
 }

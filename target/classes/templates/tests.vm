@@ -19,18 +19,32 @@
                 <tr>
                     <th>Test Name</th>
                     <th>Test Description</th>
+                    <th>Student Answers</th>
+                    <th>Delete</th>
                 </tr>
                     #set($stop = $test_names.size() - 1)
                     #foreach ($i in [0 .. $stop])
-                        <tr id="test_row_$test_ids.get($i)">
+                        #set($test_id = $test_ids.get($i))
+                        <tr id="test_row_$test_id">
                             <td>
-                                <a href="/test?test_id=$test_ids.get($i)">$test_names.get($i)</a>
+                                <a href="/test?test_id=$test_id">$test_names.get($i)</a>
                             </td>
                             <td>
                                 <pre>$test_descriptions[$i]</pre>
                             </td>
                             <td>
-                                <a class="buttonlike" href="/upload_student_answers?test_id=$test_ids.get($i)">Upload Student Answers for Grading</a>
+                                <ul>
+                                    #set($student_answer_files = $student_answer_files_by_test_id[$test_id])
+                                    #foreach ($student_answer_file_id in $student_answer_files.keySet())
+                                        #set($student_answer_file_name = $student_answer_files[$student_answer_file_id])
+                                        <li><a href="/student_answer_file?student_answer_file_id=$student_answer_file_id">$student_answer_file_name</a></li>
+                                    #end
+                                    <li>
+                                        <a class="buttonlike" href="/upload_student_answers?test_id=$test_ids.get($i)">
+                                            + Upload More Student Answers for Grading
+                                        </a>
+                                    </li>
+                                </ul>
                             </td>
                             <td>
                                 <button class="delete_test_button" data-test-id="$test_ids.get($i)">Delete Test</button>

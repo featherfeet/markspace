@@ -28,14 +28,15 @@ public class Main {
         SignoutController signoutController = new SignoutController(persistentStorage);
         IndexController indexController = new IndexController(persistentStorage);
         UploadStudentAnswersController uploadStudentAnswersController = new UploadStudentAnswersController(persistentStorage);
-        get("/", IndexController.serveIndexPageGet);
-        get("/index", IndexController.serveIndexPageGet);
-        get("/login", LoginController.serveLoginPageGet);
-        post("/login", LoginController.serveLoginPagePost);
-        get("/signout", SignoutController.serveSignoutPageGet);
-        get("/signup", SignupController.serveSignupPageGet);
-        post("/signup", SignupController.serveSignupPagePost);
-        get("/tests", TestsController.serveTestsPageGet);
+        StudentAnswerFileController studentAnswerFileController = new StudentAnswerFileController(persistentStorage);
+        get("/", indexController.serveIndexPageGet);
+        get("/index", indexController.serveIndexPageGet);
+        get("/login", loginController.serveLoginPageGet);
+        post("/login", loginController.serveLoginPagePost);
+        get("/signout", signoutController.serveSignoutPageGet);
+        get("/signup", signupController.serveSignupPageGet);
+        post("/signup", signupController.serveSignupPagePost);
+        get("/tests", testsController.serveTestsPageGet);
         get("/create_new_test_1", createNewTest1Controller.serveCreateNewTest1PageGet);
         post("/create_new_test_1", createNewTest1Controller.serveCreateNewTest1PagePost);
         get("/create_new_test_2", createNewTest2Controller.serveCreateNewTest2PageGet);
@@ -46,5 +47,6 @@ public class Main {
         get("/delete_test", deleteTestController.serveDeleteTestPageGet);
         get("/upload_student_answers", uploadStudentAnswersController.serveUploadStudentAnswersPageGet);
         post("/upload_student_answers", uploadStudentAnswersController.serveUploadStudentAnswersPagePost);
+        get("/student_answer_file", studentAnswerFileController.serveStudentAnswerFilePageGet);
     }
 }

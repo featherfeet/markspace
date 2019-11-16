@@ -1,5 +1,7 @@
 package storage;
 
+import java.util.Map;
+
 public abstract class PersistentStorage {
     public PersistentStorage() {
         initializeStorageMethod();
@@ -18,4 +20,6 @@ public abstract class PersistentStorage {
     public abstract TestQuestion[] getQuestionsByTestId(int user_id, int test_id);
     public abstract void deleteTestById(int user_id, int test_id);
     public abstract void createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages);
+    public abstract Map<Integer, String> getStudentAnswerFilesByTestId(int user_id, int test_id);
+    public abstract byte[] getStudentAnswerFileById(int user_id, int student_answer_file_id);
 }

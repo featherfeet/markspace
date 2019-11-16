@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;).">
-      <change afterPath="$PROJECT_DIR$/src/main/java/UploadStudentAnswersController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/upload_student_answers.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/upload_student_answers.vm" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/StudentAnswerFileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SignoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SignoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/TestsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TestsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
@@ -50,8 +49,8 @@
         <option value="Enum" />
         <option value="HTML File" />
         <option value="TypeScript File" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -275,7 +274,8 @@
       <workItem from="1573360901971" duration="6970000" />
       <workItem from="1573412743907" duration="3770000" />
       <workItem from="1573623043635" duration="1415000" />
-      <workItem from="1573774551016" duration="6223000" />
+      <workItem from="1573774551016" duration="8489000" />
+      <workItem from="1573863603279" duration="5535000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -382,7 +382,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573624248210</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading.">
+      <created>1573793274223</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1573793274223</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,6 +451,7 @@
     <MESSAGE value="Added the ability to designate one question per test as a &quot;name&quot; question where the student can write their name or other identification. The /create_new_test_2 page highlights this question in green and labels it &quot;NAME&quot;." />
     <MESSAGE value="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure)." />
     <MESSAGE value="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;)." />
+    <MESSAGE value="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading." />
   </component>
 </project>

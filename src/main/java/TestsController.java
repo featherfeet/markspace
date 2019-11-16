@@ -12,6 +12,7 @@ public class TestsController {
     }
 
     public static Route serveTestsPageGet = (Request request, Response response) -> {
+        // Check that the user is valid.
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
             request.session().attribute("message_color", "red");
@@ -19,6 +20,8 @@ public class TestsController {
             response.redirect("/login");
             return "";
         }
+        int user_id = request.session().attribute("user_id");
+        // Retrieve tests from the database and put them into the template.
         Map<String, Object> model = new HashMap<>();
         Test[] tests = persistentStorage.getTestsByUser(request.session().attribute("user_id"));
         String[] test_names = new String[tests.length];
@@ -36,6 +39,13 @@ public class TestsController {
         model.put("test_names", test_names);
         model.put("test_descriptions", test_descriptions);
         model.put("test_ids", test_ids);
+        // Retrieve student answer files from the database and put them into the template.
+        Map<Integer, Map<Integer, String>> student_answer_files_by_test_id = new HashMap<>();
+        for (int test_id : test_ids) {
+            Map<Integer, String> student_answer_files = persistentStorage.getStudentAnswerFilesByTestId(user_id, test_id);
+            student_answer_files_by_test_id.put(test_id, student_answer_files);
+        }
+        model.put("student_answer_files_by_test_id", student_answer_files_by_test_id);
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/tests.vm"));
     };
 }

@@ -12,7 +12,7 @@ public class SignoutController {
         String username = request.session().attribute("username");
         request.session().invalidate();
         response.redirect("/login");
-        System.out.println("User " + username + "logged out successfully.");
+        System.out.println("User " + username + " signed out successfully.");
         return "";
     };
 }
