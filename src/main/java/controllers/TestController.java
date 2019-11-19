@@ -1,5 +1,10 @@
 package controllers;
 
+/** @file TestController.java
+ * Controller for the /test page (not to be confused with the /tests page). This page is used to view a specific test.
+ * @see controllers.TestController
+ */
+
 import spark.*;
 import spark.template.velocity.*;
 import storage.PersistentStorage;
@@ -7,9 +12,12 @@ import storage.Test;
 
 import java.util.*;
 
+/**
+ * Controller for the /test page (not to be confused with the /tests page). This page lets the user view a specific test by id.
+ */
 public class TestController extends Controller {
     /**
-     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     * Create a new TestController object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
      *
      * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
      */
@@ -17,6 +25,14 @@ public class TestController extends Controller {
         super(persistentStorage);
     }
 
+    /**
+     * Serve GET requests to /test. Responds with a page that contains an HTML5 Canvas-based PDF viewer that renders using /render_test.
+     * The GET requests require the following parameters:
+     * <ul>
+     *     <li>test_id - The id number (a positive integer) of the test to be viewed.</li>
+     * </ul>
+     * @see controllers.RenderTestController
+     */
     public static Route serveTestPageGet = (Request request, Response response) -> {
         // Check for valid user and get their user id.
         Boolean valid_user = request.session().attribute("valid_user");
@@ -32,7 +48,7 @@ public class TestController extends Controller {
         if (test_id == -1) {
             return "ERROR: Need to provide the test_id parameter to specify which test you want to view.";
         }
-        // Retrive the requested test from the database.
+        // Retrieve the requested test from the database.
         Test test = persistentStorage.getTestById(user_id, test_id);
         if (test == null) {
             return "ERROR: No such test found. Does the test you are requesting belong to another user? If so, you must be signed in as that user to access it.";

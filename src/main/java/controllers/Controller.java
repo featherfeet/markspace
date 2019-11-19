@@ -13,7 +13,6 @@ import storage.PersistentStorage;
 public class Controller {
     /**
      * This PersistentStorage object is shared with all other controllers and used to permanently store data.
-     * @see storage.PersistentStorage
      */
     protected static PersistentStorage persistentStorage;
 

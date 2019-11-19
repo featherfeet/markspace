@@ -21,7 +21,7 @@ import javax.servlet.MultipartConfigElement;
  */
 public class CreateNewTest1Controller extends Controller {
     /**
-     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     * Create a CreateNewTest1Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
      *
      * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
      */
@@ -52,10 +52,12 @@ public class CreateNewTest1Controller extends Controller {
      * Serve POST requests to /create_new_test_1 (these requests submit the form in templates/create_new_test_1.vm).
      * Redirect back to /login with a red message if the user is not logged in.
      * The following parameters are required for the POST request:
-     * answers_test_file_upload: The uploaded PDF file of the test, with correct answers written in.
-     * blank_test_file_upload: The uploaded PDF file of the test, without answers written in.
-     * test_name: The human-readable name/title of the test.
-     * test_description: A human-readable long description of the test.
+     * <ul>
+     *     <li>answers_test_file_upload - The uploaded PDF file of the test, with correct answers written in.</li>
+     *     <li>blank_test_file_upload - The uploaded PDF file of the test, without answers written in.</li>
+     *     <li>test_name - The human-readable name/title of the test.</li>
+     *     <li>test_description - A human-readable long description of the test.</li>
+     * </ul>
      */
     public static Route serveCreateNewTest1PagePost = (Request request, Response response) -> {
         // Set up the jetty web server to accept file uploads. Max file size of 1 GB. Temporarily write all files larger than 1 MB to disk.

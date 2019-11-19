@@ -45,7 +45,7 @@ public class Main {
         only get placed into the cache after a request completes). To avoid this, a global Set of all PDFRenderer
         objects in the process of being created is maintained here. While one request handler is creating a PDFRenderer,
         it puts that PDFRenderer's key into this Set. This causes any other request handlers looking for the same
-        PDFRenderer to wait until it appears in the cache, thus reducing the creation of superfluous PDFRenderers.*/
+        PDFRenderer to wait until it appears in the cache, thus reducing the creation of superfluous PDFRenderers. */
         Set<String> renderersBeingCreated = new HashSet<>();
         RenderTestController renderTestController = new RenderTestController(persistentStorage, pdfRendererCache, renderersBeingCreated);
         TestController testController = new TestController(persistentStorage);

@@ -14,7 +14,7 @@ import storage.PersistentStorage;
  */
 public class DeleteTestController extends Controller {
     /**
-     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     * Create a new DeleteTestController object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
      *
      * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
      */
@@ -22,6 +22,12 @@ public class DeleteTestController extends Controller {
         super(persistentStorage);
     }
 
+    /**
+     * Handle GET requests to /delete_test. The GET requests must have the following parameters:
+     * <ul>
+     *     <li>test_id - The ID number (from the database) of the test to be deleted.</li>
+     * </ul>
+     */
     public static Route serveDeleteTestPageGet = (Request request, Response response) -> {
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {

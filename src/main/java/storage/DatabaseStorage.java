@@ -1,5 +1,11 @@
 package storage;
 
+/** @file DatabaseStorage.java
+ * Implementation of storage.PersistentStorage that uses a JDBC-based MariaDB connection (MySQL). See {@link PersistentStorage} for documentation of most of the methods.
+ * @see storage.DatabaseStorage
+ * @see storage.PersistentStorage
+ */
+
 import security.HashedPassword;
 import security.PasswordSecurity;
 import javax.sql.rowset.serial.SerialBlob;
@@ -11,26 +17,103 @@ import java.util.*;
 import java.sql.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
+/**
+ * JDBC-based implementation of {@link storage.PersistentStorage} that uses a MariaDB/MySQL database for storage.
+ */
 public class DatabaseStorage extends PersistentStorage {
+    /**
+     * A reusable, shared Google Gson object for processing JSON.
+     */
     private Gson gson;
 
+    /**
+     * The database connection.
+     */
     private Connection connection;
+
+    /**
+     * A parameterized SQL statement for creating a new user. See {@link DatabaseStorage#createUserSQL}.
+     */
     private PreparedStatement createUserStatement;
+
+    /**
+     * A parameterized SQL query to check whether user credentials are correct. See {@link DatabaseStorage#validateUserSQL}.
+     */
     private PreparedStatement validateUserStatement;
+
+    /**
+     * A parameterized SQL query to check if a user with a given username exists. See {@link DatabaseStorage#checkUserWithUsernameExistsSQL}.
+     */
     private PreparedStatement checkUserWithUsernameExistsStatement;
+
+    /**
+     * A parameterized SQL query to fetch all tests owned by a specific user. See {@link DatabaseStorage#getTestsByUserSQL}.
+     */
     private PreparedStatement getTestsByUserStatement;
+
+    /**
+     * A parameterized SQl statement to create a new test file. See {@link DatabaseStorage#createTestFileSQL}.
+     */
     private PreparedStatement createTestFileStatement;
+
+    /**
+     * A parameterized SQL statement to create a new test. See {@link DatabaseStorage#createTestSQL}.
+     */
     private PreparedStatement createTestStatement;
+
+    /**
+     * A parameterized SQL query to retrieve a test by its id. See {@link DatabaseStorage#getTestByIdSQL}.
+     */
     private PreparedStatement getTestByIdStatement;
+
+    /**
+     * A parameterized SQL query to retrieve a test file by its id. See {@link DatabaseStorage#getTestFileByIdSQL}.
+     */
     private PreparedStatement getTestFileByIdStatement;
+
+    /**
+     * A parameterized SQL query to find out how many pages are in a test file by its id. See {@link DatabaseStorage#getNumberOfPagesInTestFileByIdSQL}.
+     */
     private PreparedStatement getNumberOfPagesInTestFileByIdStatement;
+
+    /**
+     * A parameterized SQL statement to create a new test question. See {@link DatabaseStorage#createQuestionSQL}.
+     */
     private PreparedStatement createQuestionStatement;
+
+    /**
+     * A parameterized SQL query to retrieve all questions associated with a particular test file by that test file's id. See {@link DatabaseStorage#getQuestionsByTestFileIdSQL}.
+     */
     private PreparedStatement getQuestionsByTestFileIdStatement;
+
+    /**
+     * A parameterized SQL statement to delete a test by its id. See {@link DatabaseStorage#deleteTestByIdSQL}.
+     */
     private PreparedStatement deleteTestByIdStatement;
+
+    /**
+     * A parameterized SQL statement to delete a test file by its id. See {@link DatabaseStorage#deleteTestFileByIdSQL}.
+     */
     private PreparedStatement deleteTestFileByIdStatement;
+
+    /**
+     * A parameterized SQL statement to delete test questions by the id of the test file that they are associated with. See {@link DatabaseStorage#deleteQuestionsByTestFileIdSQL}.
+     */
     private PreparedStatement deleteQuestionsByTestFileIdStatement;
+
+    /**
+     * A parameterized SQL statement to create a new student answer file. See {@link DatabaseStorage#createStudentAnswerFileSQL}.
+     */
     private PreparedStatement createStudentAnswerFileStatement;
+
+    /**
+     * A parameterized SQL query to retrieve the ids and names of all student answer files associated with a particular test. See {@link DatabaseStorage#getStudentAnswerFilesSQL}.
+     */
     private PreparedStatement getStudentAnswerFilesStatement;
+
+    /**
+     * A parameterized SQL query to retrieve a student answer file by its id. See {@link DatabaseStorage#getStudentAnswerFileByIdSQL}.
+     */
     private PreparedStatement getStudentAnswerFileByIdStatement;
 
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
@@ -89,6 +172,9 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getStudentAnswerFileByIdSQL = "SELECT student_answer_file FROM student_answer_files WHERE user_id = ? AND student_answer_file_id = ?";
 
+    /**
+     * Initialize the JDBC connection to the database, create the re-usable Google GSON object, and compile all of the parameterized (prepared) SQL queries/statements.
+     */
     @Override
     protected void initializeStorageMethod() {
         try {
@@ -182,6 +268,15 @@ public class DatabaseStorage extends PersistentStorage {
         return false;
     }
 
+    /**
+     * Private helper function used to create a new test file in the database.
+     * @param user_id The id of the user who owns the new test file (should be the same as the user who owns the test that the test file is associated with).
+     * @param test_file The raw binary data of the test file.
+     * @param name The file name of the test file.
+     * @param file_type A string like "pdf" or "docx" representing the file type. Right now, this should always be "pdf".
+     * @param number_of_pages The number of pages in the test file.
+     * @return The id of the created test file.
+     */
     private int createTestFile(int user_id, byte[] test_file, String name, String file_type, int number_of_pages) {
         try {
             SerialBlob test_file_blob = new SerialBlob(test_file);
@@ -355,6 +450,11 @@ public class DatabaseStorage extends PersistentStorage {
         return getQuestionsByTestFileId(user_id, test.getAnswersTestFile());
     }
 
+    /**
+     * A private helper function to delete a test file by its id.
+     * @param user_id The user id of the user who owns the test file.
+     * @param test_file_id The id of the test file to be deleted.
+     */
     private void deleteTestFileById(int user_id, int test_file_id) {
         try {
             deleteTestFileByIdStatement.setInt(1, user_id);

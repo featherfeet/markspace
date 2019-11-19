@@ -1,14 +1,23 @@
 package controllers;
 
+/** @file TestsController.java
+ * Controller for the /tests page that lists a user's tests (not to be confused with the /test page).
+ * @see controllers.TestsController
+ */
+
 import spark.*;
 import java.util.*;
 import spark.template.velocity.*;
 import storage.PersistentStorage;
 import storage.Test;
 
+/**
+ * Controller for the /tests page. Used to view all tests created by a user. Serves as the "landing page" when a user is logged in.
+ * Has links to create tests, delete tests, view test, upload student answers, and view student answers.
+ */
 public class TestsController extends Controller {
     /**
-     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     * Create a new TestsController object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
      *
      * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
      */
@@ -16,6 +25,10 @@ public class TestsController extends Controller {
         super(persistentStorage);
     }
 
+    /**
+     * Serve GET requests to /tests. No parameters required. Renders a table of all tests created by the current user.
+     * Has buttons to create/delete/view tests and student answers.
+     */
     public static Route serveTestsPageGet = (Request request, Response response) -> {
         // Check that the user is valid.
         Boolean valid_user = request.session().attribute("valid_user");
@@ -45,7 +58,7 @@ public class TestsController extends Controller {
         model.put("test_descriptions", test_descriptions);
         model.put("test_ids", test_ids);
         // Retrieve student answer files from the database and put them into the template.
-        Map<Integer, Map<Integer, String>> student_answer_files_by_test_id = new HashMap<>();
+        Map<Integer, Map<Integer, String>> student_answer_files_by_test_id = new HashMap<>(); // A map that associates test ID numbers with maps of student answer files. Each sub-map associates student answer files' IDs with their names.
         for (int test_id : test_ids) {
             Map<Integer, String> student_answer_files = persistentStorage.getStudentAnswerFilesByTestId(user_id, test_id);
             student_answer_files_by_test_id.put(test_id, student_answer_files);

@@ -36,7 +36,9 @@ public class CreateNewTest2Controller extends Controller {
     /**
      * Handle GET requests to /create_new_test_2. This handler shows the user interface that allows the teacher to create
      * test questions. The GET request must have the following parameters:
-     * test_id: The ID number (from the database) of the test that questions are being created for.
+     * <ul>
+     *     <li>test_id: The ID number (from the database) of the test that questions are being created for.</li>
+     * </ul>
      */
     public static Route serveCreateNewTest2PageGet = (Request request, Response response) -> {
         // Validate the user and redirect them to /login if they are not valid.
@@ -67,8 +69,10 @@ public class CreateNewTest2Controller extends Controller {
     /**
      * Handle POST requests submitting the form to /create_new_test_2. This saves all test questions that the teacher
      * created to the database. The POST request must have the following parameters:
-     * test_id: The ID number (from the database) of the test for which questions are being created.
-     * test_questions_json: A JSON string of all of the questions that the user created. This will be a JSON array of TestQuestion objects (defined in src/main/resources/static/scripts/typescript/testquestion.ts and in src/main/java/storage/TestQuestion.java).
+     * <ul>
+     *     <li>test_id - The ID number (from the database) of the test for which questions are being created.</li>
+     *     <li>test_questions_json - A JSON string of all of the questions that the user created. This will be a JSON array of TestQuestion objects (defined in src/main/resources/static/scripts/typescript/testquestion.ts and in src/main/java/storage/TestQuestion.java).</li>
+     * </ul>
      */
     public static Route serveCreateNewTest2PagePost = (Request request, Response response) -> {
         // Validate the user and redirect them if they are not valid.

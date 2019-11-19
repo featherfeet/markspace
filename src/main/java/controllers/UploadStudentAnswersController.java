@@ -1,5 +1,9 @@
 package controllers;
 
+/** @file UploadStudentAnswersController.java
+ *  Controller for the /upload_student_answers page, used to upload scanned PDFs of student answers.
+ */
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import spark.*;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -13,7 +17,7 @@ import java.util.Map;
 
 public class UploadStudentAnswersController extends Controller {
     /**
-     * Create a new generic Controller object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
+     * Create a new UploadStudentAnswersController object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
      *
      * @param persistentStorage The shared PersistentStorage object used for storing permanent data.
      */
@@ -21,6 +25,13 @@ public class UploadStudentAnswersController extends Controller {
         super(persistentStorage);
     }
 
+    /**
+     * Serve GET requests to /upload_student_answers. Shows the form for uploading a scanned PDF of student answers.
+     * The GET requests must have the following parameters:
+     * <ul>
+     *     <li>test_id - The id of the test that the answers are being uploaded for.</li>
+     * </ul>
+     */
     public Route serveUploadStudentAnswersPageGet = (Request request, Response response) -> {
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
@@ -47,8 +58,16 @@ public class UploadStudentAnswersController extends Controller {
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/upload_student_answers.vm"));
     };
 
+    /**
+     * Serve POST requests to the /upload_student_answers page, used to submit the form in templates/upload_student_answers.vm.
+     * The POST requests must have the following parameters:
+     * <ul>
+     *     <li>test_id - The id of the test that these answers are being uploaded for.</li>
+     *     <li>student_answers_file_upload - The PDF file of scanned student answers being uploaded.</li>
+     * </ul>
+     */
     public Route serveUploadStudentAnswersPagePost = (Request request, Response response) -> {
-        // Set up the jetty web server to accept file uploads. Max file size of 1 GB. Write all files larger than 1 MB to disk.
+        // Set up the Jetty web server to accept file uploads. Max file size of 1 GB. Write all files larger than 1 MB to disk.
         request.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/tmp", 1000000000, 1000000000, 1000000));
         // Validate the user.
         Boolean valid_user = request.session().attribute("valid_user");
@@ -77,7 +96,7 @@ public class UploadStudentAnswersController extends Controller {
             inputStream.read(student_answers_file_upload_data);
         }
         if (student_answers_file_upload_data == null || student_answers_file_upload_name == null) {
-            return "ERROR: You must provide the student_answers_file_upload and student_answers_file_name parameters to this API endpoint.";
+            return "ERROR: You must provide the student_answers_file_upload parameter to this API endpoint.";
         }
         // Save the form data as a new student answer file in the database.
         PDDocument student_answers_file_document = PDDocument.load(student_answers_file_upload_data);

@@ -41,7 +41,11 @@
                                     #end
                                     <li>
                                         <a class="buttonlike" href="/upload_student_answers?test_id=$test_ids.get($i)">
-                                            + Upload More Student Answers for Grading
+                                            #if ($student_answer_files.size() == 0)
+                                                + Upload Student Answers for Grading
+                                            #else
+                                                + Upload More Student Answers for Grading
+                                            #end
                                         </a>
                                     </li>
                                 </ul>
