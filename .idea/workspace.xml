@@ -5,34 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Refactored all of the controllers to inherit their PersistentStorage and a constructor from controllers.Controller.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/security/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DeleteTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DeleteTestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/GetQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GetQuestionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderQuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/SignoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/SignoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/SignupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/StudentAnswerFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/StudentAnswerFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TestsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/HashedPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/HashedPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/PasswordSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/PasswordSecurity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/SecurityParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/SecurityParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/test.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,10 +49,10 @@
         <option value="JavaScript File" />
         <option value="Enum" />
         <option value="HTML File" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="Class" />
         <option value="package-info" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -457,6 +440,8 @@
         <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/testviewer.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tests.js" />
         <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/tests.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.js" />
       </list>
     </option>
   </component>

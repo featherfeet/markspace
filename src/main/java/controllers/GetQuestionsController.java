@@ -30,7 +30,7 @@ public class GetQuestionsController extends Controller {
 
     /**
      * Serve GET requests to /get_questions. A GET request to this endpoint must have EITHER the test_id parameter to specify which test questions should be retrieved from or the
-     * test_file_id parameter to specify which test file (a specific uploaded PDF) questions should be retrieved from.
+     * test_file_id parameter to specify which test file (a specific uploaded PDF) questions should be retrieved from. The response will be a JSON array of test questions.
      */
     public static Route serveGetQuestionsPageGet = (Request request, Response response) -> {
         // Validate the user and redirect them if they are not valid.
