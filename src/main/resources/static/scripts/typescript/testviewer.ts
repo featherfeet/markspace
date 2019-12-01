@@ -13,7 +13,7 @@ class TestViewer {
         this.canvas = canvas;
         this.next_page_button = next_page_button;
         this.previous_page_button = previous_page_button;
-        this.renderer = new CanvasRenderer(this.canvas);
+        this.renderer = new CanvasRenderer(this.canvas, 1000, 1500);
         this.page_render_dpi = page_render_dpi;
         this.fps = fps;
         this.current_page = 0;

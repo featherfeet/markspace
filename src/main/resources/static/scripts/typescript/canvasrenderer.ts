@@ -13,9 +13,9 @@ class CanvasRenderer {
         this.ctx.scale(devicePixelRatio, devicePixelRatio);
     }
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(canvas: HTMLCanvasElement, width: number, height: number) {
         this.canvas = canvas;
-        this.initializeCanvasContextWithDPI(1000, 1500);
+        this.initializeCanvasContextWithDPI(width, height);
         this.pages = [];
     }
 
@@ -134,6 +134,10 @@ class CanvasRectangle extends CanvasDrawable {
 
     getLayer(): number {
         return this.layer;
+    }
+
+    getLabel(): string {
+        return this.label;
     }
 
     setLabel(label: string): void {

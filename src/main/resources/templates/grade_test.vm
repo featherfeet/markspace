@@ -2,15 +2,22 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Grading Test <i>$test_name</i></title>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/grade_test.css">
+        <title>Grading Test: $test_name</title>
         <h1>Grading Test <i>$test_name</i></h1>
     </head>
     <body>
+        <p>$test_description</p>
         <h2 id="current_question_h2"></h2>
         <canvas id="question_canvas">
             Your browser does not support the HTML5 canvas. Please select a browser from this millennium.
         </canvas>
-        <input type="text" id="score_input" /><span id="possible_points_span"></span>
+        <br>
+        <span>SCORE: </span><input type="text" id="score_input" /><span id="possible_points_span"></span>
+        <div id="questions_div">
+            <span>Questions:</span>
+        </div>
         <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="/scripts/typescript/global_parameters.js"></script>
         <script type="text/javascript" src="/scripts/typescript/canvasrenderer.js"></script>

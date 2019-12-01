@@ -12,9 +12,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 var CanvasRenderer = /** @class */ (function () {
-    function CanvasRenderer(canvas) {
+    function CanvasRenderer(canvas, width, height) {
         this.canvas = canvas;
-        this.initializeCanvasContextWithDPI(1000, 1500);
+        this.initializeCanvasContextWithDPI(width, height);
         this.pages = [];
     }
     CanvasRenderer.prototype.initializeCanvasContextWithDPI = function (width, height) {
@@ -115,6 +115,9 @@ var CanvasRectangle = /** @class */ (function (_super) {
     };
     CanvasRectangle.prototype.getLayer = function () {
         return this.layer;
+    };
+    CanvasRectangle.prototype.getLabel = function () {
+        return this.label;
     };
     CanvasRectangle.prototype.setLabel = function (label) {
         this.label = label;

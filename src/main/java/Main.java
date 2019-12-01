@@ -56,6 +56,9 @@ public class Main {
         UploadStudentAnswersController uploadStudentAnswersController = new UploadStudentAnswersController(persistentStorage);
         StudentAnswerFileController studentAnswerFileController = new StudentAnswerFileController(persistentStorage);
         RenderQuestionController renderQuestionController = new RenderQuestionController(persistentStorage, pdfRendererCache, renderersBeingCreated);
+        GradeTestController gradeTestController = new GradeTestController(persistentStorage);
+        RenderStudentAnswerController renderStudentAnswerController = new RenderStudentAnswerController(persistentStorage);
+        GenerateStudentAnswersForTestController generateStudentAnswersForTestController = new GenerateStudentAnswersForTestController(persistentStorage);
         // Configure which types of requests and what URLs correspond to each request handler.
         get("/", indexController.serveIndexPageGet);
         get("/index", indexController.serveIndexPageGet);
@@ -77,5 +80,9 @@ public class Main {
         post("/upload_student_answers", uploadStudentAnswersController.serveUploadStudentAnswersPagePost);
         get("/student_answer_file", studentAnswerFileController.serveStudentAnswerFilePageGet);
         get("/render_question", renderQuestionController.serveRenderQuestionPageGet);
+        get("/grade_test", gradeTestController.serveGradeTestPageGet);
+        post("/grade_test", gradeTestController.serveGradeTestPagePost);
+        get("/render_student_answer", renderStudentAnswerController.serveRenderStudentAnswerPageGet);
+        get("/generate_student_answers_for_test", generateStudentAnswersForTestController.serveGenerateStudentAnswersForTestPageGet);
     }
 }

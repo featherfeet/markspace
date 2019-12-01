@@ -11,7 +11,7 @@
     </annotationProcessing>
   </component>
   <component name="TypeScriptCompiler">
-    <option name="nodeInterpreterTextField" value="/opt/node-v13.1.0-linux-x64/bin/node" />
+    <option name="nodeInterpreterTextField" value="/opt/node-v13.2.0-linux-x64/bin/node" />
     <option name="recompileOnChanges" value="true" />
   </component>
 </project>
