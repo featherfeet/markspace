@@ -24,6 +24,8 @@
         <script type="text/javascript" src="/scripts/typescript/testviewer.js"></script>
         <script type="text/javascript" src="/scripts/typescript/testquestion.js"></script>
         <script type="text/javascript" src="/scripts/typescript/retrievequestions.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/retrievestudentanswers.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/studentanswer.js"></script>
         <script type="text/javascript" src="/scripts/typescript/grade_test.js"></script>
     </body>
 </html>

@@ -19,6 +19,10 @@ class CanvasRenderer {
         this.pages = [];
     }
 
+    emptyPage(page: number): void {
+        this.pages[page] = new Array<CanvasDrawable>();
+    }
+
     createPages(pages: number): void {
         for (let i: number = 0; i < pages; i++) {
             this.pages.push([]);
@@ -100,6 +104,10 @@ class CanvasRectangle extends CanvasDrawable {
         this.layer = layer;
     }
 
+    equals(other: CanvasRectangle): boolean {
+        return other.x == this.x && other.y == this.y && other.layer == this.layer && other.width == this.width && other.height == this.height && other.color == this.color && other.outline_color == this.outline_color && other.label == this.label;
+    }
+
     getX(): number {
         return this.x;
     }
@@ -155,20 +163,20 @@ class CanvasRectangle extends CanvasDrawable {
     render(ctx: CanvasRenderingContext2D): void {
         // Draw the inside of the rectangle.
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        ctx.fillRect(this.getX() * page_render_dpi, this.getY() * page_render_dpi, this.getWidth() * page_render_dpi, this.getHeight() * page_render_dpi);
         // Draw the border of the rectangle.
         ctx.beginPath();
         ctx.strokeStyle = this.outline_color;
         ctx.lineWidth = 3;
         ctx.setLineDash([10, 10]);
-        ctx.rect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        ctx.rect(this.getX() * page_render_dpi, this.getY() * page_render_dpi, this.getWidth() * page_render_dpi, this.getHeight() * page_render_dpi);
         ctx.stroke();
         // Draw the text of the rectangle.
         ctx.font = "25px Verdana";
         ctx.fillStyle = this.outline_color;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.fillText(this.label, this.getX() + this.getWidth() / 2, this.getY() + this.getHeight() / 2);
+        ctx.fillText(this.label, (this.getX() + this.getWidth() / 2) * page_render_dpi, (this.getY() + this.getHeight() / 2) * page_render_dpi);
     }
 }
 

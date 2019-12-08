@@ -116,6 +116,11 @@ public class DatabaseStorage extends PersistentStorage {
      */
     private PreparedStatement getStudentAnswerFileByIdStatement;
 
+    /**
+     * A parameterized SQL query to retrieve the number of pages in all student answer files attached to a particular test.
+     */
+    private PreparedStatement getStudentAnswerFilesNumberOfPagesStatement;
+
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
     private final String validateUserSQL = "SELECT * FROM users WHERE username = ?";
@@ -172,6 +177,8 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getStudentAnswerFileByIdSQL = "SELECT student_answer_file FROM student_answer_files WHERE user_id = ? AND student_answer_file_id = ?";
 
+    private final String getStudentAnswerFilesNumberOfPagesSQL = "SELECT student_answer_file_id,number_of_pages FROM student_answer_files WHERE user_id = ? and test_id = ?";
+
     /**
      * Initialize the JDBC connection to the database, create the re-usable Google GSON object, and compile all of the parameterized (prepared) SQL queries/statements.
      */
@@ -197,6 +204,7 @@ public class DatabaseStorage extends PersistentStorage {
             createStudentAnswerFileStatement = connection.prepareStatement(createStudentAnswerFileSQL);
             getStudentAnswerFilesStatement = connection.prepareStatement(getStudentAnswerFilesSQL);
             getStudentAnswerFileByIdStatement = connection.prepareStatement(getStudentAnswerFileByIdSQL);
+            getStudentAnswerFilesNumberOfPagesStatement = connection.prepareStatement(getStudentAnswerFilesNumberOfPagesSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -537,5 +545,23 @@ public class DatabaseStorage extends PersistentStorage {
             e.printStackTrace();
         }
         return file_contents;
+    }
+
+    public Map<Integer, Integer> getStudentAnswerFilesNumberOfPages(int user_id, int test_id) {
+        Map<Integer, Integer> student_answer_files_number_of_pages = new HashMap<>();
+        try {
+            getStudentAnswerFilesNumberOfPagesStatement.setInt(1, user_id);
+            getStudentAnswerFilesNumberOfPagesStatement.setInt(2, test_id);
+            ResultSet resultSet = getStudentAnswerFilesNumberOfPagesStatement.executeQuery();
+            while (resultSet.next()) {
+                int student_answer_file_id = resultSet.getInt(1);
+                int student_answer_file_pages = resultSet.getInt(2);
+                student_answer_files_number_of_pages.put(student_answer_file_id, student_answer_file_pages);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return student_answer_files_number_of_pages;
     }
 }

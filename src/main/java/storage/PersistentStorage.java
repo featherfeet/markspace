@@ -151,4 +151,12 @@ public abstract class PersistentStorage {
      * @return The raw, binary PDF data of the student answer file.
      */
     public abstract byte[] getStudentAnswerFileById(int user_id, int student_answer_file_id);
+
+    /**
+     * Retrieve a map that maps student answer file ids to the number of pages in those student answer files.
+     * @param user_id The user id of the user who uploaded the answers.
+     * @param test_id The id of the test that the student answer files are attached to.
+     * @return A map where keys are student answer file ids and values are the number of pages in those student answer files.
+     */
+    public abstract Map<Integer, Integer> getStudentAnswerFilesNumberOfPages(int user_id, int test_id);
 }

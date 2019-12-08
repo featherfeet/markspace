@@ -14,13 +14,18 @@ jQuery(function ($) {
     $("#test_id").val(test_id.toString());
     // Set up mousedown handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousedown", function (event) {
-        current_selection = test_viewer.getRenderer().addRectangleToPage(test_viewer.getCurrentPage(), event.offsetX, event.offsetY, 0, 0, active_selection_color, active_selection_outline_color, "Q" + (questions.length + 1), 1);
+        var x_inches = event.offsetX / page_render_dpi;
+        var y_inches = event.offsetY / page_render_dpi;
+        console.log(x_inches);
+        console.log(y_inches);
+        current_selection = test_viewer.getRenderer().addRectangleToPage(test_viewer.getCurrentPage(), x_inches, y_inches, 0, 0, active_selection_color, active_selection_outline_color, "Q" + (questions.length + 1), 1);
+        console.log(current_selection);
     });
     // Set up mousemove handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousemove", function (event) {
         if (current_selection != null) {
-            current_selection.setWidth(event.offsetX - current_selection.getX());
-            current_selection.setHeight(event.offsetY - current_selection.getY());
+            current_selection.setWidth((event.offsetX / page_render_dpi) - current_selection.getX());
+            current_selection.setHeight((event.offsetY / page_render_dpi) - current_selection.getY());
         }
     });
     // Set up mouseup handler on the canvas for the click-and-drag selection.
@@ -82,10 +87,10 @@ jQuery(function ($) {
             var question = questions_1[_i];
             for (var _a = 0, _b = question.getRegions(); _a < _b.length; _a++) {
                 var region = _b[_a];
-                region.setX(region.getX() / page_render_dpi);
-                region.setY(region.getY() / page_render_dpi);
-                region.setWidth(region.getWidth() / page_render_dpi);
-                region.setHeight(region.getHeight() / page_render_dpi);
+                region.setX(region.getX());
+                region.setY(region.getY());
+                region.setWidth(region.getWidth());
+                region.setHeight(region.getHeight());
             }
         }
         $("#test_questions_json").val(JSON.stringify(questions));

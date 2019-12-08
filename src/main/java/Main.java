@@ -8,7 +8,6 @@
  */
 
 import controllers.*;
-import freemarker.template.Configuration;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import storage.DatabaseStorage;
 import storage.PersistentStorage;

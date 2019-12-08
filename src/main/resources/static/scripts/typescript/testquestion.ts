@@ -11,6 +11,18 @@ class TestQuestion {
         this.extra_credit = extra_credit;
     }
 
+    equals(other: TestQuestion): boolean {
+        if (other.getRegions().length != this.regions.length) {
+            return false;
+        }
+        for (let i = 0; i < other.getRegions().length; i++) {
+            if (!other.getRegions()[i].equals(this.regions[i])) {
+                return false;
+            }
+        }
+        return other.page == this.page && other.points == this.points && other.extra_credit == this.extra_credit;
+    }
+
     getPoints(): string {
         return this.points;
     }
@@ -37,5 +49,17 @@ class TestQuestion {
 
     setExtraCredit(extra_credit: boolean): void {
         this.extra_credit = extra_credit;
+    }
+
+    static fromRawObject(test_question_raw: object): TestQuestion {
+        const regions: CanvasRectangle[] = new Array<CanvasRectangle>();
+        // @ts-ignore
+        for (let region_raw of test_question_raw.regions) {
+            const region: CanvasRectangle = new CanvasRectangle(region_raw.x, region_raw.y, region_raw.width, region_raw.height, region_raw.color, region_raw.outline_color, region_raw.label, region_raw.layer);
+            regions.push(region);
+        }
+        // @ts-ignore
+        const test_question: TestQuestion = new TestQuestion(test_question_raw.points, test_question_raw.page, regions, test_question_raw.extra_credit);
+        return test_question;
     }
 }

@@ -4,27 +4,33 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Refactored all of the controllers to inherit their PersistentStorage and a constructor from controllers.Controller.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/GenerateStudentAnswersForTestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/GradeTestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderStudentAnswerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/grade_test.css" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Worked on the /grade_test page for grading tests. It can use AJAX to show a list of available questions to grade, but it cannot actually display/grade questions yet. Added the /render_student_answer page that renders regions of student answer files into raw PNG data.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/storage/StudentAnswer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievestudentanswers.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/studentanswer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b9a717e4-eb31-4b1a-a432-6653b0e1a0ce.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b9a717e4-eb31-4b1a-a432-6653b0e1a0ce.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b9a717e4-eb31-4b1a-a432-6653b0e1a0ce.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/GenerateStudentAnswersForTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GenerateStudentAnswersForTestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +64,9 @@
         <option value="Enum" />
         <option value="HTML File" />
         <option value="package-info" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="Class" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -298,6 +304,12 @@
       <workItem from="1575098282764" duration="600000" />
       <workItem from="1575175536018" duration="2131000" />
       <workItem from="1575177689904" duration="171000" />
+      <workItem from="1575177879071" duration="216000" />
+      <workItem from="1575682638334" duration="84000" />
+      <workItem from="1575682847762" duration="12000" />
+      <workItem from="1575683088768" duration="2684000" />
+      <workItem from="1575757432935" duration="6118000" />
+      <workItem from="1575779706030" duration="4745000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -439,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573930808100</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Worked on the /grade_test page for grading tests. It can use AJAX to show a list of available questions to grade, but it cannot actually display/grade questions yet. Added the /render_student_answer page that renders regions of student answer files into raw PNG data.">
+      <created>1575178083363</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1575178083363</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,6 +476,10 @@
         <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/tests.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/studentanswer.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/studentanswer.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievestudentanswers.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/retrievestudentanswers.js" />
       </list>
     </option>
   </component>
@@ -508,28 +531,53 @@
     <MESSAGE value="Moved all controllers to their own package." />
     <MESSAGE value="Started working on JavaDoc comments and other comments documenting the code. Main, CreateNewTest1Controller, and CreateNewTest2Controller are all fully documented." />
     <MESSAGE value="Refactored all of the controllers to inherit their PersistentStorage and a constructor from controllers.Controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored all of the controllers to inherit their PersistentStorage and a constructor from controllers.Controller." />
+    <MESSAGE value="Worked on the /grade_test page for grading tests. It can use AJAX to show a list of available questions to grade, but it cannot actually display/grade questions yet. Added the /render_student_answer page that renders regions of student answer files into raw PNG data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on the /grade_test page for grading tests. It can use AJAX to show a list of available questions to grade, but it cannot actually display/grade questions yet. Added the /render_student_answer page that renders regions of student answer files into raw PNG data." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2" timestamp="1575178015252">
+    <state x="451" y="120" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1575761859317">
+      <screen x="0" y="27" width="1280" height="772" />
+    </state>
+    <state x="451" y="120" width="374" height="577" key="#com.intellij.ide.util.MemberChooser/0.27.1280.772@0.27.1280.772" timestamp="1575761859317" />
+    <state x="485" y="301" width="306" height="231" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1575683290140">
+      <screen x="0" y="27" width="1280" height="772" />
+    </state>
+    <state x="485" y="301" width="306" height="231" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1280.772@0.27.1280.772" timestamp="1575683290140" />
+    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2" timestamp="1575178083048">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1575178015252" />
-    <state width="1874" height="274" key="GridCell.Tab.0.bottom" timestamp="1575177665994">
+    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1575178083048" />
+    <state width="1874" height="187" key="GridCell.Tab.0.bottom" timestamp="1575782936630">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="274" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1575177665994" />
-    <state width="1874" height="274" key="GridCell.Tab.0.center" timestamp="1575177665994">
+    <state width="1234" height="181" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1575770180814" />
+    <state width="1874" height="187" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1575782936630" />
+    <state width="1874" height="181" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
+    <state width="1874" height="187" key="GridCell.Tab.0.center" timestamp="1575782936629">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="274" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1575177665994" />
-    <state width="1874" height="274" key="GridCell.Tab.0.left" timestamp="1575177665994">
+    <state width="1234" height="181" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1575770180814" />
+    <state width="1874" height="187" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1575782936629" />
+    <state width="1874" height="181" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
+    <state width="1874" height="187" key="GridCell.Tab.0.left" timestamp="1575782936629">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="274" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1575177665994" />
-    <state width="1874" height="274" key="GridCell.Tab.0.right" timestamp="1575177665994">
+    <state width="1234" height="181" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1575770180813" />
+    <state width="1874" height="187" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1575782936629" />
+    <state width="1874" height="181" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
+    <state width="1874" height="187" key="GridCell.Tab.0.right" timestamp="1575782936630">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="274" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1575177665994" />
+    <state width="1234" height="181" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1575770180814" />
+    <state width="1874" height="187" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1575782936630" />
+    <state width="1874" height="181" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
+    <state x="124" y="44" width="1031" height="745" key="SettingsEditor" timestamp="1575683278661">
+      <screen x="0" y="27" width="1280" height="772" />
+    </state>
+    <state x="124" y="44" width="1031" height="745" key="SettingsEditor/0.27.1280.772@0.27.1280.772" timestamp="1575683278661" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1575178085823">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1575178085823" />
   </component>
 </project>
