@@ -60,11 +60,24 @@ class StudentAnswer {
         return new StudentAnswer(student_answer_raw.student_answer_file_id, test_question, student_answer_raw.score, student_answer_raw.points_possible, student_answer_raw.page);
     }
 
-    renderCanvasImages(renderer: CanvasRenderer, page: number, layer: number): CanvasImage[] {
-        const canvas_images: CanvasImage[] = new Array<CanvasImage>();
+    getImageURLs(): string[] {
+        const image_urls: string[] = new Array<string>();
+
         for (let region of this.test_question.getRegions()) {
             const image_url: string = `/render_student_answer?page=${this.page}&student_answer_file_id=${this.student_answer_file_id}&x=${region.getX()}&y=${region.getY()}&width=${region.getWidth()}&height=${region.getHeight()}&dpi=${page_render_dpi}`;
-            canvas_images.push(renderer.addImageToPage(page, region.getX() * page_render_dpi, region.getY() * page_render_dpi, image_url, layer));
+            image_urls.push(image_url);
+        }
+
+        return image_urls;
+    }
+
+    renderCanvasImages(renderer: CanvasRenderer, page: number, layer: number): CanvasDrawable[] {
+        const canvas_images: CanvasImage[] = new Array<CanvasImage>();
+        let current_y: number = 0;
+        for (let region of this.test_question.getRegions()) {
+            const image_url: string = `/render_student_answer?page=${this.page}&student_answer_file_id=${this.student_answer_file_id}&x=${region.getX()}&y=${region.getY()}&width=${region.getWidth()}&height=${region.getHeight()}&dpi=${page_render_dpi}`;
+            canvas_images.push(renderer.addImageToPage(page, 0, current_y, image_url, layer));
+            current_y += region.getY() * page_render_dpi;
         }
         return canvas_images;
     }

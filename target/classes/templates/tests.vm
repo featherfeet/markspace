@@ -51,7 +51,9 @@
                                 </ul>
                             </td>
                             <td>
-                                <a class="buttonlike" href="/grade_test?test_id=$test_ids.get($i)">Grade Test</a>
+                                #if ($student_answer_files.size() > 0)
+                                    <a class="buttonlike" href="/grade_test?test_id=$test_ids.get($i)">Grade Test</a>
+                                #end
                                 <button class="delete_test_button" data-test-id="$test_ids.get($i)">Delete Test</button>
                             </td>
                         </tr>

@@ -51,6 +51,15 @@ class TestQuestion {
         this.extra_credit = extra_credit;
     }
 
+    getImageURLs(test_id: number, answers: boolean): string[] {
+        const image_urls: string[] = new Array<string>();
+        for (let region of this.regions) {
+            const image_url: string = `/render_question?page=${this.page}&test_id=${test_id}&answers=${answers}&x=${region.getX()}&y=${region.getY()}&width=${region.getWidth()}&height=${region.getHeight()}&dpi=${page_render_dpi}`;
+            image_urls.push(image_url);
+        }
+        return image_urls;
+    }
+
     static fromRawObject(test_question_raw: object): TestQuestion {
         const regions: CanvasRectangle[] = new Array<CanvasRectangle>();
         // @ts-ignore

@@ -3,14 +3,6 @@ jQuery(function ($) {
     var raw_url = window.location.href;
     var url = new URL(raw_url);
     var test_id = parseInt(url.searchParams.get("test_id"));
-    // Set up the object that handles viewing of the PDF of the test.
-    var canvas = $("#question_canvas")[0];
-    var renderer = new CanvasRenderer(canvas, 1000, 1500);
-    renderer.createPages(1);
-    setInterval(function () {
-        renderer.renderPage(0);
-    }, (1.0 / page_render_fps * 1000.0));
-    var current_student_answer_images = new Array();
     // Retrieve questions on this test from the database.
     var test_questions_promise = retrieveQuestions(test_id);
     var student_answers_promise = retrieveStudentAnswers(test_id, -1);
@@ -22,31 +14,40 @@ jQuery(function ($) {
         var test_question_index = 0;
         // Index of the question currently being graded.
         var current_test_question = 0;
-        var _loop_1 = function (test_question) {
+        // All student answers to the current question being graded.
+        var current_student_answers = new Array();
+        var current_student_answer = 0; // Index (in current_student_answers) of the student answer currently being graded/displayed.
+        // For every test question on this test...
+        for (var _i = 0, test_questions_1 = test_questions; _i < test_questions_1.length; _i++) {
+            var test_question = test_questions_1[_i];
             // Create a link at the bottom of the screen to this test question.
             var question_link = $("<a class=\"buttonlike test_question_a\">" + test_question.getRegions()[0].getLabel() + "</a>");
             questions_div.append(question_link);
             // If the link is clicked, jump to that question.
-            question_link.on("click", null, test_question_index, function (event) {
-                current_test_question = test_question_index;
-                // TODO:
-                for (var _i = 0, student_answers_1 = student_answers; _i < student_answers_1.length; _i++) {
-                    var student_answer = student_answers_1[_i];
-                    console.table(student_answer.getTestQuestion());
-                    console.table(test_question);
-                    if (student_answer.getTestQuestion().equals(test_question)) {
-                        renderer.emptyPage(0);
-                        current_student_answer_images = student_answer.renderCanvasImages(renderer, 0, 0);
-                        break;
-                    }
+            question_link.on("click", null, { test_question_index: test_question_index }, function (event) {
+                // Set the current test question.
+                current_test_question = event.data.test_question_index;
+                // Highlight this question's link.
+                $("a.test_question_a").removeClass("highlighted");
+                $(event.target).addClass("highlighted");
+                // Find all student answers to the current question.
+                current_student_answers = student_answers.filter(function (student_answer) { return student_answer.getTestQuestion().equals(test_questions[current_test_question]); });
+                current_student_answer = 0;
+                // Add images of the student answer.
+                $("#student_answer_td").empty();
+                for (var _i = 0, _a = current_student_answers[current_student_answer].getImageURLs(); _i < _a.length; _i++) {
+                    var image_url = _a[_i];
+                    $("#student_answer_td").append("<img src=\"" + image_url + "\" alt=\"Student answer.\">");
+                }
+                // Add images of the question.
+                $("#correct_answer_td").empty();
+                for (var _b = 0, _c = test_questions[current_test_question].getImageURLs(test_id, true); _b < _c.length; _b++) {
+                    var image_url = _c[_b];
+                    $("#correct_answer_td").append("<img src=\"" + image_url + "\" alt=\"Correct answer.\">");
                 }
                 console.log("Switching to the question at index " + event.data + ".");
             });
             test_question_index++;
-        };
-        for (var _i = 0, test_questions_1 = test_questions; _i < test_questions_1.length; _i++) {
-            var test_question = test_questions_1[_i];
-            _loop_1(test_question);
         }
     });
 });

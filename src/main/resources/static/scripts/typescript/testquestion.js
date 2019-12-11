@@ -37,6 +37,15 @@ var TestQuestion = /** @class */ (function () {
     TestQuestion.prototype.setExtraCredit = function (extra_credit) {
         this.extra_credit = extra_credit;
     };
+    TestQuestion.prototype.getImageURLs = function (test_id, answers) {
+        var image_urls = new Array();
+        for (var _i = 0, _a = this.regions; _i < _a.length; _i++) {
+            var region = _a[_i];
+            var image_url = "/render_question?page=" + this.page + "&test_id=" + test_id + "&answers=" + answers + "&x=" + region.getX() + "&y=" + region.getY() + "&width=" + region.getWidth() + "&height=" + region.getHeight() + "&dpi=" + page_render_dpi;
+            image_urls.push(image_url);
+        }
+        return image_urls;
+    };
     TestQuestion.fromRawObject = function (test_question_raw) {
         var regions = new Array();
         // @ts-ignore

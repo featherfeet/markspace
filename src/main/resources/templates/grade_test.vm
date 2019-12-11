@@ -10,14 +10,21 @@
     <body>
         <p>$test_description</p>
         <h2 id="current_question_h2"></h2>
-        <canvas id="question_canvas">
-            Your browser does not support the HTML5 canvas. Please select a browser from this millennium.
-        </canvas>
-        <br>
         <span>SCORE: </span><input type="text" id="score_input" /><span id="possible_points_span"></span>
         <div id="questions_div">
             <span>Questions:</span>
         </div>
+        <table id="grading_table">
+            <tr>
+                <th>Student Answer</th>
+                <th>Correct Answer</th>
+            </tr>
+            <tr>
+                <td id="student_answer_td"></td>
+                <td id="correct_answer_td"></td>
+            </tr>
+        </table>
+        <br>
         <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="/scripts/typescript/global_parameters.js"></script>
         <script type="text/javascript" src="/scripts/typescript/canvasrenderer.js"></script>

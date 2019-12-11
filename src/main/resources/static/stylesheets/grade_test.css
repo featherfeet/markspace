@@ -4,3 +4,25 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.test_question_a.highlighted {
+    border-color: green;
+    background-color: lightgreen;
+    color: black;
+}
+
+#grading_table {
+    width: 100vw;
+}
+
+th, td {
+    border: 3px solid #3b5998;
+    border-radius: 15px;
+    width: 50vw;
+}
+
+img {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
