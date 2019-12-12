@@ -19,10 +19,12 @@ th, td {
     border: 3px solid #3b5998;
     border-radius: 15px;
     width: 50vw;
+    padding: 10px 10px 10px 10px;
 }
 
 img {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    max-width: calc(100% - 40px);
 }

@@ -18,6 +18,9 @@ jQuery(function ($) {
         var current_student_answers = new Array();
         var current_student_answer = 0; // Index (in current_student_answers) of the student answer currently being graded/displayed.
         // For every test question on this test...
+        var number_of_student_answers = 0;
+        var number_of_graded_student_answers = 0;
+        var question_title = "";
         for (var _i = 0, test_questions_1 = test_questions; _i < test_questions_1.length; _i++) {
             var test_question = test_questions_1[_i];
             // Create a link at the bottom of the screen to this test question.
@@ -27,11 +30,27 @@ jQuery(function ($) {
             question_link.on("click", null, { test_question_index: test_question_index }, function (event) {
                 // Set the current test question.
                 current_test_question = event.data.test_question_index;
+                // Display the possible points for this test question.
+                var possible_points = "/" + test_questions[current_test_question].getPoints();
+                if (test_questions[current_test_question].getExtraCredit()) {
+                    possible_points += " (EXTRA CREDIT)";
+                }
+                $("#possible_points_span").text(possible_points);
+                // Show the question title.
+                question_title = test_questions[current_test_question].getRegions()[0].getLabel();
+                $("#current_question_h4").html("Currently grading question <i>" + question_title + "</i>.");
                 // Highlight this question's link.
                 $("a.test_question_a").removeClass("highlighted");
                 $(event.target).addClass("highlighted");
                 // Find all student answers to the current question.
                 current_student_answers = student_answers.filter(function (student_answer) { return student_answer.getTestQuestion().equals(test_questions[current_test_question]); });
+                number_of_student_answers = current_student_answers.length;
+                // Find all student answers to the current question that have not yet been graded.
+                current_student_answers = current_student_answers.filter(function (student_answer) { return student_answer.getScore() == ""; });
+                number_of_graded_student_answers = number_of_student_answers - current_student_answers.length;
+                // Display how many answers need to be graded.
+                $("#student_answer_p").html("Grading student answer " + (number_of_graded_student_answers + 1) + " of " + number_of_student_answers + " for question <i>" + question_title + "</i>.");
+                // Choose the first ungraded student answer to grade.
                 current_student_answer = 0;
                 // Add images of the student answer.
                 $("#student_answer_td").empty();
@@ -49,5 +68,21 @@ jQuery(function ($) {
             });
             test_question_index++;
         }
+        // Handler for when a score is entered.
+        $("#score_input").on("keypress", function (event) {
+            if (event.key == "Enter") {
+                // Go to the next student answer.
+                current_student_answer++;
+                number_of_graded_student_answers++;
+                // Add images of the student answer.
+                $("#student_answer_td").empty();
+                for (var _i = 0, _a = current_student_answers[current_student_answer].getImageURLs(); _i < _a.length; _i++) {
+                    var image_url = _a[_i];
+                    $("#student_answer_td").append("<img src=\"" + image_url + "\" alt=\"Student answer.\">");
+                }
+                // Display which student answer is being graded.
+                $("#student_answer_p").html("Grading student answer " + (number_of_graded_student_answers + 1) + " of " + number_of_student_answers + " for question <i>" + question_title + "</i>.");
+            }
+        });
     });
 });

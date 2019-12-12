@@ -4,17 +4,13 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="/grade_test page can now render and show individual student answers. BIG CHANGE: CanvasRectangle objects now use inches for coordinates (not pixels as before). They are converted to pixels only for rendering. CanvasImage objects continue to use pixels. This change required significant refactoring. Also added a retrieveStudentAnswers TypeScript function that uses a Promise.">
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="/grade_test page now uses regular &lt;img&gt; tags instead of a canvas. It now uses a table to show the side-by-side view for grading. &quot;Grade Test&quot; button on /tests now only appears when student answers have been uploaded.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/GenerateStudentAnswersForTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GenerateStudentAnswersForTestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/studentanswer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/studentanswer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/grade_test.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/grade_test.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -297,7 +293,10 @@
       <workItem from="1575920291894" duration="1761000" />
       <workItem from="1575951596375" duration="1254000" />
       <workItem from="1576005957986" duration="1231000" />
-      <workItem from="1576038186535" duration="3036000" />
+      <workItem from="1576038186535" duration="3108000" />
+      <workItem from="1576093921206" duration="1662000" />
+      <workItem from="1576113400500" duration="1140000" />
+      <workItem from="1576178029170" duration="1886000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -453,7 +452,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575784705214</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="/grade_test page now uses regular &lt;img&gt; tags instead of a canvas. It now uses a table to show the side-by-side view for grading. &quot;Grade Test&quot; button on /tests now only appears when student answers have been uploaded.">
+      <created>1576061618448</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1576061618448</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -528,7 +534,8 @@
     <MESSAGE value="Refactored all of the controllers to inherit their PersistentStorage and a constructor from controllers.Controller." />
     <MESSAGE value="Worked on the /grade_test page for grading tests. It can use AJAX to show a list of available questions to grade, but it cannot actually display/grade questions yet. Added the /render_student_answer page that renders regions of student answer files into raw PNG data." />
     <MESSAGE value="/grade_test page can now render and show individual student answers. BIG CHANGE: CanvasRectangle objects now use inches for coordinates (not pixels as before). They are converted to pixels only for rendering. CanvasImage objects continue to use pixels. This change required significant refactoring. Also added a retrieveStudentAnswers TypeScript function that uses a Promise." />
-    <option name="LAST_COMMIT_MESSAGE" value="/grade_test page can now render and show individual student answers. BIG CHANGE: CanvasRectangle objects now use inches for coordinates (not pixels as before). They are converted to pixels only for rendering. CanvasImage objects continue to use pixels. This change required significant refactoring. Also added a retrieveStudentAnswers TypeScript function that uses a Promise." />
+    <MESSAGE value="/grade_test page now uses regular &lt;img&gt; tags instead of a canvas. It now uses a table to show the side-by-side view for grading. &quot;Grade Test&quot; button on /tests now only appears when student answers have been uploaded." />
+    <option name="LAST_COMMIT_MESSAGE" value="/grade_test page now uses regular &lt;img&gt; tags instead of a canvas. It now uses a table to show the side-by-side view for grading. &quot;Grade Test&quot; button on /tests now only appears when student answers have been uploaded." />
   </component>
   <component name="WindowStateProjectService">
     <state x="451" y="120" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1575761859317">
@@ -539,43 +546,43 @@
       <screen x="0" y="27" width="1280" height="772" />
     </state>
     <state x="485" y="301" width="306" height="231" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1280.772@0.27.1280.772" timestamp="1575683290140" />
-    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2" timestamp="1575784704752">
+    <state x="0" y="146" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1576061617912">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="163" y="146" key="CommitChangelistDialog2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1575784704752" />
+    <state x="0" y="146" width="1910" height="819" key="CommitChangelistDialog2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576061617912" />
     <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1575178083048" />
-    <state width="1874" height="186" key="GridCell.Tab.0.bottom" timestamp="1576050376768">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="119" key="GridCell.Tab.0.bottom" timestamp="1576179105060">
+      <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="121" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1576007189926" />
-    <state width="1874" height="186" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576050376768" />
+    <state width="1234" height="119" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1576179105060" />
+    <state width="1874" height="184" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576141397770" />
     <state width="1874" height="181" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
-    <state width="1874" height="186" key="GridCell.Tab.0.center" timestamp="1576050376768">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="119" key="GridCell.Tab.0.center" timestamp="1576179105060">
+      <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="121" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1576007189925" />
-    <state width="1874" height="186" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576050376768" />
+    <state width="1234" height="119" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1576179105060" />
+    <state width="1874" height="184" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576141397770" />
     <state width="1874" height="181" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
-    <state width="1874" height="186" key="GridCell.Tab.0.left" timestamp="1576050376768">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="119" key="GridCell.Tab.0.left" timestamp="1576179105060">
+      <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="121" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1576007189924" />
-    <state width="1874" height="186" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576050376768" />
+    <state width="1234" height="119" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1576179105060" />
+    <state width="1874" height="184" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576141397769" />
     <state width="1874" height="181" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
-    <state width="1874" height="186" key="GridCell.Tab.0.right" timestamp="1576050376768">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state width="1234" height="119" key="GridCell.Tab.0.right" timestamp="1576179105060">
+      <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="121" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1576007189925" />
-    <state width="1874" height="186" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576050376768" />
+    <state width="1234" height="119" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1576179105060" />
+    <state width="1874" height="184" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576141397770" />
     <state width="1874" height="181" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1575774077768" />
     <state x="124" y="36" width="1031" height="745" key="SettingsEditor" timestamp="1576007081058">
       <screen x="0" y="27" width="1280" height="772" />
     </state>
     <state x="124" y="36" width="1031" height="745" key="SettingsEditor/0.27.1280.772@0.27.1280.772" timestamp="1576007081058" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1575784707442">
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1576061620286">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="555" y="289" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1575784707442" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576061620286" />
     <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1575178085823" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1576049130754">
       <screen x="0" y="27" width="1920" height="1053" />

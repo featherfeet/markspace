@@ -55,7 +55,7 @@ public class GenerateStudentAnswersForTestController {
             for (int page = 0; page < current_student_answer_file_number_of_pages; page++) {
                 for (TestQuestion testQuestion : testQuestions) {
                     if (testQuestion.getPage() == page) {
-                        StudentAnswer studentAnswer = new StudentAnswer(current_student_answer_file_id, testQuestion, "0.0", testQuestion.getPoints(), page);
+                        StudentAnswer studentAnswer = new StudentAnswer(current_student_answer_file_id, testQuestion, "", testQuestion.getPoints(), page);
                         studentAnswers.add(studentAnswer);
                     }
                 }

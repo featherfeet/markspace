@@ -9,11 +9,12 @@
     </head>
     <body>
         <p>$test_description</p>
-        <h2 id="current_question_h2"></h2>
-        <span>SCORE: </span><input type="text" id="score_input" /><span id="possible_points_span"></span>
+        <h4 id="current_question_h4"></h4>
         <div id="questions_div">
-            <span>Questions:</span>
+            <span>Jump to question:</span>
         </div>
+        <p id="student_answer_p"></p>
+        <span>ENTER SCORE: </span><input type="text" id="score_input" /><span id="possible_points_span"></span>
         <table id="grading_table">
             <tr>
                 <th>Student Answer</th>
