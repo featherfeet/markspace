@@ -49,5 +49,7 @@ CREATE TABLE student_answers                                  -- All student ans
     question_id INT,                                               -- The ID of the question that this answer answers.
     student_identification TEXT,                                   -- The name/ID number/other identification of the student who made this answer.
     student_answer_file_id INT,                                    -- The ID of the student answer file that this answer is from.
-    information TEXT                                               -- JSON describing the student's score and any other relevant data about their answer. Null if not yet graded.
+    score VARCHAR(255),                                            -- The score the student received for their answer, expressed as a string.
+    points_possible VARCHAR(255),                                  -- Maximum possible points for this question.
+    page INT                                                       -- The page number (in the student_answer_file for this student's answer)_of this answer.
 );

@@ -1,10 +1,19 @@
 package storage;
 
 public class TestQuestion {
+    private int test_question_id;
     private int page;
     private String points;
     private CanvasRectangle[] regions;
     private boolean extra_credit;
+
+    public int getTestQuestionId() {
+        return test_question_id;
+    }
+
+    public void setTestQuestionId(int test_question_id) {
+        this.test_question_id = test_question_id;
+    }
 
     public int getPage() {
         return page;

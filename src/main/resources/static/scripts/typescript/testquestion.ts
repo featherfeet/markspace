@@ -1,26 +1,24 @@
 class TestQuestion {
+    private test_question_id: number;
     private page: number;
     private points: string;
     private regions: CanvasRectangle[];
     private extra_credit: boolean;
 
-    constructor(points: string, page: number, regions: CanvasRectangle[], extra_credit: boolean) {
+    constructor(test_question_id: number, points: string, page: number, regions: CanvasRectangle[], extra_credit: boolean) {
+        this.test_question_id = test_question_id;
         this.points = points;
         this.page = page;
         this.regions = regions;
         this.extra_credit = extra_credit;
     }
 
-    equals(other: TestQuestion): boolean {
-        if (other.getRegions().length != this.regions.length) {
-            return false;
-        }
-        for (let i = 0; i < other.getRegions().length; i++) {
-            if (!other.getRegions()[i].equals(this.regions[i])) {
-                return false;
-            }
-        }
-        return other.page == this.page && other.points == this.points && other.extra_credit == this.extra_credit;
+    getTestQuestionId(): number {
+        return this.test_question_id;
+    }
+
+    setTestQuestionId(test_question_id: number): void {
+        this.test_question_id = test_question_id;
     }
 
     getPoints(): string {
@@ -68,7 +66,7 @@ class TestQuestion {
             regions.push(region);
         }
         // @ts-ignore
-        const test_question: TestQuestion = new TestQuestion(test_question_raw.points, test_question_raw.page, regions, test_question_raw.extra_credit);
+        const test_question: TestQuestion = new TestQuestion(test_question_raw.test_question_id, test_question_raw.points, test_question_raw.page, regions, test_question_raw.extra_credit);
         return test_question;
     }
 }

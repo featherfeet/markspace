@@ -8,14 +8,38 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import spark.*;
 import spark.template.velocity.VelocityTemplateEngine;
 import storage.PersistentStorage;
+import storage.StudentAnswer;
 import storage.Test;
+import storage.TestQuestion;
 
 import javax.servlet.MultipartConfigElement;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class UploadStudentAnswersController extends Controller {
+    private void generateStudentAnswers(int user_id, int test_id, int student_answer_file_id) {
+        // Fetch test questions from database.
+        TestQuestion[] testQuestions = persistentStorage.getQuestionsByTestId(user_id, test_id);
+        // Fetch the number of pages in the student answer file.
+        Map<Integer, Integer> studentAnswerFilesNumberOfPages = persistentStorage.getStudentAnswerFilesNumberOfPages(user_id, test_id);
+        int student_answer_file_number_of_pages = studentAnswerFilesNumberOfPages.get(student_answer_file_id);
+        // Generate student answer objects for the student answer file.
+        List<StudentAnswer> studentAnswers = new ArrayList<>();
+        // For each page of the current student answer file, find all test questions and create student answer objects from them.
+        for (int page = 0; page < student_answer_file_number_of_pages; page++) {
+            for (TestQuestion testQuestion : testQuestions) {
+                if (testQuestion.getPage() == page) {
+                    StudentAnswer studentAnswer = new StudentAnswer(-1, student_answer_file_id, "", testQuestion, "", testQuestion.getPoints(), page);
+                    studentAnswers.add(studentAnswer);
+                }
+            }
+        }
+        // Save the empty (not yet graded) student answers to the database.
+        StudentAnswer[] studentAnswersTemp = new StudentAnswer[studentAnswers.size()];
+        studentAnswers.toArray(studentAnswersTemp);
+        persistentStorage.createStudentAnswers(user_id, studentAnswersTemp);
+    }
+
     /**
      * Create a new UploadStudentAnswersController object. For any controller, this MUST be called before using the controller in order to pass in the shared PersistentStorage object.
      *
@@ -100,7 +124,9 @@ public class UploadStudentAnswersController extends Controller {
         }
         // Save the form data as a new student answer file in the database.
         PDDocument student_answers_file_document = PDDocument.load(student_answers_file_upload_data);
-        persistentStorage.createStudentAnswerFile(user_id, test_id, student_answers_file_upload_data, student_answers_file_upload_name, "pdf", student_answers_file_document.getNumberOfPages());
+        int student_answer_file_id = persistentStorage.createStudentAnswerFile(user_id, test_id, student_answers_file_upload_data, student_answers_file_upload_name, "pdf", student_answers_file_document.getNumberOfPages());
+        // Generate empty student answer objects in the database.
+        generateStudentAnswers(user_id, test_id, student_answer_file_id);
         // Send the user back to the tests page with a success message.
         request.session().attribute("message_color", "green");
         request.session().attribute("message", "Student answers <b>" + student_answers_file_upload_name + "</b> uploaded successfully to test <b>" + test.getName() + "</b>.");

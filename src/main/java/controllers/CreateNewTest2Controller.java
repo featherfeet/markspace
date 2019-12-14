@@ -104,7 +104,6 @@ public class CreateNewTest2Controller extends Controller {
         TestQuestion[] test_questions = gson.fromJson(test_questions_json, TestQuestion[].class);
         // Save the TestQuestion objects to the database.
         persistentStorage.createQuestions(test_file_id, user_id, test_questions);
-
         // Redirect the user back to the /tests page with a green message notifying them that the test was created successfully.
         request.session().attribute("message_color", "green");
         request.session().attribute("message", "Test &lsquo;" + test.getName() + "&rsquo; has been created successfully.");

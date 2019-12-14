@@ -1,4 +1,5 @@
 class StudentAnswer {
+    private student_answer_id: number;
     private student_answer_file_id: number;
     private test_question: TestQuestion;
     private score: string;
@@ -11,6 +12,14 @@ class StudentAnswer {
         this.score = score;
         this.points_possible = points_possible;
         this.page = page;
+    }
+
+    getStudentAnswerId(): number {
+        return this.student_answer_id;
+    }
+
+    setStudentAnswerId(student_answer_id: number) {
+        this.student_answer_id = student_answer_id;
     }
 
     getStudentAnswerFileId(): number {

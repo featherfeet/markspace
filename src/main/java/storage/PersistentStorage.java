@@ -5,6 +5,7 @@ package storage;
  * @see storage.DatabaseStorage
  */
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -133,8 +134,9 @@ public abstract class PersistentStorage {
      * @param student_answer_file_name The name of the uploaded file.
      * @param student_answer_file_type The type of the uploaded file. For now, this is always "pdf".
      * @param number_of_pages The number of pages in the uploaded file.
+     * @return The id of the student answer file that was created.
      */
-    public abstract void createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages);
+    public abstract int createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages);
 
     /**
      * Retrieve all student answer files associated with a particular test.
@@ -159,4 +161,27 @@ public abstract class PersistentStorage {
      * @return A map where keys are student answer file ids and values are the number of pages in those student answer files.
      */
     public abstract Map<Integer, Integer> getStudentAnswerFilesNumberOfPages(int user_id, int test_id);
+
+    /**
+     * Create new student answers (can be blank for later grading).
+     * @param user_id The user id of the user creating the student answers.
+     * @param student_answers An array of student answer objects to add. They can be "blank" student answer objects that haven't yet been graded. createStudentAnswers will assign them id's.
+     */
+    public abstract void createStudentAnswers(int user_id, StudentAnswer[] student_answers);
+
+    /**
+     * Retrieve a single test question by its id.
+     * @param user_id The user id of the user who owns the test question.
+     * @param question_id The id of the question to fetch.
+     * @return A TestQuestion object with the specified id.
+     */
+    public abstract TestQuestion getQuestionById(int user_id, int question_id);
+
+    /**
+     * Retrieve all student answers attached to a specific student answer file.
+     * @param user_id The user id of the user who created the student answers.
+     * @param student_answer_file_id The id of the student answer file that the desired student answers are attached to.
+     * @return An ArrayList of student answer objects that were attached to the specified student answer file.
+     */
+    public abstract List<StudentAnswer> getStudentAnswersByStudentAnswerFileId(int user_id, int student_answer_file_id);
 }

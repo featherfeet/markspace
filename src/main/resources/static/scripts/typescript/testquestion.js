@@ -1,20 +1,16 @@
 var TestQuestion = /** @class */ (function () {
-    function TestQuestion(points, page, regions, extra_credit) {
+    function TestQuestion(test_question_id, points, page, regions, extra_credit) {
+        this.test_question_id = test_question_id;
         this.points = points;
         this.page = page;
         this.regions = regions;
         this.extra_credit = extra_credit;
     }
-    TestQuestion.prototype.equals = function (other) {
-        if (other.getRegions().length != this.regions.length) {
-            return false;
-        }
-        for (var i = 0; i < other.getRegions().length; i++) {
-            if (!other.getRegions()[i].equals(this.regions[i])) {
-                return false;
-            }
-        }
-        return other.page == this.page && other.points == this.points && other.extra_credit == this.extra_credit;
+    TestQuestion.prototype.getTestQuestionId = function () {
+        return this.test_question_id;
+    };
+    TestQuestion.prototype.setTestQuestionId = function (test_question_id) {
+        this.test_question_id = test_question_id;
     };
     TestQuestion.prototype.getPoints = function () {
         return this.points;
@@ -55,7 +51,7 @@ var TestQuestion = /** @class */ (function () {
             regions.push(region);
         }
         // @ts-ignore
-        var test_question = new TestQuestion(test_question_raw.points, test_question_raw.page, regions, test_question_raw.extra_credit);
+        var test_question = new TestQuestion(test_question_raw.test_question_id, test_question_raw.points, test_question_raw.page, regions, test_question_raw.extra_credit);
         return test_question;
     };
     return TestQuestion;

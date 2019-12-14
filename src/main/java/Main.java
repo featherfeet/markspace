@@ -57,7 +57,7 @@ public class Main {
         RenderQuestionController renderQuestionController = new RenderQuestionController(persistentStorage, pdfRendererCache, renderersBeingCreated);
         GradeTestController gradeTestController = new GradeTestController(persistentStorage);
         RenderStudentAnswerController renderStudentAnswerController = new RenderStudentAnswerController(persistentStorage);
-        GenerateStudentAnswersForTestController generateStudentAnswersForTestController = new GenerateStudentAnswersForTestController(persistentStorage);
+        GetStudentAnswersForTestController getStudentAnswersForTestController = new GetStudentAnswersForTestController(persistentStorage);
         // Configure which types of requests and what URLs correspond to each request handler.
         get("/", indexController.serveIndexPageGet);
         get("/index", indexController.serveIndexPageGet);
@@ -82,6 +82,6 @@ public class Main {
         get("/grade_test", gradeTestController.serveGradeTestPageGet);
         post("/grade_test", gradeTestController.serveGradeTestPagePost);
         get("/render_student_answer", renderStudentAnswerController.serveRenderStudentAnswerPageGet);
-        get("/generate_student_answers_for_test", generateStudentAnswersForTestController.serveGenerateStudentAnswersForTestPageGet);
+        get("/get_student_answers_for_test", getStudentAnswersForTestController.serveGenerateStudentAnswersForTestPageGet);
     }
 }

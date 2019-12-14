@@ -33,7 +33,7 @@ jQuery(function($): void {
     $(canvas).on("mouseup", function(): void {
         current_selection.setColor(inactive_selection_color);
         current_selection.setOutlineColor(inactive_selection_outline_color);
-        const test_question: TestQuestion = new TestQuestion("1.0", test_viewer.getCurrentPage(), [current_selection], false);
+        const test_question: TestQuestion = new TestQuestion(0, "1.0", test_viewer.getCurrentPage(), [current_selection], false);
         questions.push(test_question);
         $("#current_question_number").text(`question ${questions.length + 1}`);
         $("#no_questions_p").hide();

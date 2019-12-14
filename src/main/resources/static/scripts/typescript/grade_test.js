@@ -9,6 +9,10 @@ jQuery(function ($) {
     Promise.all([test_questions_promise, student_answers_promise]).then(function (values) {
         var test_questions = values[0];
         var student_answers = values[1];
+        console.log("Test questions:");
+        console.table(test_questions);
+        console.log("Student answers:");
+        console.table(student_answers);
         // Add links to the test questions.
         var questions_div = $("#questions_div");
         var test_question_index = 0;
@@ -43,7 +47,7 @@ jQuery(function ($) {
                 $("a.test_question_a").removeClass("highlighted");
                 $(event.target).addClass("highlighted");
                 // Find all student answers to the current question.
-                current_student_answers = student_answers.filter(function (student_answer) { return student_answer.getTestQuestion().equals(test_questions[current_test_question]); });
+                current_student_answers = student_answers.filter(function (student_answer) { return test_questions[current_test_question].getTestQuestionId() == student_answer.getTestQuestion().getTestQuestionId(); });
                 number_of_student_answers = current_student_answers.length;
                 // Find all student answers to the current question that have not yet been graded.
                 current_student_answers = current_student_answers.filter(function (student_answer) { return student_answer.getScore() == ""; });
@@ -64,13 +68,14 @@ jQuery(function ($) {
                     var image_url = _c[_b];
                     $("#correct_answer_td").append("<img src=\"" + image_url + "\" alt=\"Correct answer.\">");
                 }
-                console.log("Switching to the question at index " + event.data + ".");
+                console.log("Switching to the question at index " + event.data.test_question_index + ".");
             });
             test_question_index++;
         }
         // Handler for when a score is entered.
         $("#score_input").on("keypress", function (event) {
             if (event.key == "Enter") {
+                // Save the score.
                 // Go to the next student answer.
                 current_student_answer++;
                 number_of_graded_student_answers++;

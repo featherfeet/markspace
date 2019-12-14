@@ -121,6 +121,21 @@ public class DatabaseStorage extends PersistentStorage {
      */
     private PreparedStatement getStudentAnswerFilesNumberOfPagesStatement;
 
+    /**
+     * A parameterized SQL query to create new student answers.
+     */
+    private PreparedStatement createStudentAnswerStatement;
+
+    /**
+     * A parameterized SQL query to retrieve all student answers attached to a specific student answer file.
+     */
+    private PreparedStatement getStudentAnswersByStudentAnswerFileIdStatement;
+
+    /**
+     * A parameterized SQL query to retrieve a single test question by its id.
+     */
+    private PreparedStatement getQuestionByIdStatement;
+
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
     private final String validateUserSQL = "SELECT * FROM users WHERE username = ?";
@@ -177,7 +192,13 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getStudentAnswerFileByIdSQL = "SELECT student_answer_file FROM student_answer_files WHERE user_id = ? AND student_answer_file_id = ?";
 
-    private final String getStudentAnswerFilesNumberOfPagesSQL = "SELECT student_answer_file_id,number_of_pages FROM student_answer_files WHERE user_id = ? and test_id = ?";
+    private final String getStudentAnswerFilesNumberOfPagesSQL = "SELECT student_answer_file_id,number_of_pages FROM student_answer_files WHERE user_id = ? AND test_id = ?";
+
+    private final String createStudentAnswerSQL = "INSERT INTO student_answers (student_answer_id, question_id, student_identification, student_answer_file_id, score, points_possible, page) VALUES (default, ?, ?, ?, ?, ?, ?)";
+
+    private final String getStudentAnswersByStudentAnswerFileIdSQL = "SELECT * FROM student_answers WHERE student_answer_file_id = ?";
+
+    private final String getQuestionByIdSQL = "SELECT * FROM questions WHERE user_id = ? AND question_id = ?";
 
     /**
      * Initialize the JDBC connection to the database, create the re-usable Google GSON object, and compile all of the parameterized (prepared) SQL queries/statements.
@@ -201,10 +222,13 @@ public class DatabaseStorage extends PersistentStorage {
             deleteTestByIdStatement = connection.prepareStatement(deleteTestByIdSQL);
             deleteTestFileByIdStatement = connection.prepareStatement(deleteTestFileByIdSQL);
             deleteQuestionsByTestFileIdStatement = connection.prepareStatement(deleteQuestionsByTestFileIdSQL);
-            createStudentAnswerFileStatement = connection.prepareStatement(createStudentAnswerFileSQL);
+            createStudentAnswerFileStatement = connection.prepareStatement(createStudentAnswerFileSQL, Statement.RETURN_GENERATED_KEYS);
             getStudentAnswerFilesStatement = connection.prepareStatement(getStudentAnswerFilesSQL);
             getStudentAnswerFileByIdStatement = connection.prepareStatement(getStudentAnswerFileByIdSQL);
             getStudentAnswerFilesNumberOfPagesStatement = connection.prepareStatement(getStudentAnswerFilesNumberOfPagesSQL);
+            createStudentAnswerStatement = connection.prepareStatement(createStudentAnswerSQL);
+            getStudentAnswersByStudentAnswerFileIdStatement = connection.prepareStatement(getStudentAnswersByStudentAnswerFileIdSQL);
+            getQuestionByIdStatement = connection.prepareStatement(getQuestionByIdSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -442,6 +466,8 @@ public class DatabaseStorage extends PersistentStorage {
             while (resultSet.next()) {
                 String raw_json = resultSet.getString(QUESTIONS_TABLE_INFORMATION_COLUMN);
                 TestQuestion testQuestion = gson.fromJson(raw_json, TestQuestion.class);
+                int test_question_id = resultSet.getInt(QUESTIONS_TABLE_QUESTION_ID_COLUMN);
+                testQuestion.setTestQuestionId(test_question_id);
                 testQuestions.add(testQuestion);
             }
             return testQuestions.toArray(new TestQuestion[testQuestions.size()]);
@@ -495,7 +521,8 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public void createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages) {
+    public int createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages) {
+        int student_answer_file_id = -1;
         try {
             createStudentAnswerFileStatement.setInt(1, user_id);
             createStudentAnswerFileStatement.setInt(2, test_id);
@@ -505,10 +532,14 @@ public class DatabaseStorage extends PersistentStorage {
             createStudentAnswerFileStatement.setString(5, student_answer_file_type);
             createStudentAnswerFileStatement.setInt(6, number_of_pages);
             createStudentAnswerFileStatement.executeUpdate();
+            ResultSet resultSet = createStudentAnswerFileStatement.getGeneratedKeys();
+            resultSet.first();
+            student_answer_file_id = resultSet.getInt(1);
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+        return student_answer_file_id;
     }
 
     @Override
@@ -563,5 +594,66 @@ public class DatabaseStorage extends PersistentStorage {
             e.printStackTrace();
         }
         return student_answer_files_number_of_pages;
+    }
+
+    public void createStudentAnswers(int user_id, StudentAnswer[] student_answers) {
+        try {
+            int batch_count = 0;
+            for (StudentAnswer student_answer : student_answers) {
+                createStudentAnswerStatement.setInt(1, student_answer.getTestQuestion().getTestQuestionId());
+                createStudentAnswerStatement.setString(2, student_answer.getStudentIdentification());
+                createStudentAnswerStatement.setInt(3, student_answer.getStudentAnswerFileId());
+                createStudentAnswerStatement.setString(4, student_answer.getScore());
+                createStudentAnswerStatement.setString(5, student_answer.getPointsPossible());
+                createStudentAnswerStatement.setInt(6, student_answer.getPage());
+                createStudentAnswerStatement.addBatch();
+                batch_count++;
+                if (batch_count % 100 == 0 || batch_count == student_answers.length) {
+                    createStudentAnswerStatement.executeBatch();
+                }
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public TestQuestion getQuestionById(int user_id, int question_id) {
+        TestQuestion testQuestion = null;
+        try {
+            getQuestionByIdStatement.setInt(1, user_id);
+            getQuestionByIdStatement.setInt(2, question_id);
+            ResultSet resultSet = getQuestionByIdStatement.executeQuery();
+            resultSet.first();
+            String raw_json = resultSet.getString(QUESTIONS_TABLE_INFORMATION_COLUMN);
+            testQuestion = gson.fromJson(raw_json, TestQuestion.class);
+            testQuestion.setTestQuestionId(question_id);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return testQuestion;
+    }
+
+    public List<StudentAnswer> getStudentAnswersByStudentAnswerFileId(int user_id, int student_answer_file_id) {
+        List<StudentAnswer> studentAnswers = new ArrayList<>();
+        try {
+            getStudentAnswersByStudentAnswerFileIdStatement.setInt(1, student_answer_file_id);
+            ResultSet resultSet = getStudentAnswersByStudentAnswerFileIdStatement.executeQuery();
+            while (resultSet.next()) {
+                int student_answer_id = resultSet.getInt(1);
+                int question_id = resultSet.getInt(2);
+                String student_identification = resultSet.getString(3);
+                String score = resultSet.getString(5);
+                String points_possible = resultSet.getString(6);
+                int page = resultSet.getInt(7);
+                StudentAnswer studentAnswer = new StudentAnswer(student_answer_id, student_answer_file_id, student_identification, getQuestionById(user_id, question_id), score, points_possible, page);
+                studentAnswers.add(studentAnswer);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return studentAnswers;
     }
 }
