@@ -184,4 +184,12 @@ public abstract class PersistentStorage {
      * @return An ArrayList of student answer objects that were attached to the specified student answer file.
      */
     public abstract List<StudentAnswer> getStudentAnswersByStudentAnswerFileId(int user_id, int student_answer_file_id);
+
+    /**
+     * Set the score (number of points earned by the student) for a student answer. Can be negative. Can be more than points_possible (i. e. extra credit). Can be zero. This is also used for "identification" questions where the student hand-writes their name on the page.
+     * @param user_id The user id of the user who uploaded the student answer being scored.
+     * @param student_answer_id The id of the student answer being scored.
+     * @param score The score to give. Or, if this is an "identification" question, the transcribed name/ID number of the student.
+     */
+    public abstract void scoreStudentAnswer(int user_id, int student_answer_id, String score);
 }

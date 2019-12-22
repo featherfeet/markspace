@@ -1,5 +1,6 @@
 var current_selection = null;
 var questions = [];
+var selection_active = false; // This flag indicates when the user is in the act of selecting a region in the canvas (i. e. the "drag" part of the "click-and-drag").
 jQuery(function ($) {
     // Get the test ID of the test being created.
     var raw_url = window.location.href;
@@ -14,12 +15,14 @@ jQuery(function ($) {
     $("#test_id").val(test_id.toString());
     // Set up mousedown handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousedown", function (event) {
+        // If the user is still dragging to select, DO NOT let them start a new selection.
+        if (selection_active) {
+            return;
+        }
+        selection_active = true;
         var x_inches = event.offsetX / page_render_dpi;
         var y_inches = event.offsetY / page_render_dpi;
-        console.log(x_inches);
-        console.log(y_inches);
         current_selection = test_viewer.getRenderer().addRectangleToPage(test_viewer.getCurrentPage(), x_inches, y_inches, 0, 0, active_selection_color, active_selection_outline_color, "Q" + (questions.length + 1), 1);
-        console.log(current_selection);
     });
     // Set up mousemove handler on the canvas for the click-and-drag selection.
     $(canvas).on("mousemove", function (event) {
@@ -30,6 +33,7 @@ jQuery(function ($) {
     });
     // Set up mouseup handler on the canvas for the click-and-drag selection.
     $(canvas).on("mouseup", function () {
+        selection_active = false;
         current_selection.setColor(inactive_selection_color);
         current_selection.setOutlineColor(inactive_selection_outline_color);
         var test_question = new TestQuestion(0, "1.0", test_viewer.getCurrentPage(), [current_selection], false);

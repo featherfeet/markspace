@@ -40,17 +40,4 @@ public class GradeTestController {
         model.put("test_description", test.getDescription());
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/grade_test.vm"));
     };
-
-    public static Route serveGradeTestPagePost = (Request request, Response response) -> {
-        // Validate the user and redirect them to /login if they are not valid.
-        Boolean valid_user = request.session().attribute("valid_user");
-        if (valid_user == null || !valid_user) {
-            request.session().attribute("message_color", "red");
-            request.session().attribute("message", "You must be logged in to access tests.");
-            response.redirect("/login");
-            return "";
-        }
-        // Put the graded answers into the database.
-        return "";
-    };
 }

@@ -1,89 +1,127 @@
-jQuery(function($): void {
-    // Get the test ID of the test being created.
-    const raw_url = window.location.href;
-    const url = new URL(raw_url);
-    const test_id: number = parseInt(url.searchParams.get("test_id"));
-    // Retrieve questions on this test from the database.
-    const test_questions_promise: Promise<TestQuestion[]> = retrieveQuestions(test_id);
-    const student_answers_promise: Promise<StudentAnswer[]> = retrieveStudentAnswers(test_id, -1);
-    Promise.all([test_questions_promise, student_answers_promise]).then(function(values) {
-        const test_questions: TestQuestion[] = values[0];
-        const student_answers: StudentAnswer[] = values[1];
-        console.log("Test questions:");
-        console.table(test_questions);
-        console.log("Student answers:");
-        console.table(student_answers);
-        // Add links to the test questions.
-        const questions_div: JQuery<HTMLDivElement> = $("#questions_div");
-        let test_question_index: number = 0;
-        // Index of the question currently being graded.
-        let current_test_question: number = 0;
-        // All student answers to the current question being graded.
-        let current_student_answers: StudentAnswer[] = new Array<StudentAnswer>();
-        let current_student_answer: number = 0; // Index (in current_student_answers) of the student answer currently being graded/displayed.
-        // For every test question on this test...
-        let number_of_student_answers: number = 0;
-        let number_of_graded_student_answers: number = 0;
-        let question_title: string = "";
-        for (let test_question of test_questions) {
-            // Create a link at the bottom of the screen to this test question.
-            const question_link: JQuery<HTMLAnchorElement> = $(`<a class="buttonlike test_question_a">${test_question.getRegions()[0].getLabel()}</a>`);
-            questions_div.append(question_link);
-            // If the link is clicked, jump to that question.
-            question_link.on("click", null, {test_question_index: test_question_index}, function(event) {
-                // Set the current test question.
-                current_test_question = event.data.test_question_index;
-                // Display the possible points for this test question.
-                let possible_points: string = `/${test_questions[current_test_question].getPoints()}`;
-                if (test_questions[current_test_question].getExtraCredit()) {
-                    possible_points += " (EXTRA CREDIT)";
-                }
-                $("#possible_points_span").text(possible_points);
-                // Show the question title.
-                question_title = test_questions[current_test_question].getRegions()[0].getLabel();
-                $("#current_question_h4").html(`Currently grading question <i>${question_title}</i>.`);
-                // Highlight this question's link.
-                $("a.test_question_a").removeClass("highlighted");
-                $(event.target).addClass("highlighted");
-                // Find all student answers to the current question.
-                current_student_answers = student_answers.filter(student_answer => test_questions[current_test_question].getTestQuestionId() == student_answer.getTestQuestion().getTestQuestionId());
-                number_of_student_answers = current_student_answers.length;
-                // Find all student answers to the current question that have not yet been graded.
-                current_student_answers = current_student_answers.filter(student_answer => student_answer.getScore() == "");
-                number_of_graded_student_answers = number_of_student_answers - current_student_answers.length;
-                // Display how many answers need to be graded.
-                $("#student_answer_p").html(`Grading student answer ${number_of_graded_student_answers + 1} of ${number_of_student_answers} for question <i>${question_title}</i>.`);
-                // Choose the first ungraded student answer to grade.
-                current_student_answer = 0;
-                // Add images of the student answer.
-                $("#student_answer_td").empty();
-                for (let image_url of current_student_answers[current_student_answer].getImageURLs()) {
-                    $("#student_answer_td").append(`<img src="${image_url}" alt="Student answer.">`);
-                }
-                // Add images of the question.
-                $("#correct_answer_td").empty();
-                for (let image_url of test_questions[current_test_question].getImageURLs(test_id, true)) {
-                    $("#correct_answer_td").append(`<img src="${image_url}" alt="Correct answer.">`);
-                }
-                console.log(`Switching to the question at index ${event.data.test_question_index}.`);
+function scoreStudentAnswer(student_answer_id: number, score: string): Promise<null> {
+    return new Promise<null>((resolve, reject) => {
+        $.post("/score_student_answer", {student_answer_id: student_answer_id, score: score})
+            .done(function() {
+                resolve(null);
+            })
+            .fail(function() {
+                reject(new Error("POST request to /score_student_answer failed."));
             });
-            test_question_index++;
-        }
-        // Handler for when a score is entered.
-        $("#score_input").on("keypress", function(event) {
-            if (event.key == "Enter") {
-                // Save the score.
-                // Go to the next student answer.
-                current_student_answer++;
-                number_of_graded_student_answers++;
-                // Add images of the student answer.
-                $("#student_answer_td").empty();
-                for (let image_url of current_student_answers[current_student_answer].getImageURLs()) {
-                    $("#student_answer_td").append(`<img src="${image_url}" alt="Student answer.">`);
-                }
-                // Display which student answer is being graded.
-                $("#student_answer_p").html(`Grading student answer ${number_of_graded_student_answers + 1} of ${number_of_student_answers} for question <i>${question_title}</i>.`);
-            }
-        });
     });
-});
+}
+
+const app = new Vue(
+    {
+        el: "#vue_div",
+        data: {
+            test_id: -1,
+            test_questions: [],
+            current_test_question_label: "",
+            all_student_answers: [],
+            current_student_answer_index: 0,
+            current_student_answer_score: "",
+            possible_points_for_current_student_answer: 0,
+            current_student_answers: [],
+            student_answer_image_urls: [],
+            test_question_image_urls: []
+        },
+        methods: {
+            jumpToTestQuestion: function(test_question: TestQuestion, self) {
+                // JS hackery.
+                if (self == undefined) {
+                    self = this;
+                }
+                // Un-highlight all test questions' links.
+                for (let other_test_question of self.test_questions) {
+                    Vue.set(other_test_question, "highlighted", false);
+                }
+                // Highlight the selected test question's link.
+                for (let other_test_question of self.test_questions) {
+                    if (other_test_question.getTestQuestionId() == test_question.getTestQuestionId()) {
+                        Vue.set(other_test_question, "highlighted", true);
+                    }
+                }
+                // Load images of self test question.
+                self.test_question_image_urls = test_question.getImageURLs(self.test_id, true);
+                // Find student answers that are for self test question.
+                self.current_student_answers = self.all_student_answers.filter(student_answer => student_answer.getTestQuestion().getTestQuestionId() == test_question.getTestQuestionId());
+                // Load a student answer for grading.
+                self.current_student_answer_index = 0;
+                self.student_answer_image_urls = self.current_student_answers[self.current_student_answer_index].getImageURLs();
+                // Check if the question is a special "NAME" question.
+                if (test_question.getRegions()[0].getLabel() == "NAME") {
+                    self.possible_points_for_current_student_answer = "NAME";
+                }
+                else {
+                    self.possible_points_for_current_student_answer = self.current_student_answers[self.current_student_answer_index].getPointsPossible();
+                }
+                // Display the name of this question.
+                self.current_test_question_label = test_question.getRegions()[0].getLabel();
+                // Debug info.
+                console.log(`Jumping to question ${test_question.getRegions()[0].getLabel()}.`);
+                // Focus the score input (put the user's cursor in it so that they can type).
+                $("#score_input")[0].focus();
+            },
+            submitStudentAnswerScore: function() {
+                const self = this;
+                console.log("Submitting student answer score...");
+                // Submit the entered score for the current student answer.
+                const current_student_answer: StudentAnswer = this.current_student_answers[this.current_student_answer_index];
+                // If the score is empty, auto-score 100%.
+                if (this.current_student_answer_score == "") {
+                    // Send the score to the server.
+                    scoreStudentAnswer(current_student_answer.getStudentAnswerId(), current_student_answer.getPointsPossible());
+                    // Save the score to the client-side object.
+                    current_student_answer.setScore(current_student_answer.getPointsPossible());
+                }
+                // Otherwise, enter whatever was entered as a score. This allows non-numeric scores for things like NAME questions.
+                else {
+                    // Send the score to the server.
+                    scoreStudentAnswer(current_student_answer.getStudentAnswerId(), this.current_student_answer_score);
+                    // Save the score to the client-side object.
+                    current_student_answer.setScore(this.current_student_answer_score);
+                }
+                // Clear the score input.
+                this.current_student_answer_score = "";
+                // If there are no more ungraded student answers for this question, then find a new question.
+                if (this.current_student_answer_index >= this.current_student_answers.length - 1) {
+                    const ungraded_student_answers: StudentAnswer[] = this.all_student_answers.filter(student_answer => student_answer.getScore() == "");
+                    if (ungraded_student_answers.length == 0) {
+                        alert("Congratulations! You have finished grading this test! You may now press the back button to return to the tests page, or remain here to gaze upon your handiwork.");
+                    }
+                    else {
+                        self.jumpToTestQuestion(ungraded_student_answers[0].getTestQuestion(), self);
+                    }
+                }
+                // If there are more ungraded student answers for this question, advance to the next one.
+                else {
+                    this.current_student_answer_index++;
+                    self.student_answer_image_urls = self.current_student_answers[self.current_student_answer_index].getImageURLs();
+                }
+            }
+        },
+        mounted() {
+            // Get the test ID of the test being created.
+            const raw_url = window.location.href;
+            const url = new URL(raw_url);
+            this.test_id = parseInt(url.searchParams.get("test_id"));
+            // Fetch the test questions and student answers using Promises.
+            const self = this;
+            const questions_promise: Promise<TestQuestion[]> = retrieveQuestions(this.test_id);
+            const student_answers_promise: Promise<StudentAnswer[]> = retrieveStudentAnswers(this.test_id, -1);
+            // When both test questions AND student answers have been retrieved, do this...
+            Promise.all([questions_promise, student_answers_promise]).then(function(values) {
+                // Get the retrieved student answers and questions.
+                const test_questions: TestQuestion[] = values[0];
+                const student_answers: StudentAnswer[] = values[1];
+                // Store the retrieved test questions for the data binding UI.
+                self.test_questions = test_questions;
+                // Store the retrieved student answers for the data binding UI.
+                self.all_student_answers = student_answers;
+                // Find the "NAME" test question and jump the UI to it.
+                const name_question: TestQuestion = test_questions.filter(test_question => test_question.getRegions()[0].getLabel() == "NAME")[0];
+                self.jumpToTestQuestion(name_question, self);
+            });
+        }
+    }
+);

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/grade_test.css">
+        <title>Grading Test: $test_name</title>
+        <h1>Grading Test <i>$test_name</i></h1>
+    </head>
+    <body>
+        <p>$test_description</p>
+        <h4 id="current_question_h4"></h4>
+        <div id="questions_div">
+            <span>Jump to question:</span>
+        </div>
+        <p id="student_answer_p"></p>
+        <span>ENTER SCORE: </span><input type="text" id="score_input" /><span id="possible_points_span"></span>
+        <table id="grading_table">
+            <tr>
+                <th>Student Answer</th>
+                <th>Correct Answer</th>
+            </tr>
+            <tr>
+                <td id="student_answer_td"></td>
+                <td id="correct_answer_td"></td>
+            </tr>
+        </table>
+        <br>
+        <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/global_parameters.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/canvasrenderer.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/testviewer.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/testquestion.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/retrievequestions.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/retrievestudentanswers.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/studentanswer.js"></script>
+        <script type="text/javascript" src="/scripts/typescript/grade_test.js"></script>
+    </body>
+</html>

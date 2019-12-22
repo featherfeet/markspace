@@ -1,3 +1,5 @@
 1) Check if user exists before creating a user.
-2) /tests page error.
 3) Input validation on the server of whether point values for questions are actually numbers.
+4) "Create Test" page needs to force user to pick a "NAME" question.
+5) Change all of the $.get usages to NOT use backtick string formatting and instead use jQuery's automatic URL-formatting.
+6) Add failure handling to all Promise-based functions (retrieveQuestions and retrieveStudentAnswers).

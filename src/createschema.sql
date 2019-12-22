@@ -46,6 +46,7 @@ CREATE TABLE student_answer_files                             -- All scans of st
 CREATE TABLE student_answers                                  -- All student answers to test questions are stored here.
 (
     student_answer_id INT AUTO_INCREMENT PRIMARY KEY,              -- Each student answer has a unique id.
+    user_id INT,                                                   -- The ID of the user who uploaded this student answer.
     question_id INT,                                               -- The ID of the question that this answer answers.
     student_identification TEXT,                                   -- The name/ID number/other identification of the student who made this answer.
     student_answer_file_id INT,                                    -- The ID of the student answer file that this answer is from.

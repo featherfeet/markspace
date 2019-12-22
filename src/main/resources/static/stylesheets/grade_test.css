@@ -28,3 +28,7 @@ img {
     display: block;
     max-width: calc(100% - 40px);
 }
+
+[v-cloak] {
+    display: none;
+}

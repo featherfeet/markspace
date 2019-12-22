@@ -11,6 +11,7 @@ import spark.*;
 import storage.PersistentStorage;
 import storage.Test;
 import storage.TestFile;
+import util.Rectangle;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -156,8 +157,18 @@ public class RenderQuestionController extends Controller {
             renderersBeingCreated.remove(rendererCacheKey);
         }
         // Use the PDF renderer that was just created/retrieved from cache to render the question and send back the raw PNG data.
+        // Render an image of the page.
         BufferedImage image = renderer.renderImageWithDPI(page, dpi);
-        BufferedImage question_image = image.getSubimage((int) (x * dpi), (int) (y * dpi), (int) (width * dpi), (int) (height * dpi));
+        // Retrieve the requested region of the page.
+        int x_pixels = (int) (x * dpi);
+        int y_pixels = (int) (y * dpi);
+        int width_pixels = (int) (width * dpi);
+        int height_pixels = (int) (height * dpi);
+        Rectangle image_region = new Rectangle(x_pixels, y_pixels, width_pixels, height_pixels);
+        image_region.convertToTopLeftRectangle();
+        image_region.cropToBounds(image.getWidth(), image.getHeight());
+        BufferedImage question_image = image.getSubimage(image_region.getX(), image_region.getY(), image_region.getWidth(), image_region.getHeight());
+        // Convert the requested region into raw PNG data to send back to the client.
         ByteArrayOutputStream png_data = new ByteArrayOutputStream();
         ImageIO.write(question_image, "PNG", png_data);
         byte[] png_data_raw = png_data.toByteArray();

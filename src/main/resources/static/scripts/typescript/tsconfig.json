@@ -1,6 +1,7 @@
 {
   "include": [
-    "./*.ts"
+    "./*.ts",
+    "../vue.js"
   ],
   "compilerOptions": {
     "lib": [
@@ -8,6 +9,7 @@
       "es5",
       "scripthost",
       "es2015.promise"
-    ]
+    ],
+    "target": "es5"
   }
 }

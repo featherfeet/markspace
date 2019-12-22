@@ -6,7 +6,8 @@ class StudentAnswer {
     private points_possible: string;
     private page: number;
 
-    constructor(student_answer_file_id: number, test_question: TestQuestion, score: string, points_possible: string, page: number) {
+    constructor(student_answer_id: number, student_answer_file_id: number, test_question: TestQuestion, score: string, points_possible: string, page: number) {
+        this.student_answer_id = student_answer_id;
         this.student_answer_file_id = student_answer_file_id;
         this.test_question = test_question;
         this.score = score;
@@ -66,7 +67,7 @@ class StudentAnswer {
         // @ts-ignore
         const test_question: TestQuestion = TestQuestion.fromRawObject(student_answer_raw.test_question);
         // @ts-ignore
-        return new StudentAnswer(student_answer_raw.student_answer_file_id, test_question, student_answer_raw.score, student_answer_raw.points_possible, student_answer_raw.page);
+        return new StudentAnswer(student_answer_raw.student_answer_id, student_answer_raw.student_answer_file_id, test_question, student_answer_raw.score, student_answer_raw.points_possible, student_answer_raw.page);
     }
 
     getImageURLs(): string[] {

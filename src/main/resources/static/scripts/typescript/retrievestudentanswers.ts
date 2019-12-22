@@ -6,6 +6,7 @@ function retrieveStudentAnswers(test_id: number, student_answer_file_id: number)
                 const student_answer: StudentAnswer = StudentAnswer.fromRawObject(student_answer_raw);
                 student_answers.push(student_answer);
             }
+            console.log(`Found ${student_answers.length} student answers.`);
             resolve(student_answers);
         });
     });

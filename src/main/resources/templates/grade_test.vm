@@ -8,25 +8,48 @@
         <h1>Grading Test <i>$test_name</i></h1>
     </head>
     <body>
-        <p>$test_description</p>
-        <h4 id="current_question_h4"></h4>
-        <div id="questions_div">
-            <span>Jump to question:</span>
+        <div id="vue_div" v-cloak>
+            <p>$test_description</p>
+            <h4 id="current_question_h4"></h4>
+            <div id="questions_div">
+                <span>Jump to question:</span>
+                <a class="buttonlike test_question_a"
+                   v-for="test_question in test_questions"
+                   @click="jumpToTestQuestion(test_question)"
+                   :class="{highlighted: test_question.highlighted}">
+                    {{ test_question.getRegions()[0].getLabel() }}
+                </a>
+            </div>
+            <p id="student_answer_p">
+                Grading student answer {{ current_student_answers.filter(student_answer => student_answer.getScore() != "").length + 1 }} of {{ current_student_answers.length }} ungraded for question <i>{{ current_test_question_label }}.</i>
+            </p>
+            <span v-if="possible_points_for_current_student_answer == 'NAME'">
+                <i>Enter student name/ID number written below:</i>
+            </span>
+            <span v-if="possible_points_for_current_student_answer != 'NAME'">
+                <i>Enter score:</i>
+            </span>
+            <input type="text" v-on:keypress.enter="submitStudentAnswerScore" v-model="current_student_answer_score" id="score_input" autofocus />
+            <span v-if="possible_points_for_current_student_answer != 'NAME'">
+                &sol; {{ possible_points_for_current_student_answer }}
+            </span>
+            <table id="grading_table">
+                <tr>
+                    <th>Student Answer</th>
+                    <th>Correct Answer</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img v-for="student_answer_image_url in student_answer_image_urls" v-bind:src="student_answer_image_url">
+                    </td>
+                    <td>
+                        <img v-for="test_question_image_url in test_question_image_urls" v-bind:src="test_question_image_url">
+                    </td>
+                </tr>
+            </table>
         </div>
-        <p id="student_answer_p"></p>
-        <span>ENTER SCORE: </span><input type="text" id="score_input" /><span id="possible_points_span"></span>
-        <table id="grading_table">
-            <tr>
-                <th>Student Answer</th>
-                <th>Correct Answer</th>
-            </tr>
-            <tr>
-                <td id="student_answer_td"></td>
-                <td id="correct_answer_td"></td>
-            </tr>
-        </table>
-        <br>
         <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="/scripts/vue.js"></script>
         <script type="text/javascript" src="/scripts/typescript/global_parameters.js"></script>
         <script type="text/javascript" src="/scripts/typescript/canvasrenderer.js"></script>
         <script type="text/javascript" src="/scripts/typescript/testviewer.js"></script>

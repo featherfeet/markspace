@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import spark.*;
 import storage.PersistentStorage;
 import storage.StudentAnswer;
-import storage.TestQuestion;
 
 import java.util.*;
 
@@ -17,7 +16,7 @@ public class GetStudentAnswersForTestController {
         this.persistentStorage = persistentStorage;
     }
 
-    public Route serveGenerateStudentAnswersForTestPageGet = (Request request, Response response) -> {
+    public Route serveGetStudentAnswersForTestPageGet = (Request request, Response response) -> {
         // Validate the user and redirect them to /login if they are not valid.
         Boolean valid_user = request.session().attribute("valid_user");
         if (valid_user == null || !valid_user) {
@@ -42,7 +41,7 @@ public class GetStudentAnswersForTestController {
             // If a student answer file ID was provided, only use that file.
             student_answer_file_ids.add(student_answer_file_id);
         }
-        // Retrieve the empty answers that we just created from the database. They will now have ID's attached to them.
+        // Retrieve the empty answers from the database (that were created by the /upload_student_answers page). They will now have ID's attached to them.
         List<StudentAnswer> student_answers_with_ids = new ArrayList<>();
         for (int current_student_answer_file_id : student_answer_file_ids) {
             student_answers_with_ids.addAll(persistentStorage.getStudentAnswersByStudentAnswerFileId(user_id, current_student_answer_file_id));
