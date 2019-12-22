@@ -48,6 +48,7 @@ var app = new Vue({
             // Load a student answer for grading.
             self.current_student_answer_index = 0;
             self.student_answer_image_urls = self.current_student_answers[self.current_student_answer_index].getImageURLs();
+            self.current_student_answer_score = self.current_student_answers[self.current_student_answer_index].getScore();
             // Check if the question is a special "NAME" question.
             if (test_question.getRegions()[0].getLabel() == "NAME") {
                 self.possible_points_for_current_student_answer = "NAME";

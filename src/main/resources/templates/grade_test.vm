@@ -20,8 +20,11 @@
                     {{ test_question.getRegions()[0].getLabel() }}
                 </a>
             </div>
-            <p id="student_answer_p">
-                Grading student answer {{ current_student_answers.filter(student_answer => student_answer.getScore() != "").length + 1 }} of {{ current_student_answers.length }} ungraded for question <i>{{ current_test_question_label }}.</i>
+            <p v-if="current_student_answers.filter(student_answer => student_answer.getScore() == '').length == 1">
+                There is 1 ungraded answer to question <i>{{ current_test_question_label }}.</i>
+            </p>
+            <p v-else>
+                There are {{ current_student_answers.filter(student_answer => student_answer.getScore() == "").length }} ungraded answers to question <i>{{ current_test_question_label }}.</i>
             </p>
             <span v-if="possible_points_for_current_student_answer == 'NAME'">
                 <i>Enter student name/ID number written below:</i>
