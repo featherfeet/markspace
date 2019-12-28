@@ -4,11 +4,13 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="MILESTONE: Scores entered on /grade_test are now actually saved to the database correctly in the student_answers table.">
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Bugfixed /grade_test's &quot;show number of ungraded answers&quot; functionality.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/TestFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/TestFile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,7 +313,8 @@
       <workItem from="1576989514448" duration="1030000" />
       <workItem from="1576990690267" duration="3588000" />
       <workItem from="1576998751243" duration="5447000" />
-      <workItem from="1577045207072" duration="2851000" />
+      <workItem from="1577045207072" duration="2893000" />
+      <workItem from="1577566235616" duration="3973000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -495,29 +498,35 @@
       <option name="project" value="LOCAL" />
       <updated>1577007791529</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Bugfixed /grade_test's &quot;show number of ungraded answers&quot; functionality.">
+      <created>1577051038014</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1577051038014</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
     <option name="exactExcludedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/canvasrenderer.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" />
-        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/global_parameters.js" />
-        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/test.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.js" />
-        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/testviewer.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tests.js" />
         <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/tests.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/studentanswer.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/test.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/testviewer.js" />
         <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/studentanswer.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievestudentanswers.js" />
-        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/retrievestudentanswers.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/grade_test.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/global_parameters.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievestudentanswers.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testquestion.js" />
+        <option value="$PROJECT_DIR$/target/classes/static/scripts/typescript/retrievestudentanswers.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/retrievequestions.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/tests.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/testviewer.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/test.js" />
       </list>
     </option>
   </component>
@@ -549,7 +558,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Started to work on the client-side TypeScript/HTML5 Canvas program that allows teachers to select regions of a PDF for questions. PDF rendering works." />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Client-side question-selection with canvas rendering engine works. HiDPI screens are supported. Client-side JS creates a form for question properties, but (as yet) there is no way of submitting the questions' page regions." />
     <MESSAGE value="Worked on improving the JS behind the form that gets the point values of each question when creating a test. It now has input validation, placeholder values, and disables submission if there is invalid input (also turns the box red). Still a JDBC error being thrown on the server, though (not fixed yet)." />
     <MESSAGE value="Client-side create_new_test_2 TypeScript now correctly sends JSON of the questions' data to the server-side Java, which correctly deserializes the JSON into Java objects." />
@@ -574,7 +583,8 @@
     <MESSAGE value="Pressing ENTER after entering a student score now advances to the next student answer." />
     <MESSAGE value="MILESTONE: Huge and complicated refactoring at every level so that test question objects now carry ID's with them, student answer generation happens only once (when the student answer file is initially uploaded), and student answers have their own unique ids." />
     <MESSAGE value="MILESTONE: Scores entered on /grade_test are now actually saved to the database correctly in the student_answers table." />
-    <option name="LAST_COMMIT_MESSAGE" value="MILESTONE: Scores entered on /grade_test are now actually saved to the database correctly in the student_answers table." />
+    <MESSAGE value="Bugfixed /grade_test's &quot;show number of ungraded answers&quot; functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugfixed /grade_test's &quot;show number of ungraded answers&quot; functionality." />
   </component>
   <component name="WindowStateProjectService">
     <state x="451" y="120" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1575761859317">
@@ -589,58 +599,63 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="94" y="27" width="1816" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576300398166" />
-    <state x="163" y="146" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1577007791331">
+    <state x="163" y="146" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1577051037852">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="106" key="CommitChangelistDialog2/0.27.1280.772@0.27.1280.772" timestamp="1576180095241" />
     <state x="0" y="146" width="1910" height="819" key="CommitChangelistDialog2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301587386" />
-    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1577007791331" />
+    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1577051037852" />
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl" timestamp="1576889486430">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576889486430" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1577048555198">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1577051048085">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1577048555198" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1577048555197">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1577051048085" />
+    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1577051048085">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1577048555197" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1577048555196">
+    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1577051048085" />
+    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1577051048085">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1577048555196" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1577048555197">
+    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1577051048085" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1577051048085">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1577048555197" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1577051048085" />
     <state x="186" y="39" width="1031" height="745" key="SettingsEditor" timestamp="1576889533730">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="124" y="36" width="1031" height="745" key="SettingsEditor/0.27.1280.772@0.27.1280.772" timestamp="1576007081058" />
     <state x="186" y="39" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1576889533730" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1577007793279">
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1577051039940">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="370" y="211" key="Vcs.Push.Dialog.v2/0.27.1280.772@0.27.1280.772" timestamp="1576180097393" />
     <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301589448" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1577007793279" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1577051039940" />
+    <state x="339" y="35" width="597" height="762" key="refactoring.ChangeSignatureDialog" timestamp="1577569524325">
+      <screen x="0" y="27" width="1280" height="772" />
+    </state>
+    <state x="339" y="35" width="597" height="762" key="refactoring.ChangeSignatureDialog/0.27.1280.772@0.27.1280.772" timestamp="1577569524325" />
     <state x="624" y="252" key="run.anything.popup" timestamp="1576894215703">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="624" y="252" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1576894215703" />
-    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1576991730127">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="415" y="197" width="672" height="498" key="search.everywhere.popup" timestamp="1577569655375">
+      <screen x="0" y="27" width="1280" height="772" />
     </state>
+    <state x="415" y="197" width="672" height="498" key="search.everywhere.popup/0.27.1280.772@0.27.1280.772" timestamp="1577569655375" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576385515286" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1576991730127" />
   </component>

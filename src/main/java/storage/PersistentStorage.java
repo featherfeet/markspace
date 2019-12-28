@@ -166,8 +166,9 @@ public abstract class PersistentStorage {
      * Create new student answers (can be blank for later grading).
      * @param user_id The user id of the user creating the student answers.
      * @param student_answers An array of student answer objects to add. They can be "blank" student answer objects that haven't yet been graded. createStudentAnswers will assign them id's.
+     * @return An array of the IDs of the created student answers. They will be in the same order that they were in the student_answers parameter.
      */
-    public abstract void createStudentAnswers(int user_id, StudentAnswer[] student_answers);
+    public abstract Integer[] createStudentAnswers(int user_id, StudentAnswer[] student_answers);
 
     /**
      * Retrieve a single test question by its id.
@@ -192,4 +193,11 @@ public abstract class PersistentStorage {
      * @param score The score to give. Or, if this is an "identification" question, the transcribed name/ID number of the student.
      */
     public abstract void scoreStudentAnswer(int user_id, int student_answer_id, String score);
+
+    /**
+     * Create a new student answer set in the database. A student answer set is a collection of all of the student answers from ONE student for a specific test.
+     * @param user_id The user ID of the user who uploaded the student answers.
+     * @param student_answer_ids The IDs of the student answers in this set.
+     */
+    public abstract void createStudentAnswerSet(int user_id, Integer[] student_answer_ids);
 }
