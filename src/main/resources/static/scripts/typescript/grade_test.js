@@ -41,10 +41,15 @@ var app = new Vue({
                     Vue.set(other_test_question, "highlighted", true);
                 }
             }
-            // Load images of self test question.
+            // Load images of this test question.
             self.test_question_image_urls = test_question.getImageURLs(self.test_id, true);
-            // Find student answers that are for self test question.
+            // Find student answers that are for this test question AND are not yet graded.
             self.current_student_answers = self.all_student_answers.filter(function (student_answer) { return student_answer.getTestQuestion().getTestQuestionId() == test_question.getTestQuestionId(); });
+            self.current_student_answers = self.current_student_answers.filter(function (student_answer) { return student_answer.getScore() == ""; });
+            if (self.current_student_answers.length == 0) {
+                alert("There are no student answers for this question left to grade.");
+                return;
+            }
             // Load a student answer for grading.
             self.current_student_answer_index = 0;
             self.student_answer_image_urls = self.current_student_answers[self.current_student_answer_index].getImageURLs();

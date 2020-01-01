@@ -2,6 +2,8 @@ package controllers;
 
 import spark.*;
 import storage.PersistentStorage;
+import storage.StudentAnswer;
+import storage.StudentAnswerSet;
 
 public class ScoreStudentAnswerController {
     private static PersistentStorage persistentStorage;
@@ -31,6 +33,16 @@ public class ScoreStudentAnswerController {
         String score = request.queryParams("score");
         // Save the score to the database.
         persistentStorage.scoreStudentAnswer(user_id, student_answer_id, score);
+        /* If this student answer was for an "identification" question
+           (one that asks for the student's name/ID number), then label
+           all other answers from this student answer set with the student's identity. */
+        StudentAnswer studentAnswer = persistentStorage.getStudentAnswerById(user_id, student_answer_id);
+        if (studentAnswer.getTestQuestion().isIdentificationQuestion()) {
+            StudentAnswerSet studentAnswerSet = persistentStorage.findStudentAnswerSetWithStudentAnswer(user_id, student_answer_id);
+            for (int other_student_answer_id : studentAnswerSet.getStudentAnswerIds()) {
+                persistentStorage.identifyStudentAnswer(user_id, other_student_answer_id, score);
+            }
+        }
         return "";
     };
 }

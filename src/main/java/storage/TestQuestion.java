@@ -47,6 +47,10 @@ public class TestQuestion {
         this.regions = regions;
     }
 
+    public boolean isIdentificationQuestion() {
+        return this.regions[0].getLabel().equals("NAME");
+    }
+
     public static class CanvasRectangle {
         private double x;
         private double y;

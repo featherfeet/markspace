@@ -141,6 +141,26 @@ public class DatabaseStorage extends PersistentStorage {
      */
     private PreparedStatement scoreStudentAnswerStatement;
 
+    /**
+     * A parameterized SQL query to create a student answer set (set of all answers from ONE student for a specific test).
+     */
+    private PreparedStatement createStudentAnswerSetStatement;
+
+    /**
+     * A parameterized SQL query to retrieve a student answer by its id.
+     */
+    private PreparedStatement getStudentAnswerByIdStatement;
+
+    /**
+     * A parameterized SQL query to find the student answer set that contains a particular student answer.
+     */
+    private PreparedStatement findStudentAnswerSetWithStudentAnswerStatement;
+
+    /**
+     * A parameterized SQL query to set the identification (student name or student ID number) on a student answer.
+     */
+    private PreparedStatement identifyStudentAnswerStatement;
+
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
     private final String validateUserSQL = "SELECT * FROM users WHERE username = ?";
@@ -215,6 +235,17 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String scoreStudentAnswerSQL = "UPDATE student_answers SET score = ? WHERE user_id = ? AND student_answer_id = ?";
 
+    private final String createStudentAnswerSetSQL = "INSERT INTO student_answer_sets (student_answer_set_id, user_id, student_answer_ids) VALUES (default, ?, ?)";
+
+    private final String getStudentAnswerByIdSQL = "SELECT * FROM student_answers WHERE user_id = ? AND student_answer_id = ?";
+
+    private final String findStudentAnswerSetWithStudentAnswerSQL = "SELECT * FROM student_answer_sets WHERE user_id = ? AND student_answer_ids LIKE ?";
+    private final int STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_SET_ID_COLUMN = 1;
+    private final int STUDENT_ANSWER_SETS_TABLE_USER_ID_COLUMN = 2;
+    private final int STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_IDS_COLUMN = 3;
+
+    private final String identifyStudentAnswerSQL = "UPDATE student_answers SET student_identification = ? WHERE user_id = ? AND student_answer_id = ?";
+
     /**
      * Initialize the JDBC connection to the database, create the re-usable Google GSON object, and compile all of the parameterized (prepared) SQL queries/statements.
      */
@@ -241,10 +272,14 @@ public class DatabaseStorage extends PersistentStorage {
             getStudentAnswerFilesStatement = connection.prepareStatement(getStudentAnswerFilesSQL);
             getStudentAnswerFileByIdStatement = connection.prepareStatement(getStudentAnswerFileByIdSQL);
             getStudentAnswerFilesNumberOfPagesStatement = connection.prepareStatement(getStudentAnswerFilesNumberOfPagesSQL);
-            createStudentAnswerStatement = connection.prepareStatement(createStudentAnswerSQL);
+            createStudentAnswerStatement = connection.prepareStatement(createStudentAnswerSQL, Statement.RETURN_GENERATED_KEYS);
             getStudentAnswersByStudentAnswerFileIdStatement = connection.prepareStatement(getStudentAnswersByStudentAnswerFileIdSQL);
             getQuestionByIdStatement = connection.prepareStatement(getQuestionByIdSQL);
             scoreStudentAnswerStatement = connection.prepareStatement(scoreStudentAnswerSQL);
+            createStudentAnswerSetStatement = connection.prepareStatement(createStudentAnswerSetSQL);
+            getStudentAnswerByIdStatement = connection.prepareStatement(getStudentAnswerByIdSQL);
+            findStudentAnswerSetWithStudentAnswerStatement = connection.prepareStatement(findStudentAnswerSetWithStudentAnswerSQL);
+            identifyStudentAnswerStatement = connection.prepareStatement(identifyStudentAnswerSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -426,7 +461,8 @@ public class DatabaseStorage extends PersistentStorage {
                 byte[] data = test_files.getBytes(TEST_FILES_TABLE_TEST_FILE_COLUMN);
                 String name = test_files.getString(TEST_FILES_TABLE_TEST_FILE_NAME_COLUMN);
                 String type = test_files.getString(TEST_FILES_TABLE_TEST_FILE_TYPE_COLUMN);
-                test_file = new TestFile(test_file_id, data, name, type);
+                int number_of_pages = test_files.getInt(TEST_FILES_TABLE_NUMBER_OF_PAGES_IN_FILE_COLUMN);
+                test_file = new TestFile(test_file_id, data, name, type, number_of_pages);
             }
         }
         catch (SQLException exception) {
@@ -612,7 +648,8 @@ public class DatabaseStorage extends PersistentStorage {
         return student_answer_files_number_of_pages;
     }
 
-    public void createStudentAnswers(int user_id, StudentAnswer[] student_answers) {
+    public Integer[] createStudentAnswers(int user_id, StudentAnswer[] student_answers) {
+        List<Integer> student_answer_ids = new ArrayList<>();
         try {
             int batch_count = 0;
             for (StudentAnswer student_answer : student_answers) {
@@ -625,14 +662,24 @@ public class DatabaseStorage extends PersistentStorage {
                 createStudentAnswerStatement.setInt(7, student_answer.getPage());
                 createStudentAnswerStatement.addBatch();
                 batch_count++;
+                // Collect 100 student answers before adding them as one batch.
                 if (batch_count % 100 == 0 || batch_count == student_answers.length) {
+                    // Add the batch of student answers to the database.
                     createStudentAnswerStatement.executeBatch();
+                    // Retrieve the IDs of the added student answers.
+                    ResultSet resultSet = createStudentAnswerStatement.getGeneratedKeys();
+                    while (resultSet.next()) {
+                        student_answer_ids.add(resultSet.getInt(1));
+                    }
                 }
             }
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+        Integer[] student_answer_ids_temp = new Integer[student_answer_ids.size()];
+        student_answer_ids.toArray(student_answer_ids_temp);
+        return student_answer_ids_temp;
     }
 
     public TestQuestion getQuestionById(int user_id, int question_id) {
@@ -685,5 +732,101 @@ public class DatabaseStorage extends PersistentStorage {
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void createStudentAnswerSet(int user_id, Integer[] student_answer_ids) {
+        try {
+            createStudentAnswerSetStatement.setInt(1, user_id);
+            String student_answer_ids_string = ",";
+            for (int student_answer_id : student_answer_ids) {
+                student_answer_ids_string += student_answer_id + ",";
+            }
+            createStudentAnswerSetStatement.setString(2, student_answer_ids_string);
+            createStudentAnswerSetStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public StudentAnswer getStudentAnswerById(int user_id, int student_answer_id) {
+        StudentAnswer studentAnswer = null;
+        try {
+            getStudentAnswerByIdStatement.setInt(1, user_id);
+            getStudentAnswerByIdStatement.setInt(2, student_answer_id);
+            ResultSet resultSet = getStudentAnswerByIdStatement.executeQuery();
+            resultSet.first();
+            int student_answer_file_id = resultSet.getInt(STUDENT_ANSWERS_TABLE_STUDENT_ANSWER_FILE_ID_COLUMN);
+            int question_id = resultSet.getInt(STUDENT_ANSWERS_TABLE_QUESTION_ID_COLUMN);
+            String student_identification = resultSet.getString(STUDENT_ANSWERS_TABLE_STUDENT_IDENTIFICATION_COLUMN);
+            String score = resultSet.getString(STUDENT_ANSWERS_TABLE_SCORE_COLUMN);
+            String points_possible = resultSet.getString(STUDENT_ANSWERS_TABLE_POINTS_POSSIBLE_COLUMN);
+            int page = resultSet.getInt(STUDENT_ANSWERS_TABLE_PAGE_COLUMN);
+            studentAnswer = new StudentAnswer(student_answer_id, student_answer_file_id, student_identification, getQuestionById(user_id, question_id), score, points_possible, page);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return studentAnswer;
+    }
+
+    public StudentAnswerSet findStudentAnswerSetWithStudentAnswer(int user_id, int student_answer_id) {
+        StudentAnswerSet studentAnswerSet = null;
+        try {
+            findStudentAnswerSetWithStudentAnswerStatement.setInt(1, user_id);
+            findStudentAnswerSetWithStudentAnswerStatement.setString(2, "%," + student_answer_id + ",%");
+            ResultSet resultSet = findStudentAnswerSetWithStudentAnswerStatement.executeQuery();
+            resultSet.first();
+            int student_answer_set_id = resultSet.getInt(STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_SET_ID_COLUMN);
+            String student_answer_ids_raw = resultSet.getString(STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_IDS_COLUMN);
+            String[] student_answer_ids_raw_split = student_answer_ids_raw.split(",");
+            List<Integer> student_answer_ids = new ArrayList<>();
+            for (String student_answer_id_raw : student_answer_ids_raw_split) {
+                if (student_answer_id_raw.length() > 0) {
+                    student_answer_ids.add(Integer.parseInt(student_answer_id_raw));
+                }
+            }
+            Integer[] student_answer_ids_array = new Integer[student_answer_ids.size()];
+            student_answer_ids.toArray(student_answer_ids_array);
+            studentAnswerSet = new StudentAnswerSet(student_answer_set_id, user_id, student_answer_ids_array);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return studentAnswerSet;
+    }
+
+    public void identifyStudentAnswer(int user_id, int student_answer_id, String student_identification) {
+        try {
+            identifyStudentAnswerStatement.setString(1, student_identification);
+            identifyStudentAnswerStatement.setInt(2, user_id);
+            identifyStudentAnswerStatement.setInt(3, student_answer_id);
+            identifyStudentAnswerStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public StudentAnswer[] findAllStudentsWhoTookTest(int user_id, int test_id) {
+        // Find all student answer files for this test.
+        Map<Integer, String> studentAnswerFiles = this.getStudentAnswerFilesByTestId(user_id, test_id);
+        Set<Integer> studentAnswerFileIds = studentAnswerFiles.keySet();
+        // Find all student answers for the student answer files for this test.
+        List<StudentAnswer> studentAnswers = new ArrayList<>();
+        for (int student_answer_file_id : studentAnswerFileIds) {
+            studentAnswers.addAll(this.getStudentAnswersByStudentAnswerFileId(user_id, student_answer_file_id));
+        }
+        // Filter out student answers that aren't for NAME questions.
+        List<StudentAnswer> identificationStudentAnswers = new ArrayList<>();
+        for (StudentAnswer studentAnswer : studentAnswers) {
+            if (studentAnswer.getTestQuestion().isIdentificationQuestion()) {
+                identificationStudentAnswers.add(studentAnswer);
+            }
+        }
+        // Convert identificationStudentAnswers to an array.
+        StudentAnswer[] identificationStudentAnswersTemp = new StudentAnswer[identificationStudentAnswers.size()];
+        identificationStudentAnswers.toArray(identificationStudentAnswersTemp);
+        return identificationStudentAnswersTemp;
     }
 }

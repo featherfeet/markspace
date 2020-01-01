@@ -59,6 +59,7 @@ public class Main {
         RenderStudentAnswerController renderStudentAnswerController = new RenderStudentAnswerController(persistentStorage);
         GetStudentAnswersForTestController getStudentAnswersForTestController = new GetStudentAnswersForTestController(persistentStorage);
         ScoreStudentAnswerController scoreStudentAnswerController = new ScoreStudentAnswerController(persistentStorage);
+        ViewStudentScoresController viewStudentScoresController = new ViewStudentScoresController(persistentStorage);
         // Configure which types of requests and what URLs correspond to each request handler.
         get("/", indexController.serveIndexPageGet);
         get("/index", indexController.serveIndexPageGet);
@@ -84,5 +85,6 @@ public class Main {
         get("/render_student_answer", renderStudentAnswerController.serveRenderStudentAnswerPageGet);
         get("/get_student_answers_for_test", getStudentAnswersForTestController.serveGetStudentAnswersForTestPageGet);
         post("/score_student_answer", scoreStudentAnswerController.serveScoreStudentAnswerPagePost);
+        get("/view_student_scores", viewStudentScoresController.serveViewStudentScoresPageGet);
     }
 }

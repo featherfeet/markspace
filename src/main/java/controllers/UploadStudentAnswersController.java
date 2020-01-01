@@ -7,10 +7,7 @@ package controllers;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import spark.*;
 import spark.template.velocity.VelocityTemplateEngine;
-import storage.PersistentStorage;
-import storage.StudentAnswer;
-import storage.Test;
-import storage.TestQuestion;
+import storage.*;
 
 import javax.servlet.MultipartConfigElement;
 import java.io.InputStream;
@@ -37,7 +34,19 @@ public class UploadStudentAnswersController extends Controller {
         // Save the empty (not yet graded) student answers to the database.
         StudentAnswer[] studentAnswersTemp = new StudentAnswer[studentAnswers.size()];
         studentAnswers.toArray(studentAnswersTemp);
-        persistentStorage.createStudentAnswers(user_id, studentAnswersTemp);
+        Integer[] student_answer_ids = persistentStorage.createStudentAnswers(user_id, studentAnswersTemp);
+        // Create student answer sets. Each set is the set of all answers by ONE student for a specific test.
+        List<Integer> student_answer_set = new ArrayList<>();
+        for (int i = 0; i < student_answer_ids.length; i++) {
+            student_answer_set.add(student_answer_ids[i]);
+            // If we are at the end of a student answer set, add it to the database and clear the set.
+            if ((i + 1) % testQuestions.length == 0) {
+                Integer[] student_answer_set_temp = new Integer[student_answer_set.size()];
+                student_answer_set.toArray(student_answer_set_temp);
+                persistentStorage.createStudentAnswerSet(user_id, student_answer_set_temp);
+                student_answer_set.clear();
+            }
+        }
     }
 
     /**

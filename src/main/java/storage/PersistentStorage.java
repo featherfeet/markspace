@@ -166,8 +166,9 @@ public abstract class PersistentStorage {
      * Create new student answers (can be blank for later grading).
      * @param user_id The user id of the user creating the student answers.
      * @param student_answers An array of student answer objects to add. They can be "blank" student answer objects that haven't yet been graded. createStudentAnswers will assign them id's.
+     * @return An array of the IDs of the created student answers. They will be in the same order that they were in the student_answers parameter.
      */
-    public abstract void createStudentAnswers(int user_id, StudentAnswer[] student_answers);
+    public abstract Integer[] createStudentAnswers(int user_id, StudentAnswer[] student_answers);
 
     /**
      * Retrieve a single test question by its id.
@@ -192,4 +193,43 @@ public abstract class PersistentStorage {
      * @param score The score to give. Or, if this is an "identification" question, the transcribed name/ID number of the student.
      */
     public abstract void scoreStudentAnswer(int user_id, int student_answer_id, String score);
+
+    /**
+     * Create a new student answer set in the database. A student answer set is a collection of all of the student answers from ONE student for a specific test.
+     * @param user_id The user ID of the user who uploaded the student answers.
+     * @param student_answer_ids The IDs of the student answers in this set.
+     */
+    public abstract void createStudentAnswerSet(int user_id, Integer[] student_answer_ids);
+
+    /**
+     * Retrieve a student answer by its ID.
+     * @param user_id The user id of the user who uploaded the student answer.
+     * @param student_answer_id The id of the student answer to retrieve.
+     * @return The student answer with the id specified by student_answer_id.
+     */
+    public abstract StudentAnswer getStudentAnswerById(int user_id, int student_answer_id);
+
+    /**
+     * Find the student answer set that contains a particular student answer.
+     * @param user_id The user id of the user who created the student answer set.
+     * @param student_answer_id The id of the student answer to search for.
+     * @return A StudentAnswerSet of all student answers that were in the set containing student_answer_id.
+     */
+    public abstract StudentAnswerSet findStudentAnswerSetWithStudentAnswer(int user_id, int student_answer_id);
+
+    /**
+     * Attach an identifier (a name or student ID number) to a student answer.
+     * @param user_id The user id of the user who owns the student answer.
+     * @param student_answer_id The id of the student answer to modify.
+     * @param student_identification The identifying text (a name or ID number) to attach to the specified student answer.
+     */
+    public abstract void identifyStudentAnswer(int user_id, int student_answer_id, String student_identification);
+
+    /**
+     * Find all student answers to NAME questions for a particular test.
+     * @param user_id The user id of the owner of the test.
+     * @param test_id The id of the test being searched.
+     * @return An array of student answers to NAME questions for the test specified by test_id.
+     */
+    public abstract StudentAnswer[] findAllStudentsWhoTookTest(int user_id, int test_id);
 }

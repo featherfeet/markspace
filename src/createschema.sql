@@ -54,3 +54,9 @@ CREATE TABLE student_answers                                  -- All student ans
     points_possible VARCHAR(255),                                  -- Maximum possible points for this question.
     page INT                                                       -- The page number (in the student_answer_file for this student's answer)_of this answer.
 );
+CREATE TABLE student_answer_sets                               -- All "sets" (groups) of student answers. Each set is all of the answers from ONE student for a specific test.
+(
+    student_answer_set_id INT AUTO_INCREMENT PRIMARY KEY,          -- The ID of the student answer set.
+    user_id INT,                                                   -- The ID of the user who uploaded the answers.
+    student_answer_ids TEXT                                        -- Comma-separated list of the IDs of student answers in this set. The list must have a leading AND trailing comma.
+);
