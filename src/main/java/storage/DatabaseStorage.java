@@ -8,11 +8,12 @@ package storage;
 
 import security.HashedPassword;
 import security.PasswordSecurity;
-import javax.sql.rowset.serial.SerialBlob;
 
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.sql.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -161,7 +162,7 @@ public class DatabaseStorage extends PersistentStorage {
      */
     private PreparedStatement identifyStudentAnswerStatement;
 
-    private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
+    private final String createUserSQL = "INSERT INTO users (username, password_hash, password_salt, email, permissions) VALUES (?, ?, ?, ?, ?)";
 
     private final String validateUserSQL = "SELECT * FROM users WHERE username = ?";
     private final int USERS_TABLE_USER_ID_COLUMN = 1;
@@ -173,9 +174,9 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String checkUserWithUsernameExistsSQL = "SELECT username FROM users WHERE username = ?";
 
-    private final String createTestFileSQL = "INSERT INTO test_files (test_file_id, user_id, test_file, test_file_name, test_file_type, number_of_pages) VALUES (default, ?, ?, ?, ?, ?)";
+    private final String createTestFileSQL = "INSERT INTO test_files (user_id, test_file, test_file_name, test_file_type, number_of_pages) VALUES (?, ?, ?, ?, ?)";
 
-    private final String createTestSQL = "INSERT INTO tests (test_id, user_id, test_name, test_description, blank_test_file, answers_test_file) VALUES (default, ?, ?, ?, ?, ?)";
+    private final String createTestSQL = "INSERT INTO tests (user_id, test_name, test_description, blank_test_file, answers_test_file) VALUES (?, ?, ?, ?, ?)";
 
     private final String getTestsByUserSQL = "SELECT * FROM tests WHERE user_id = ?";
     private final int TESTS_TABLE_TEST_ID_COLUMN = 1;
@@ -197,7 +198,7 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getNumberOfPagesInTestFileByIdSQL = "SELECT number_of_pages FROM test_files WHERE user_id = ? AND test_file_id = ?";
 
-    private final String createQuestionSQL = "INSERT INTO questions (question_id, test_file_id, user_id, information) VALUES (default, ?, ?, ?)";
+    private final String createQuestionSQL = "INSERT INTO questions (test_file_id, user_id, information) VALUES (?, ?, ?)";
 
     private final String getQuestionsByTestFileIdSQL = "SELECT * FROM questions WHERE user_id = ? AND test_file_id = ?";
     private final int QUESTIONS_TABLE_QUESTION_ID_COLUMN = 1;
@@ -211,7 +212,7 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String deleteQuestionsByTestFileIdSQL = "DELETE FROM questions WHERE user_id = ? AND test_file_id = ?";
 
-    private final String createStudentAnswerFileSQL = "INSERT INTO student_answer_files (student_answer_file_id, user_id, test_id, student_answer_file, student_answer_file_name, student_answer_file_type, number_of_pages) VALUES (default, ?, ?, ?, ?, ?, ?)";
+    private final String createStudentAnswerFileSQL = "INSERT INTO student_answer_files (user_id, test_id, student_answer_file, student_answer_file_name, student_answer_file_type, number_of_pages) VALUES (?, ?, ?, ?, ?, ?)";
 
     private final String getStudentAnswerFilesSQL = "SELECT student_answer_file_id,student_answer_file_name FROM student_answer_files WHERE user_id = ? AND test_id = ?";
 
@@ -219,7 +220,7 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String getStudentAnswerFilesNumberOfPagesSQL = "SELECT student_answer_file_id,number_of_pages FROM student_answer_files WHERE user_id = ? AND test_id = ?";
 
-    private final String createStudentAnswerSQL = "INSERT INTO student_answers (student_answer_id, user_id, question_id, student_identification, student_answer_file_id, score, points_possible, page) VALUES (default, ?, ?, ?, ?, ?, ?, ?)";
+    private final String createStudentAnswerSQL = "INSERT INTO student_answers (user_id, question_id, student_identification, student_answer_file_id, score, points_possible, page) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     private final String getStudentAnswersByStudentAnswerFileIdSQL = "SELECT * FROM student_answers WHERE user_id = ? AND student_answer_file_id = ?";
     private final int STUDENT_ANSWERS_TABLE_STUDENT_ANSWER_ID_COLUMN = 1;
@@ -235,7 +236,7 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String scoreStudentAnswerSQL = "UPDATE student_answers SET score = ? WHERE user_id = ? AND student_answer_id = ?";
 
-    private final String createStudentAnswerSetSQL = "INSERT INTO student_answer_sets (student_answer_set_id, user_id, student_answer_ids) VALUES (default, ?, ?)";
+    private final String createStudentAnswerSetSQL = "INSERT INTO student_answer_sets (user_id, student_answer_ids) VALUES (?, ?)";
 
     private final String getStudentAnswerByIdSQL = "SELECT * FROM student_answers WHERE user_id = ? AND student_answer_id = ?";
 
@@ -250,10 +251,22 @@ public class DatabaseStorage extends PersistentStorage {
      * Initialize the JDBC connection to the database, create the re-usable Google GSON object, and compile all of the parameterized (prepared) SQL queries/statements.
      */
     @Override
-    protected void initializeStorageMethod() {
+    protected synchronized void initializeStorageMethod() {
         try {
+            // Create a Google Gson object for processing JSON data.
             gson = new Gson();
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/markspace", "root", "GradingIsFunForYouXDXD42069!!!");
+            // Create the database connection.
+            try {
+                Class.forName("org.sqlite.JDBC");
+            }
+            catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
+            Path databasePath = Paths.get(System.getProperty("user.home"), "markspace.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:" + databasePath.toString());
+            connection.setAutoCommit(true);
+            // Create prepared SQL statements for later use.
             createUserStatement = connection.prepareStatement(createUserSQL);
             validateUserStatement = connection.prepareStatement(validateUserSQL);
             checkUserWithUsernameExistsStatement = connection.prepareStatement(checkUserWithUsernameExistsSQL);
@@ -288,7 +301,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public void createUser(String username, String password, String email, UserPermission[] permissions) {
+    public synchronized void createUser(String username, String password, String email, UserPermission[] permissions) {
         if (connection == null) {
             System.out.println("Unable to connect to database.");
             return;
@@ -305,7 +318,6 @@ public class DatabaseStorage extends PersistentStorage {
             }
             createUserStatement.setString(5, userPermissions);
             createUserStatement.executeUpdate();
-            connection.commit();
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -313,7 +325,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public int validateUser(String username, String password) {
+    public synchronized int validateUser(String username, String password) {
         if (connection == null) {
             System.out.println("Unable to connect to database.");
             return -1;
@@ -321,7 +333,7 @@ public class DatabaseStorage extends PersistentStorage {
         try {
             validateUserStatement.setString(1, username);
             ResultSet validatedUsers = validateUserStatement.executeQuery();
-            if (validatedUsers.first()) {
+            if (validatedUsers.next()) {
             	HashedPassword correctPassword = new HashedPassword(validatedUsers.getBytes(USERS_TABLE_PASSWORD_SALT_COLUMN), validatedUsers.getBytes(USERS_TABLE_PASSWORD_HASH_COLUMN));
             	if (PasswordSecurity.validatePassword(password, correctPassword)) {
             		return validatedUsers.getInt(USERS_TABLE_USER_ID_COLUMN);
@@ -336,7 +348,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public boolean checkUserWithUsernameExists(String username) {
+    public synchronized boolean checkUserWithUsernameExists(String username) {
         try {
             checkUserWithUsernameExistsStatement.setString(1, username);
             ResultSet users = checkUserWithUsernameExistsStatement.executeQuery();
@@ -360,17 +372,16 @@ public class DatabaseStorage extends PersistentStorage {
      * @param number_of_pages The number of pages in the test file.
      * @return The id of the created test file.
      */
-    private int createTestFile(int user_id, byte[] test_file, String name, String file_type, int number_of_pages) {
+    private synchronized int createTestFile(int user_id, byte[] test_file, String name, String file_type, int number_of_pages) {
         try {
-            SerialBlob test_file_blob = new SerialBlob(test_file);
             createTestFileStatement.setInt(1, user_id);
-            createTestFileStatement.setBlob(2, test_file_blob);
+            createTestFileStatement.setBytes(2, test_file);
             createTestFileStatement.setString(3, name);
             createTestFileStatement.setString(4, file_type);
             createTestFileStatement.setInt(5, number_of_pages);
             createTestFileStatement.executeUpdate();
             ResultSet generated_keys = createTestFileStatement.getGeneratedKeys();
-            generated_keys.first();
+            generated_keys.next();
             return generated_keys.getInt(1);
         }
         catch (SQLException e) {
@@ -380,7 +391,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public int createTest(int user_id, String name, String description, byte[] blank_test_file, String blank_test_file_name, String blank_test_file_type, byte[] answers_test_file, String answers_test_file_name, String answers_test_file_type) {
+    public synchronized int createTest(int user_id, String name, String description, byte[] blank_test_file, String blank_test_file_name, String blank_test_file_type, byte[] answers_test_file, String answers_test_file_name, String answers_test_file_type) {
         int test_id = -1;
         try {
             PDDocument blank_test_file_document = PDDocument.load(blank_test_file);
@@ -394,7 +405,7 @@ public class DatabaseStorage extends PersistentStorage {
             blank_test_file_document.close();
             answers_test_file_document.close();
             ResultSet generated_keys = createTestStatement.getGeneratedKeys();
-            generated_keys.first();
+            generated_keys.next();
             test_id = generated_keys.getInt(1);
         }
         catch (SQLException e) {
@@ -407,7 +418,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public Test[] getTestsByUser(int user_id) {
+    public synchronized Test[] getTestsByUser(int user_id) {
         try {
             getTestsByUserStatement.setInt(1, user_id);
             ResultSet testsByUser = getTestsByUserStatement.executeQuery();
@@ -429,7 +440,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public Test getTestById(int user_id, int test_id) {
+    public synchronized Test getTestById(int user_id, int test_id) {
         Test test = null;
         try {
             getTestByIdStatement.setInt(1, user_id);
@@ -451,13 +462,13 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public TestFile getTestFileById(int user_id, int test_file_id) {
+    public synchronized TestFile getTestFileById(int user_id, int test_file_id) {
         TestFile test_file = null;
         try {
             getTestFileByIdStatement.setInt(1, user_id);
             getTestFileByIdStatement.setInt(2, test_file_id);
             ResultSet test_files = getTestFileByIdStatement.executeQuery();
-            if (test_files.first()) {
+            if (test_files.next()) {
                 byte[] data = test_files.getBytes(TEST_FILES_TABLE_TEST_FILE_COLUMN);
                 String name = test_files.getString(TEST_FILES_TABLE_TEST_FILE_NAME_COLUMN);
                 String type = test_files.getString(TEST_FILES_TABLE_TEST_FILE_TYPE_COLUMN);
@@ -472,7 +483,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public int getNumberOfPagesInTestFileById(int user_id, int test_file_id) {
+    public synchronized int getNumberOfPagesInTestFileById(int user_id, int test_file_id) {
         int number_of_pages = -1;
         try {
             getNumberOfPagesInTestFileByIdStatement.setInt(1, user_id);
@@ -489,7 +500,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public void createQuestions(int test_file_id, int user_id, TestQuestion[] questions) {
+    public synchronized void createQuestions(int test_file_id, int user_id, TestQuestion[] questions) {
         try {
             int batch_count = 0;
             for (TestQuestion question : questions) {
@@ -509,7 +520,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public TestQuestion[] getQuestionsByTestFileId(int user_id, int test_file_id) {
+    public synchronized TestQuestion[] getQuestionsByTestFileId(int user_id, int test_file_id) {
         try {
             getQuestionsByTestFileIdStatement.setInt(1, user_id);
             getQuestionsByTestFileIdStatement.setInt(2, test_file_id);
@@ -531,7 +542,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public TestQuestion[] getQuestionsByTestId(int user_id, int test_id) {
+    public synchronized TestQuestion[] getQuestionsByTestId(int user_id, int test_id) {
         Test test = getTestById(user_id, test_id);
         return getQuestionsByTestFileId(user_id, test.getAnswersTestFile());
     }
@@ -541,7 +552,7 @@ public class DatabaseStorage extends PersistentStorage {
      * @param user_id The user id of the user who owns the test file.
      * @param test_file_id The id of the test file to be deleted.
      */
-    private void deleteTestFileById(int user_id, int test_file_id) {
+    private synchronized void deleteTestFileById(int user_id, int test_file_id) {
         try {
             deleteTestFileByIdStatement.setInt(1, user_id);
             deleteTestFileByIdStatement.setInt(2, test_file_id);
@@ -553,7 +564,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public void deleteTestById(int user_id, int test_id) {
+    public synchronized void deleteTestById(int user_id, int test_id) {
         try {
             Test test_to_delete = getTestById(user_id, test_id);
             if (test_to_delete != null) {
@@ -573,19 +584,18 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public int createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages) {
+    public synchronized int createStudentAnswerFile(int user_id, int test_id, byte[] student_answer_file, String student_answer_file_name, String student_answer_file_type, int number_of_pages) {
         int student_answer_file_id = -1;
         try {
             createStudentAnswerFileStatement.setInt(1, user_id);
             createStudentAnswerFileStatement.setInt(2, test_id);
-            SerialBlob student_answer_file_blob = new SerialBlob(student_answer_file);
-            createStudentAnswerFileStatement.setBlob(3, student_answer_file_blob);
+            createStudentAnswerFileStatement.setBytes(3, student_answer_file);
             createStudentAnswerFileStatement.setString(4, student_answer_file_name);
             createStudentAnswerFileStatement.setString(5, student_answer_file_type);
             createStudentAnswerFileStatement.setInt(6, number_of_pages);
             createStudentAnswerFileStatement.executeUpdate();
             ResultSet resultSet = createStudentAnswerFileStatement.getGeneratedKeys();
-            resultSet.first();
+            resultSet.next();
             student_answer_file_id = resultSet.getInt(1);
         }
         catch (SQLException e) {
@@ -595,7 +605,7 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public Map<Integer, String> getStudentAnswerFilesByTestId(int user_id, int test_id) {
+    public synchronized Map<Integer, String> getStudentAnswerFilesByTestId(int user_id, int test_id) {
         Map<Integer, String> student_answer_files = new HashMap<>();
         try {
             getStudentAnswerFilesStatement.setInt(1, user_id);
@@ -614,13 +624,13 @@ public class DatabaseStorage extends PersistentStorage {
     }
 
     @Override
-    public byte[] getStudentAnswerFileById(int user_id, int student_answer_file_id) {
+    public synchronized byte[] getStudentAnswerFileById(int user_id, int student_answer_file_id) {
         byte[] file_contents = null;
         try {
             getStudentAnswerFileByIdStatement.setInt(1, user_id);
             getStudentAnswerFileByIdStatement.setInt(2, student_answer_file_id);
             ResultSet resultSet = getStudentAnswerFileByIdStatement.executeQuery();
-            if (resultSet.first()) {
+            if (resultSet.next()) {
                 file_contents = resultSet.getBytes(1);
             }
         }
@@ -630,7 +640,7 @@ public class DatabaseStorage extends PersistentStorage {
         return file_contents;
     }
 
-    public Map<Integer, Integer> getStudentAnswerFilesNumberOfPages(int user_id, int test_id) {
+    public synchronized Map<Integer, Integer> getStudentAnswerFilesNumberOfPages(int user_id, int test_id) {
         Map<Integer, Integer> student_answer_files_number_of_pages = new HashMap<>();
         try {
             getStudentAnswerFilesNumberOfPagesStatement.setInt(1, user_id);
@@ -648,10 +658,9 @@ public class DatabaseStorage extends PersistentStorage {
         return student_answer_files_number_of_pages;
     }
 
-    public Integer[] createStudentAnswers(int user_id, StudentAnswer[] student_answers) {
+    public synchronized Integer[] createStudentAnswers(int user_id, StudentAnswer[] student_answers) {
         List<Integer> student_answer_ids = new ArrayList<>();
         try {
-            int batch_count = 0;
             for (StudentAnswer student_answer : student_answers) {
                 createStudentAnswerStatement.setInt(1, user_id);
                 createStudentAnswerStatement.setInt(2, student_answer.getTestQuestion().getTestQuestionId());
@@ -660,17 +669,11 @@ public class DatabaseStorage extends PersistentStorage {
                 createStudentAnswerStatement.setString(5, student_answer.getScore());
                 createStudentAnswerStatement.setString(6, student_answer.getPointsPossible());
                 createStudentAnswerStatement.setInt(7, student_answer.getPage());
-                createStudentAnswerStatement.addBatch();
-                batch_count++;
-                // Collect 100 student answers before adding them as one batch.
-                if (batch_count % 100 == 0 || batch_count == student_answers.length) {
-                    // Add the batch of student answers to the database.
-                    createStudentAnswerStatement.executeBatch();
-                    // Retrieve the IDs of the added student answers.
-                    ResultSet resultSet = createStudentAnswerStatement.getGeneratedKeys();
-                    while (resultSet.next()) {
-                        student_answer_ids.add(resultSet.getInt(1));
-                    }
+                createStudentAnswerStatement.executeUpdate();
+                // Retrieve the ID of the added student answer.
+                ResultSet resultSet = createStudentAnswerStatement.getGeneratedKeys();
+                while (resultSet.next()) {
+                    student_answer_ids.add(resultSet.getInt(1));
                 }
             }
         }
@@ -682,13 +685,13 @@ public class DatabaseStorage extends PersistentStorage {
         return student_answer_ids_temp;
     }
 
-    public TestQuestion getQuestionById(int user_id, int question_id) {
+    public synchronized TestQuestion getQuestionById(int user_id, int question_id) {
         TestQuestion testQuestion = null;
         try {
             getQuestionByIdStatement.setInt(1, user_id);
             getQuestionByIdStatement.setInt(2, question_id);
             ResultSet resultSet = getQuestionByIdStatement.executeQuery();
-            resultSet.first();
+            resultSet.next();
             String raw_json = resultSet.getString(QUESTIONS_TABLE_INFORMATION_COLUMN);
             testQuestion = gson.fromJson(raw_json, TestQuestion.class);
             testQuestion.setTestQuestionId(question_id);
@@ -699,7 +702,7 @@ public class DatabaseStorage extends PersistentStorage {
         return testQuestion;
     }
 
-    public List<StudentAnswer> getStudentAnswersByStudentAnswerFileId(int user_id, int student_answer_file_id) {
+    public synchronized List<StudentAnswer> getStudentAnswersByStudentAnswerFileId(int user_id, int student_answer_file_id) {
         List<StudentAnswer> studentAnswers = new ArrayList<>();
         try {
             getStudentAnswersByStudentAnswerFileIdStatement.setInt(1, user_id);
@@ -722,7 +725,7 @@ public class DatabaseStorage extends PersistentStorage {
         return studentAnswers;
     }
 
-    public void scoreStudentAnswer(int user_id, int student_answer_id, String score) {
+    public synchronized void scoreStudentAnswer(int user_id, int student_answer_id, String score) {
         try {
             scoreStudentAnswerStatement.setString(1, score);
             scoreStudentAnswerStatement.setInt(2, user_id);
@@ -734,7 +737,7 @@ public class DatabaseStorage extends PersistentStorage {
         }
     }
 
-    public void createStudentAnswerSet(int user_id, Integer[] student_answer_ids) {
+    public synchronized void createStudentAnswerSet(int user_id, Integer[] student_answer_ids) {
         try {
             createStudentAnswerSetStatement.setInt(1, user_id);
             String student_answer_ids_string = ",";
@@ -749,13 +752,13 @@ public class DatabaseStorage extends PersistentStorage {
         }
     }
 
-    public StudentAnswer getStudentAnswerById(int user_id, int student_answer_id) {
+    public synchronized StudentAnswer getStudentAnswerById(int user_id, int student_answer_id) {
         StudentAnswer studentAnswer = null;
         try {
             getStudentAnswerByIdStatement.setInt(1, user_id);
             getStudentAnswerByIdStatement.setInt(2, student_answer_id);
             ResultSet resultSet = getStudentAnswerByIdStatement.executeQuery();
-            resultSet.first();
+            resultSet.next();
             int student_answer_file_id = resultSet.getInt(STUDENT_ANSWERS_TABLE_STUDENT_ANSWER_FILE_ID_COLUMN);
             int question_id = resultSet.getInt(STUDENT_ANSWERS_TABLE_QUESTION_ID_COLUMN);
             String student_identification = resultSet.getString(STUDENT_ANSWERS_TABLE_STUDENT_IDENTIFICATION_COLUMN);
@@ -770,13 +773,13 @@ public class DatabaseStorage extends PersistentStorage {
         return studentAnswer;
     }
 
-    public StudentAnswerSet findStudentAnswerSetWithStudentAnswer(int user_id, int student_answer_id) {
+    public synchronized StudentAnswerSet findStudentAnswerSetWithStudentAnswer(int user_id, int student_answer_id) {
         StudentAnswerSet studentAnswerSet = null;
         try {
             findStudentAnswerSetWithStudentAnswerStatement.setInt(1, user_id);
             findStudentAnswerSetWithStudentAnswerStatement.setString(2, "%," + student_answer_id + ",%");
             ResultSet resultSet = findStudentAnswerSetWithStudentAnswerStatement.executeQuery();
-            resultSet.first();
+            resultSet.next();
             int student_answer_set_id = resultSet.getInt(STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_SET_ID_COLUMN);
             String student_answer_ids_raw = resultSet.getString(STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_IDS_COLUMN);
             String[] student_answer_ids_raw_split = student_answer_ids_raw.split(",");
@@ -796,7 +799,7 @@ public class DatabaseStorage extends PersistentStorage {
         return studentAnswerSet;
     }
 
-    public void identifyStudentAnswer(int user_id, int student_answer_id, String student_identification) {
+    public synchronized void identifyStudentAnswer(int user_id, int student_answer_id, String student_identification) {
         try {
             identifyStudentAnswerStatement.setString(1, student_identification);
             identifyStudentAnswerStatement.setInt(2, user_id);
@@ -808,7 +811,7 @@ public class DatabaseStorage extends PersistentStorage {
         }
     }
 
-    public StudentAnswer[] findAllStudentsWhoTookTest(int user_id, int test_id) {
+    public synchronized StudentAnswer[] findAllStudentsWhoTookTest(int user_id, int test_id) {
         // Find all student answer files for this test.
         Map<Integer, String> studentAnswerFiles = this.getStudentAnswerFilesByTestId(user_id, test_id);
         Set<Integer> studentAnswerFileIds = studentAnswerFiles.keySet();

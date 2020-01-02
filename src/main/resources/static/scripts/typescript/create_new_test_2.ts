@@ -87,6 +87,8 @@ jQuery(function($): void {
                 region.setOutlineColor("rgb(0, 150, 0)");
                 region.setLabel("NAME");
             }
+            test_question.setPoints("0.0");
+            $(`#point_value_input_${questions.length}`).val("0.0");
         });
         current_selection = null;
     });
