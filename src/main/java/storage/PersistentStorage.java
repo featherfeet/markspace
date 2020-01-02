@@ -232,11 +232,4 @@ public abstract class PersistentStorage {
      * @return An array of student answers to NAME questions for the test specified by test_id.
      */
     public abstract StudentAnswer[] findAllStudentsWhoTookTest(int user_id, int test_id);
-
-    /**
-     * Create a new student answer set in the database. A student answer set is a collection of all of the student answers from ONE student for a specific test.
-     * @param user_id The user ID of the user who uploaded the student answers.
-     * @param student_answer_ids The IDs of the student answers in this set.
-     */
-    public abstract void createStudentAnswerSet(int user_id, Integer[] student_answer_ids);
 }

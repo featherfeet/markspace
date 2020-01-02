@@ -12,7 +12,7 @@
         <p>
             <i>Note: "Possible points" for a test does not include possible extra credit. Students may score more points than are possible. This can be reflected in percentage scores over 100%.</i>
         </p>
-        <a id="download_button" class="buttonlike" href="/download_student_scores?test_id=$test_id">Download Student Scores as CSV</a>
+        <a id="download_button" class="buttonlike" href="/download_student_scores?test_id=$test_id" download>Download Student Scores as CSV</a>
         <table>
             <tr>
                 <th>Student Identification</th>

@@ -24,8 +24,8 @@ public class Main {
     public static void main(String[] args) {
         // Configure Spark.
         port(4567); // Serve the application on port 4567.
-        // staticFiles.location("/static"); // All statically served resources (stylesheets, scripts, etc.) are stored here.
-        staticFiles.externalLocation("/home/oliver/Projects/Web Projects/markspace/src/main/resources/static"); // TODO: Change to staticFiles.location("/static");
+        staticFiles.location("/static"); // All statically served resources (stylesheets, scripts, etc.) are stored here.
+        // staticFiles.externalLocation("/home/oliver/Projects/Web Projects/markspace/src/main/resources/static");
         staticFiles.expireTime(1L);
         enableDebugScreen();
         // Configure web pages.
@@ -60,6 +60,7 @@ public class Main {
         GetStudentAnswersForTestController getStudentAnswersForTestController = new GetStudentAnswersForTestController(persistentStorage);
         ScoreStudentAnswerController scoreStudentAnswerController = new ScoreStudentAnswerController(persistentStorage);
         ViewStudentScoresController viewStudentScoresController = new ViewStudentScoresController(persistentStorage);
+        DownloadStudentScoresController downloadStudentScoresController = new DownloadStudentScoresController(persistentStorage);
         // Configure which types of requests and what URLs correspond to each request handler.
         get("/", indexController.serveIndexPageGet);
         get("/index", indexController.serveIndexPageGet);
@@ -86,5 +87,6 @@ public class Main {
         get("/get_student_answers_for_test", getStudentAnswersForTestController.serveGetStudentAnswersForTestPageGet);
         post("/score_student_answer", scoreStudentAnswerController.serveScoreStudentAnswerPagePost);
         get("/view_student_scores", viewStudentScoresController.serveViewStudentScoresPageGet);
+        get("/download_student_scores", downloadStudentScoresController.serveDownloadStudentScoresPageGet);
     }
 }

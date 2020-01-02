@@ -161,11 +161,6 @@ public class DatabaseStorage extends PersistentStorage {
      */
     private PreparedStatement identifyStudentAnswerStatement;
 
-    /**
-     * A parameterized SQL query to create a student answer set (set of all answers from ONE student for a specific test).
-     */
-    private PreparedStatement createStudentAnswerSetStatement;
-
     private final String createUserSQL = "INSERT INTO users (user_id, username, password_hash, password_salt, email, permissions) VALUES (default, ?, ?, ?, ?, ?)";
 
     private final String validateUserSQL = "SELECT * FROM users WHERE username = ?";
@@ -239,8 +234,6 @@ public class DatabaseStorage extends PersistentStorage {
     private final String getQuestionByIdSQL = "SELECT * FROM questions WHERE user_id = ? AND question_id = ?";
 
     private final String scoreStudentAnswerSQL = "UPDATE student_answers SET score = ? WHERE user_id = ? AND student_answer_id = ?";
-
-    private final String createStudentAnswerSetSQL = "INSERT INTO student_answer_sets (student_answer_set_id, user_id, student_answer_ids) VALUES (default, ?, ?)";
 
     private final String createStudentAnswerSetSQL = "INSERT INTO student_answer_sets (student_answer_set_id, user_id, student_answer_ids) VALUES (default, ?, ?)";
 
@@ -735,21 +728,6 @@ public class DatabaseStorage extends PersistentStorage {
             scoreStudentAnswerStatement.setInt(2, user_id);
             scoreStudentAnswerStatement.setInt(3, student_answer_id);
             scoreStudentAnswerStatement.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void createStudentAnswerSet(int user_id, Integer[] student_answer_ids) {
-        try {
-            createStudentAnswerSetStatement.setInt(1, user_id);
-            String student_answer_ids_string = ",";
-            for (int student_answer_id : student_answer_ids) {
-                student_answer_ids_string += student_answer_id + ",";
-            }
-            createStudentAnswerSetStatement.setString(2, student_answer_ids_string);
-            createStudentAnswerSetStatement.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();
