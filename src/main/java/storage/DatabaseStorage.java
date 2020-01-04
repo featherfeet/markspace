@@ -162,6 +162,21 @@ public class DatabaseStorage extends PersistentStorage {
      */
     private PreparedStatement identifyStudentAnswerStatement;
 
+    /**
+     * A parameterized SQL query to delete all student answer files associated with a particular test.
+     */
+    private PreparedStatement deleteStudentAnswerFilesByTestIdStatement;
+
+    /**
+     * A parameterized SQL query to delete all student answers attached to a particular student answer file.
+     */
+    private PreparedStatement deleteStudentAnswersByStudentAnswerFileIdStatement;
+
+    /**
+     * A parameterized SQL query to delete all student answer sets associated with a particular test.
+     */
+    private PreparedStatement deleteStudentAnswerSetsByTestIdStatement;
+
     private final String createUserSQL = "INSERT INTO users (username, password_hash, password_salt, email, permissions) VALUES (?, ?, ?, ?, ?)";
 
     private final String validateUserSQL = "SELECT * FROM users WHERE username = ?";
@@ -236,16 +251,23 @@ public class DatabaseStorage extends PersistentStorage {
 
     private final String scoreStudentAnswerSQL = "UPDATE student_answers SET score = ? WHERE user_id = ? AND student_answer_id = ?";
 
-    private final String createStudentAnswerSetSQL = "INSERT INTO student_answer_sets (user_id, student_answer_ids) VALUES (?, ?)";
+    private final String createStudentAnswerSetSQL = "INSERT INTO student_answer_sets (user_id, test_id, student_answer_ids) VALUES (?, ?, ?)";
 
     private final String getStudentAnswerByIdSQL = "SELECT * FROM student_answers WHERE user_id = ? AND student_answer_id = ?";
 
     private final String findStudentAnswerSetWithStudentAnswerSQL = "SELECT * FROM student_answer_sets WHERE user_id = ? AND student_answer_ids LIKE ?";
     private final int STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_SET_ID_COLUMN = 1;
     private final int STUDENT_ANSWER_SETS_TABLE_USER_ID_COLUMN = 2;
-    private final int STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_IDS_COLUMN = 3;
+    private final int STUDENT_ANSWER_SETS_TABLE_TEST_ID_COLUMN = 3;
+    private final int STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_IDS_COLUMN = 4;
 
     private final String identifyStudentAnswerSQL = "UPDATE student_answers SET student_identification = ? WHERE user_id = ? AND student_answer_id = ?";
+
+    private final String deleteStudentAnswerFilesByTestIdSQL = "DELETE FROM student_answer_files WHERE user_id = ? AND test_id = ?";
+
+    private final String deleteStudentAnswersByStudentAnswerFileIdSQL = "DELETE FROM student_answers WHERE user_id = ? AND student_answer_file_id = ?";
+
+    private final String deleteStudentAnswerSetsByTestIdSQL = "DELETE FROM student_answer_sets WHERE user_id = ? AND test_id = ?";
 
     /**
      * Initialize the JDBC connection to the database, create the re-usable Google GSON object, and compile all of the parameterized (prepared) SQL queries/statements.
@@ -264,6 +286,7 @@ public class DatabaseStorage extends PersistentStorage {
                 return;
             }
             Path databasePath = Paths.get(System.getProperty("user.home"), "markspace.db");
+            System.out.println("Connecting to DB: " + databasePath);
             connection = DriverManager.getConnection("jdbc:sqlite:" + databasePath.toString());
             connection.setAutoCommit(true);
             // Create prepared SQL statements for later use.
@@ -293,6 +316,9 @@ public class DatabaseStorage extends PersistentStorage {
             getStudentAnswerByIdStatement = connection.prepareStatement(getStudentAnswerByIdSQL);
             findStudentAnswerSetWithStudentAnswerStatement = connection.prepareStatement(findStudentAnswerSetWithStudentAnswerSQL);
             identifyStudentAnswerStatement = connection.prepareStatement(identifyStudentAnswerSQL);
+            deleteStudentAnswerFilesByTestIdStatement = connection.prepareStatement(deleteStudentAnswerFilesByTestIdSQL);
+            deleteStudentAnswersByStudentAnswerFileIdStatement = connection.prepareStatement(deleteStudentAnswersByStudentAnswerFileIdSQL);
+            deleteStudentAnswerSetsByTestIdStatement = connection.prepareStatement(deleteStudentAnswerSetsByTestIdSQL);
         }
         catch (SQLException exception) {
             exception.printStackTrace();
@@ -563,19 +589,79 @@ public class DatabaseStorage extends PersistentStorage {
         }
     }
 
+    /**
+     * A private helper function to delete all student answer files attached to a particular test.
+     * @param user_id The user id of the user who owns the test.
+     * @param test_id The test id of the test for which student answer files should be deleted.
+     */
+    private synchronized void deleteStudentAnswerFilesByTestId(int user_id, int test_id) {
+        try {
+            deleteStudentAnswerFilesByTestIdStatement.setInt(1, user_id);
+            deleteStudentAnswerFilesByTestIdStatement.setInt(2, test_id);
+            deleteStudentAnswerFilesByTestIdStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * A private helper function to delete all student answers attached to a particular student answer file.
+     * @param user_id The user id of the user who owns the student answers.
+     * @param student_answer_file_id The id of the student answer file.
+     */
+    private synchronized void deleteStudentAnswersByStudentAnswerFileId(int user_id, int student_answer_file_id) {
+        try {
+            deleteStudentAnswersByStudentAnswerFileIdStatement.setInt(1, user_id);
+            deleteStudentAnswersByStudentAnswerFileIdStatement.setInt(2, student_answer_file_id);
+            deleteStudentAnswersByStudentAnswerFileIdStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * A private helper function to delete all student answer sets associated with a test.
+     * @param user_id The user id of the user who owns the test and student answer sets.
+     * @param test_id The test whose student answer sets are being deleted.
+     */
+    private synchronized void deleteStudentAnswerSetsByTestId(int user_id, int test_id) {
+        try {
+            deleteStudentAnswerSetsByTestIdStatement.setInt(1, user_id);
+            deleteStudentAnswerSetsByTestIdStatement.setInt(2, test_id);
+            deleteStudentAnswerSetsByTestIdStatement.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public synchronized void deleteTestById(int user_id, int test_id) {
         try {
             Test test_to_delete = getTestById(user_id, test_id);
             if (test_to_delete != null) {
+                // Delete the test files associated with this test.
                 deleteTestFileById(user_id, test_to_delete.getAnswersTestFile());
                 deleteTestFileById(user_id, test_to_delete.getBlankTestFile());
+                // Delete this test.
                 deleteTestByIdStatement.setInt(1, user_id);
                 deleteTestByIdStatement.setInt(2, test_id);
                 deleteTestByIdStatement.executeUpdate();
+                // Delete all test questions associated with this test.
                 deleteQuestionsByTestFileIdStatement.setInt(1, user_id);
                 deleteQuestionsByTestFileIdStatement.setInt(2, test_to_delete.getAnswersTestFile());
                 deleteQuestionsByTestFileIdStatement.executeUpdate();
+                // Delete all student answer files associated with this test.
+                Set<Integer> student_answer_file_ids = getStudentAnswerFilesNumberOfPages(user_id, test_id).keySet();
+                deleteStudentAnswerFilesByTestId(user_id, test_id);
+                // Delete all student answers associated with this test.
+                for (Integer student_answer_file_id : student_answer_file_ids) {
+                    deleteStudentAnswersByStudentAnswerFileId(user_id, student_answer_file_id);
+                }
+                // Delete all student answer sets associated with this test.
+                deleteStudentAnswerSetsByTestId(user_id, test_id);
             }
         }
         catch (SQLException e) {
@@ -737,14 +823,15 @@ public class DatabaseStorage extends PersistentStorage {
         }
     }
 
-    public synchronized void createStudentAnswerSet(int user_id, Integer[] student_answer_ids) {
+    public synchronized void createStudentAnswerSet(int user_id, int test_id, Integer[] student_answer_ids) {
         try {
             createStudentAnswerSetStatement.setInt(1, user_id);
+            createStudentAnswerSetStatement.setInt(2, test_id);
             String student_answer_ids_string = ",";
             for (int student_answer_id : student_answer_ids) {
                 student_answer_ids_string += student_answer_id + ",";
             }
-            createStudentAnswerSetStatement.setString(2, student_answer_ids_string);
+            createStudentAnswerSetStatement.setString(3, student_answer_ids_string);
             createStudentAnswerSetStatement.executeUpdate();
         }
         catch (SQLException e) {
@@ -781,6 +868,7 @@ public class DatabaseStorage extends PersistentStorage {
             ResultSet resultSet = findStudentAnswerSetWithStudentAnswerStatement.executeQuery();
             resultSet.next();
             int student_answer_set_id = resultSet.getInt(STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_SET_ID_COLUMN);
+            int test_id = resultSet.getInt(STUDENT_ANSWER_SETS_TABLE_TEST_ID_COLUMN);
             String student_answer_ids_raw = resultSet.getString(STUDENT_ANSWER_SETS_TABLE_STUDENT_ANSWER_IDS_COLUMN);
             String[] student_answer_ids_raw_split = student_answer_ids_raw.split(",");
             List<Integer> student_answer_ids = new ArrayList<>();
@@ -791,7 +879,7 @@ public class DatabaseStorage extends PersistentStorage {
             }
             Integer[] student_answer_ids_array = new Integer[student_answer_ids.size()];
             student_answer_ids.toArray(student_answer_ids_array);
-            studentAnswerSet = new StudentAnswerSet(student_answer_set_id, user_id, student_answer_ids_array);
+            studentAnswerSet = new StudentAnswerSet(student_answer_set_id, user_id, test_id, student_answer_ids_array);
         }
         catch (SQLException e) {
             e.printStackTrace();

@@ -43,7 +43,7 @@ public class UploadStudentAnswersController extends Controller {
             if ((i + 1) % testQuestions.length == 0) {
                 Integer[] student_answer_set_temp = new Integer[student_answer_set.size()];
                 student_answer_set.toArray(student_answer_set_temp);
-                persistentStorage.createStudentAnswerSet(user_id, student_answer_set_temp);
+                persistentStorage.createStudentAnswerSet(user_id, test_id, student_answer_set_temp);
                 student_answer_set.clear();
             }
         }

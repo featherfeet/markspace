@@ -4,20 +4,17 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="MILESTONE: Student scores can now be downloaded as a CSV from /download_student_scores. The software is now &quot;done.&quot;">
-      <change afterPath="$PROJECT_DIR$/src/markspace.db.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Migration from MariaDB (MySQL) to Sqlite appears to work, although there may still be threading-related bugs that haven't yet manifested.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/createschema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/informationdump.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ViewStudentScoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ViewStudentScoresController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/scripts/typescript/create_new_test_2.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/StudentAnswerSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/StudentAnswerSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/markspace.db.example" beforeDir="false" afterPath="$PROJECT_DIR$/src/markspace.db.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/todo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +88,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mariadb" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -322,7 +320,9 @@
       <workItem from="1576990690267" duration="3588000" />
       <workItem from="1576998751243" duration="5447000" />
       <workItem from="1577045207072" duration="2893000" />
-      <workItem from="1577858089029" duration="17506000" />
+      <workItem from="1577858089029" duration="18794000" />
+      <workItem from="1578102308912" duration="2179000" />
+      <workItem from="1578176250882" duration="3314000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -527,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577923783471</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Migration from MariaDB (MySQL) to Sqlite appears to work, although there may still be threading-related bugs that haven't yet manifested.">
+      <created>1577931123036</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1577931123036</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,7 +588,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Client-side create_new_test_2 TypeScript now correctly sends JSON of the questions' data to the server-side Java, which correctly deserializes the JSON into Java objects." />
     <MESSAGE value="Worked on why RenderTestController's renderer cache doesn't save across requests. It's emptying the HashMap each time, probably." />
     <MESSAGE value="I've fixed the problem of RenderTestController not using cached PDFRenderer objects; the problem was that SparkJava runs the handlers for all requests in parallel, so the cached PDFRenderers weren't showing up until the handlers had already run. Now, the handlers signal if they are in the process of creating a PDFRenderer. If one handler is creating a PDFRenderer for a document, the other handlers requesting the same document will wait for it to appear in the cache." />
     <MESSAGE value="Split create_new_test_2.ts into multiple files so that the CanvasRenderer and TestQuestion classes can be reused elsewhere." />
@@ -606,7 +612,8 @@
     <MESSAGE value="Bugfixed /grade_test's &quot;show number of ungraded answers&quot; functionality." />
     <MESSAGE value="/view_student_scores now works, with the score-calculating code modularized into storage.StudentScores. /grade_test now only displays ungraded student answers." />
     <MESSAGE value="MILESTONE: Student scores can now be downloaded as a CSV from /download_student_scores. The software is now &quot;done.&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="MILESTONE: Student scores can now be downloaded as a CSV from /download_student_scores. The software is now &quot;done.&quot;" />
+    <MESSAGE value="Migration from MariaDB (MySQL) to Sqlite appears to work, although there may still be threading-related bugs that haven't yet manifested." />
+    <option name="LAST_COMMIT_MESSAGE" value="Migration from MariaDB (MySQL) to Sqlite appears to work, although there may still be threading-related bugs that haven't yet manifested." />
   </component>
   <component name="WindowStateProjectService">
     <state x="451" y="120" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1575761859317">
@@ -625,12 +632,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="94" y="27" width="1816" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576300398166" />
-    <state x="163" y="146" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1577923783355">
+    <state x="163" y="146" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1577931122914">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="106" key="CommitChangelistDialog2/0.27.1280.772@0.27.1280.772" timestamp="1576180095241" />
     <state x="0" y="146" width="1910" height="819" key="CommitChangelistDialog2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301587386" />
-    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1577923783355" />
+    <state x="163" y="146" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1577931122914" />
     <state width="537" height="466" key="DebuggerActiveHint" timestamp="1577928157820">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -639,46 +646,46 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576889486430" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1577931082695">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1578180743539">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1577931082695" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1577931082694">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1578180743539" />
+    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1578180743538">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1577931082694" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1577931082693">
+    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1578180743538" />
+    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1578180743538">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1577931082693" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1577931082694">
+    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1578180743538" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1578180743539">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1577931082694" />
-    <state width="1874" height="339" key="GridCell.Tab.1.bottom" timestamp="1577928745655">
+    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1578180743539" />
+    <state width="1874" height="339" key="GridCell.Tab.1.bottom" timestamp="1577941898731">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="339" key="GridCell.Tab.1.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1577928745655" />
-    <state width="1874" height="339" key="GridCell.Tab.1.center" timestamp="1577928745654">
+    <state width="1874" height="339" key="GridCell.Tab.1.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1577941898731" />
+    <state width="1874" height="339" key="GridCell.Tab.1.center" timestamp="1577941898730">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="339" key="GridCell.Tab.1.center/0.27.1920.1053@0.27.1920.1053" timestamp="1577928745654" />
-    <state width="1874" height="339" key="GridCell.Tab.1.left" timestamp="1577928745654">
+    <state width="1874" height="339" key="GridCell.Tab.1.center/0.27.1920.1053@0.27.1920.1053" timestamp="1577941898730" />
+    <state width="1874" height="339" key="GridCell.Tab.1.left" timestamp="1577941898730">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="339" key="GridCell.Tab.1.left/0.27.1920.1053@0.27.1920.1053" timestamp="1577928745654" />
-    <state width="1874" height="339" key="GridCell.Tab.1.right" timestamp="1577928745654">
+    <state width="1874" height="339" key="GridCell.Tab.1.left/0.27.1920.1053@0.27.1920.1053" timestamp="1577941898730" />
+    <state width="1874" height="339" key="GridCell.Tab.1.right" timestamp="1577941898730">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state width="1874" height="339" key="GridCell.Tab.1.right/0.27.1920.1053@0.27.1920.1053" timestamp="1577928745654" />
+    <state width="1874" height="339" key="GridCell.Tab.1.right/0.27.1920.1053@0.27.1920.1053" timestamp="1577941898730" />
     <state x="8" y="27" width="1907" height="1053" key="MergeDialog" timestamp="1577920620337">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -692,12 +699,12 @@
     </state>
     <state x="124" y="36" width="1031" height="745" key="SettingsEditor/0.27.1280.772@0.27.1280.772" timestamp="1576007081058" />
     <state x="186" y="39" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1577929389638" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1577923785108">
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1577931124810">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="370" y="211" key="Vcs.Push.Dialog.v2/0.27.1280.772@0.27.1280.772" timestamp="1576180097393" />
     <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301589448" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1577923785108" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1577931124810" />
     <state x="581" y="235" width="748" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1577924369840">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -711,16 +718,5 @@
     </state>
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576385515286" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1577930625078" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

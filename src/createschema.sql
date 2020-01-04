@@ -63,12 +63,13 @@ CREATE TABLE IF NOT EXISTS student_answers                    -- All student ans
     student_answer_file_id INT,                                    -- The ID of the student answer file that this answer is from.
     score VARCHAR(255),                                            -- The score the student received for their answer, expressed as a string.
     points_possible VARCHAR(255),                                  -- Maximum possible points for this question.
-    page INT                                                       -- The page number (in the student_answer_file for this student's answer)_of this answer.
+    page INT                                                       -- The page number (in the student_answer_file for this student's answer) of this answer.
 );
 
 CREATE TABLE IF NOT EXISTS student_answer_sets                -- All "sets" (groups) of student answers. Each set is all of the answers from ONE student for a specific test.
 (
     student_answer_set_id INTEGER PRIMARY KEY,                     -- The ID of the student answer set.
     user_id INT,                                                   -- The ID of the user who uploaded the answers.
+    test_id INT,                                                   -- THe ID of the test that this student answer set corresponds to.
     student_answer_ids TEXT                                        -- Comma-separated list of the IDs of student answers in this set. The list must have a leading AND trailing comma.
 );

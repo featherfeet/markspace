@@ -197,9 +197,10 @@ public abstract class PersistentStorage {
     /**
      * Create a new student answer set in the database. A student answer set is a collection of all of the student answers from ONE student for a specific test.
      * @param user_id The user ID of the user who uploaded the student answers.
+     * @param test_id The id of the test that this student answer set corresponds to.
      * @param student_answer_ids The IDs of the student answers in this set.
      */
-    public abstract void createStudentAnswerSet(int user_id, Integer[] student_answer_ids);
+    public abstract void createStudentAnswerSet(int user_id, int test_id, Integer[] student_answer_ids);
 
     /**
      * Retrieve a student answer by its ID.
