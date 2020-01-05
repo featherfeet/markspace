@@ -18,16 +18,25 @@ import java.util.Map;
 import java.util.Set;
 
 import static spark.Spark.*;
-// import static spark.debug.DebugScreen.*;
+import static spark.debug.DebugScreen.*;
 
 public class Main {
+    /**
+     * Set this to true to enable live-reload of static resources and the stack-trace debugging screen.
+     */
+    private static boolean debug_mode = false;
+
     public static void main(String[] args) {
         // Configure Spark.
         port(4567); // Serve the application on port 4567.
-        staticFiles.location("/static"); // All statically served resources (stylesheets, scripts, etc.) are stored here.
-        // staticFiles.externalLocation("/home/oliver/Projects/Web Projects/markspace/src/main/resources/static");
-        // staticFiles.expireTime(1L);
-        // enableDebugScreen();
+        if (!debug_mode) {
+            staticFiles.location("/static"); // All statically served resources (stylesheets, scripts, etc.) are stored here.
+        }
+        else {
+            staticFiles.externalLocation("/home/oliver/Projects/Web Projects/markspace/src/main/resources/static");
+            staticFiles.expireTime(1L);
+            enableDebugScreen();
+        }
         // Configure web pages.
         PersistentStorage persistentStorage = new DatabaseStorage(); // Create a DatabaseStorage object to interface the database. Only one should ever be instantiated; it is shared between all of the controllers.
         // Instantiate objects for all of the controllers. Although the controllers' methods are static, they MUST be constructed in order to pass them a shared PersistentStorage object.

@@ -128,7 +128,6 @@ public class RenderQuestionController extends Controller {
         }
         // If a PDFRenderer has already been created, retrieve it.
         if (pdfRendererCache.containsKey(rendererCacheKey)) {
-            System.out.println("Loading PDF renderer from cache with key: " + rendererCacheKey);
             renderer = pdfRendererCache.get(rendererCacheKey);
         }
         // If a PDFRenderer has not been created, retrieve the PDF from the database and create a renderer.
@@ -152,7 +151,6 @@ public class RenderQuestionController extends Controller {
 
             renderer = new PDFRenderer(document);
 
-            System.out.println("Creating PDF renderer with key: " + rendererCacheKey);
             pdfRendererCache.put(rendererCacheKey, renderer);
             renderersBeingCreated.remove(rendererCacheKey);
         }

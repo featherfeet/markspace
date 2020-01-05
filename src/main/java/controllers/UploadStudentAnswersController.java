@@ -10,6 +10,7 @@ import spark.template.velocity.VelocityTemplateEngine;
 import storage.*;
 
 import javax.servlet.MultipartConfigElement;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
@@ -132,7 +133,13 @@ public class UploadStudentAnswersController extends Controller {
             return "ERROR: You must provide the student_answers_file_upload parameter to this API endpoint.";
         }
         // Save the form data as a new student answer file in the database.
-        PDDocument student_answers_file_document = PDDocument.load(student_answers_file_upload_data);
+        PDDocument student_answers_file_document = null;
+        try {
+            student_answers_file_document = PDDocument.load(student_answers_file_upload_data);
+        }
+        catch (IOException e) {
+            return "ERROR: The student answer file uploaded was not valid PDF data.";
+        }
         int student_answer_file_id = persistentStorage.createStudentAnswerFile(user_id, test_id, student_answers_file_upload_data, student_answers_file_upload_name, "pdf", student_answers_file_document.getNumberOfPages());
         // Generate empty student answer objects in the database.
         generateStudentAnswers(user_id, test_id, student_answer_file_id);
