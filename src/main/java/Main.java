@@ -17,6 +17,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.*;
+
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 
@@ -25,6 +27,13 @@ public class Main {
      * Set this to true to enable live-reload of static resources and the stack-trace debugging screen.
      */
     private static boolean debug_mode = false;
+
+    private static void createAndShowGUI() {
+        // Create the Swing window.
+        JFrame frame = new JFrame("MarkSpace");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //
+    }
 
     public static void main(String[] args) {
         // Configure Spark.
