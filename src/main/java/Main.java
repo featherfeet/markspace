@@ -12,6 +12,7 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 import storage.DatabaseStorage;
 import storage.PersistentStorage;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,20 +23,55 @@ import javax.swing.*;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 
-public class Main {
+public class Main extends JFrame {
     /**
      * Set this to true to enable live-reload of static resources and the stack-trace debugging screen.
      */
     private static boolean debug_mode = false;
 
-    private static void createAndShowGUI() {
-        // Create the Swing window.
-        JFrame frame = new JFrame("MarkSpace");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //
+    public Main() {
+        initUI();
+    }
+
+    private void initUI() {
+        // Set up the Swing window.
+        setSize(500, 500);
+        setTitle("MarkSpace Server Controller");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        // Set up the Swing window contents.
+        JLabel markspace_label = new JLabel();
+        markspace_label.setText("<html><p style=\"width: 350px;\">This program controls the MarkSpace server, which runs locally on your computer but is accessible over the local network if you check the box.</p></html>");
+        JButton start_server_button = new JButton("Start Server");
+        JButton stop_server_button = new JButton("Stop Server");
+        setLayout(new GridBagLayout());
+        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        add(markspace_label, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        add(start_server_button, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        add(stop_server_button, gridBagConstraints);
+        // Configure the MacOS Swing appearance.
+        System.setProperty("apple.laf.useScreenMenuBar", "true");
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "MarkSpace Server Controller");
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (Exception e) {
+            System.out.println("Failed to set system look-and-feel on Swing GUI.");
+        }
     }
 
     public static void main(String[] args) {
+        // Open Swing GUI.
+        EventQueue.invokeLater(() -> {
+            Main main_obj = new Main();
+            main_obj.setVisible(true);
+        });
         // Configure Spark.
         port(4567); // Serve the application on port 4567.
         if (!debug_mode) {

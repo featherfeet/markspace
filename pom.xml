@@ -66,11 +66,11 @@
             <artifactId>jai-imageio-jpeg2000</artifactId>
             <version>1.3.0</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
             <version>1.2.0</version>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/com.mikesamuel/json-sanitizer -->
         <dependency>
             <groupId>com.mikesamuel</groupId>
