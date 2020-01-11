@@ -4,10 +4,8 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Started work on Swing GUI to start/stop the server.">
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Swing GUI now has buttons and text, although they don't do anything. Should look like a native Mac application, but is not yet tested on MacOS.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Manuals/Engineering Rationale.odt" beforeDir="false" afterPath="$PROJECT_DIR$/Manuals/Engineering Rationale.odt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -320,7 +318,8 @@
       <workItem from="1578199039638" duration="4231000" />
       <workItem from="1578252758384" duration="657000" />
       <workItem from="1578359963974" duration="1785000" />
-      <workItem from="1578639793496" duration="2833000" />
+      <workItem from="1578639793496" duration="2893000" />
+      <workItem from="1578706583673" duration="3082000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -553,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578270781948</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Swing GUI now has buttons and text, although they don't do anything. Should look like a native Mac application, but is not yet tested on MacOS.">
+      <created>1578653754356</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1578653754356</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +613,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added a tsconfig.json so that the TypeScript checker would be able to see classes from other files." />
     <MESSAGE value="Deleted some Eclipse-related and VSCode-related files that weren't necessary. Added package-lock.json to Git." />
     <MESSAGE value="Moved all of the client-side TypeScript code for viewing rendered tests (PDF files) into a separate class (the TestViewer class in testviewer.ts). This allows the test viewer to be reused for multiple pages without repeating code." />
     <MESSAGE value="Created the /test?test_id= page that lets users view tests that have already been created. Moved some global configuration of client-side PDF rendering code into global_parameters.ts." />
@@ -632,7 +637,8 @@
     <MESSAGE value="Fixed bug where deleted tests would leave behind some data in other tables." />
     <MESSAGE value="Removed cache debugging messages from render pages. Added Main.debug_mode variable to set whether live-reload and the debug screen are shown." />
     <MESSAGE value="Started work on Swing GUI to start/stop the server." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started work on Swing GUI to start/stop the server." />
+    <MESSAGE value="Swing GUI now has buttons and text, although they don't do anything. Should look like a native Mac application, but is not yet tested on MacOS." />
+    <option name="LAST_COMMIT_MESSAGE" value="Swing GUI now has buttons and text, although they don't do anything. Should look like a native Mac application, but is not yet tested on MacOS." />
   </component>
   <component name="WindowStateProjectService">
     <state x="451" y="120" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1575761859317">
@@ -651,12 +657,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="94" y="27" width="1816" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576300398166" />
-    <state x="213" y="174" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1578270781743">
+    <state x="213" y="174" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1578709755965">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="106" key="CommitChangelistDialog2/0.27.1280.772@0.27.1280.772" timestamp="1576180095241" />
     <state x="0" y="146" width="1910" height="819" key="CommitChangelistDialog2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301587386" />
-    <state x="213" y="174" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1578270781743" />
+    <state x="213" y="174" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1578709755965" />
     <state width="537" height="466" key="DebuggerActiveHint" timestamp="1577928157820">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -665,30 +671,30 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576889486430" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1578641449500">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1578709699300">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1578641449500" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1578641449499">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1578709699300" />
+    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1578709699299">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1578641449499" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1578641449499">
+    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1578709699299" />
+    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1578709699298">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1578641449499" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1578641449500">
+    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1578709699298" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1578709699299">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="119" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1576180109588" />
     <state width="1874" height="183" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1578641449500" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1578709699299" />
     <state width="1874" height="339" key="GridCell.Tab.1.bottom" timestamp="1577941898731">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -718,20 +724,20 @@
     </state>
     <state x="124" y="36" width="1031" height="745" key="SettingsEditor/0.27.1280.772@0.27.1280.772" timestamp="1576007081058" />
     <state x="186" y="39" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1577929389638" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1578270784155">
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1578653756590">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="370" y="211" key="Vcs.Push.Dialog.v2/0.27.1280.772@0.27.1280.772" timestamp="1576180097393" />
     <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301589448" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1578270784155" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1578653756590" />
     <state x="581" y="235" width="748" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1577924369840">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="581" y="235" width="748" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1577924369840" />
-    <state x="624" y="252" key="run.anything.popup" timestamp="1578202137427">
+    <state x="624" y="252" key="run.anything.popup" timestamp="1578708778061">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="624" y="252" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1578202137427" />
+    <state x="624" y="252" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1578708778061" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1578640881243">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

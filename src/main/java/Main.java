@@ -13,6 +13,9 @@ import storage.DatabaseStorage;
 import storage.PersistentStorage;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -23,11 +26,15 @@ import javax.swing.*;
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.*;
 
-public class Main extends JFrame {
+public class Main extends JFrame implements ActionListener {
     /**
      * Set this to true to enable live-reload of static resources and the stack-trace debugging screen.
      */
     private static boolean debug_mode = false;
+
+    private JButton start_server_button;
+    private JButton stop_server_button;
+    private JLabel status_label;
 
     public Main() {
         initUI();
@@ -42,8 +49,13 @@ public class Main extends JFrame {
         // Set up the Swing window contents.
         JLabel markspace_label = new JLabel();
         markspace_label.setText("<html><p style=\"width: 350px;\">This program controls the MarkSpace server, which runs locally on your computer but is accessible over the local network if you check the box.</p></html>");
-        JButton start_server_button = new JButton("Start Server");
-        JButton stop_server_button = new JButton("Stop Server");
+        start_server_button = new JButton("Start Server");
+        start_server_button.addActionListener(this);
+        stop_server_button = new JButton("Stop Server");
+        stop_server_button.addActionListener(this);
+        stop_server_button.setEnabled(false);
+        status_label = new JLabel();
+        status_label.setText("<html><p style=\"width: 350px;\">Server not running. Press the start button.</p></html>");
         setLayout(new GridBagLayout());
         GridBagConstraints gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -55,6 +67,9 @@ public class Main extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         add(stop_server_button, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        add(status_label, gridBagConstraints);
         // Configure the MacOS Swing appearance.
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         System.setProperty("com.apple.mrj.application.apple.menu.about.name", "MarkSpace Server Controller");
@@ -66,12 +81,11 @@ public class Main extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        // Open Swing GUI.
-        EventQueue.invokeLater(() -> {
-            Main main_obj = new Main();
-            main_obj.setVisible(true);
-        });
+    private void startServer() {
+        // Show status and disable button.
+        start_server_button.setEnabled(false);
+        stop_server_button.setEnabled(true);
+        status_label.setText("<html><p style=\"width: 350px;\">Server starting...</p></html>");
         // Configure Spark.
         port(4567); // Serve the application on port 4567.
         if (!debug_mode) {
@@ -142,5 +156,39 @@ public class Main extends JFrame {
         post("/score_student_answer", scoreStudentAnswerController.serveScoreStudentAnswerPagePost);
         get("/view_student_scores", viewStudentScoresController.serveViewStudentScoresPageGet);
         get("/download_student_scores", downloadStudentScoresController.serveDownloadStudentScoresPageGet);
+        // Show status and open browser window.
+        status_label.setText("<html><p style=\"width: 350px;\">Server running! Browser should open automatically. If not, go to <a href=\"http://localhost:4567\">http://localhost:4567</a> in any browser.</p></html>");
+        try {
+            Desktop.getDesktop().browse(new URI("http://localhost:4567"));
+        }
+        catch (Exception e) {
+            System.out.println("Unable to open browser.");
+            e.printStackTrace();
+        }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == start_server_button) {
+            System.out.println("Starting server...");
+            startServer();
+            System.out.println("Server started.");
+        }
+        else if (e.getSource() == stop_server_button) {
+            System.out.println("Stopping server...");
+            status_label.setText("Stopping server...");
+            stop();
+            status_label.setText("Server stopped. Press start to restart it.");
+            start_server_button.setEnabled(true);
+            stop_server_button.setEnabled(false);
+            System.out.println("Server stopped.");
+        }
+    }
+
+    public static void main(String[] args) {
+        // Open Swing GUI.
+        EventQueue.invokeLater(() -> {
+            Main main_obj = new Main();
+            main_obj.setVisible(true);
+        });
     }
 }
