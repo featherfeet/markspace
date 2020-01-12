@@ -48,7 +48,7 @@ public class Main extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         // Set up the Swing window contents.
         JLabel markspace_label = new JLabel();
-        markspace_label.setText("<html><p style=\"width: 350px;\">This program controls the MarkSpace server, which runs locally on your computer but is accessible over the local network if you check the box.</p></html>");
+        markspace_label.setText("<html><p style=\"width: 350px;\">This program controls the MarkSpace (C) server, which runs locally on your computer. MarkSpace (C) is a computer-assisted grading system built by Oliver Trevor and Suchin Ravi.</p></html>");
         start_server_button = new JButton("Start Server");
         start_server_button.addActionListener(this);
         stop_server_button = new JButton("Stop Server");
@@ -87,6 +87,7 @@ public class Main extends JFrame implements ActionListener {
         stop_server_button.setEnabled(true);
         status_label.setText("<html><p style=\"width: 350px;\">Server starting...</p></html>");
         // Configure Spark.
+        ipAddress("127.0.0.1");
         port(4567); // Serve the application on port 4567.
         if (!debug_mode) {
             staticFiles.location("/static"); // All statically served resources (stylesheets, scripts, etc.) are stored here.
