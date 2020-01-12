@@ -1,2 +1,3 @@
-http://www.balthisar.com/blog/bundle-the-jre/
+HOW TO ADD THE JRE TO YOUR MAC APP: http://www.balthisar.com/blog/bundle-the-jre/
 http://www.zitnik.si/wordpress/2016/02/21/creating-a-mac-os-app-from-a-runnable-jar-file/
+HOW TO CREATE A MINIMAL JRE: https://medium.com/azulsystems/using-jlink-to-build-java-runtimes-for-non-modular-applications-9568c5e70ef4
