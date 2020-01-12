@@ -1,0 +1,36 @@
+table {
+    margin-top: 1vh;
+    border: 3px solid #3b5998;
+    border-radius: 15px;
+    border-collapse: collapse;
+}
+
+tr, td, th {
+    border: 3px solid #3b5998;
+    border-radius: 15px;
+    vertical-align: top;
+}
+
+.delete_test_button {
+    border-color: red;
+    transition: background-color 0.5s;
+}
+
+.delete_test_button:hover {
+    background-color: red;
+}
+
+#signout_div {
+    text-align: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 15px;
+    padding-right: 5px;
+    position: absolute;
+    float: right;
+}
+
+a.buttonlike {
+    text-decoration: none;
+}

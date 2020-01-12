@@ -1,0 +1,24 @@
+table {
+    margin-top: 1vh;
+    border: 3px solid #3b5998;
+    border-radius: 15px;
+    border-collapse: collapse;
+}
+
+tr, td, th {
+    border: 3px solid #3b5998;
+    border-radius: 15px;
+    vertical-align: top;
+}
+
+td, th {
+    padding: 5px 5px 5px 5px;
+}
+
+#download_button {
+    width: 30vw;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-decoration: none;
+}

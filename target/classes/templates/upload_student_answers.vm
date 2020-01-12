@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/upload_student_answers.css">
+        <title>
+            Upload Student Answers for Test $test_name
+        </title>
+        <h1>
+            Upload Student Answers for Test <i>$test_name</i>
+        </h1>
+    </head>
+    <body>
+        <p>
+            Upload a PDF file of the students&rsquo; answers to the test. Each student&rsquo;s answers should take the <b>SAME</b> number of pages as the test that was uploaded ($test_pages pages). Each student answer should occupy the exact <b>SAME</b> regions of the page that were selected when the test was created (<a href="/test?test_id=$test_id">you can view these regions here</a>).
+        </p>
+        <form method="post" action="/upload_student_answers" enctype="multipart/form-data">
+            <input type="hidden" name="test_id" value="$test_id">
+            <input type="file" accept=".pdf" name="student_answers_file_upload"> <span>Upload the PDF here.</span>
+            <br>
+            <button type="submit" id="upload_button">Upload</button>
+        </form>
+    </body>
+</html>

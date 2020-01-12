@@ -1,0 +1,2 @@
+http://www.balthisar.com/blog/bundle-the-jre/
+http://www.zitnik.si/wordpress/2016/02/21/creating-a-mac-os-app-from-a-runnable-jar-file/

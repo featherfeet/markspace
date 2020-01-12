@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/global.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/view_student_scores.css">
+        <h1>
+            Viewing Student Scores for Test <i>$test_name</i>
+        </h1>
+    </head>
+    <body>
+        <p>
+            <i>Note: "Possible points" for a test does not include possible extra credit. Students may score more points than are possible. This can be reflected in percentage scores over 100%.</i>
+        </p>
+        <a id="download_button" class="buttonlike" href="/download_student_scores?test_id=$test_id" download>Download Student Scores as CSV</a>
+        <table>
+            <tr>
+                <th>Student Identification</th>
+                <th>Point Score Out of $test_possible_points Possible</th>
+                <th>Percentage Score</th>
+                <th>Letter Grade</th>
+            </tr>
+            #foreach ($i in [0 .. $end_student_index])
+                <tr>
+                    <td>$student_identifications[$i]</td>
+                    <td>$student_point_scores[$i]</td>
+                    <td>$math.roundTo(2, $student_percentage_scores[$i])%</td>
+                    <td>$student_letter_grades[$i]</td>
+                </tr>
+            #end
+        </table>
+    </body>
+</html>
