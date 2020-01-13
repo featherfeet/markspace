@@ -15,9 +15,9 @@ mkdir MarkSpace/PlugIns/Java.runtime
 mkdir MarkSpace/PlugIns/Java.runtime/Contents
 mkdir MarkSpace/PlugIns/Java.runtime/Contents/Home
 mkdir MarkSpace/PlugIns/Java.runtime/Contents/MacOS
-mkdir MarkSpace/Resources
 mkdir MarkSpace/Contents
 mkdir MarkSpace/Contents/MacOS
+mkdir MarkSpace/Contents/Resources
 
 cp ../target/markspace*.jar MarkSpace/Java/
 cp -r Home/* MarkSpace/PlugIns/Java.runtime/Contents/Home/
@@ -27,5 +27,7 @@ chmod +x launcher.sh
 cp launcher.sh MarkSpace/Contents/MacOS/
 
 cp Info.plist MarkSpace/Contents/
+
+cp MarkSpace\ Icon.png MarkSpace/Contents/Resources/AppIcon.png
 
 mv MarkSpace MarkSpace.app
