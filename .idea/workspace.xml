@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Started fixing bug.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/markspace-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/markspace-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-markspace-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-markspace-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/Student Answers.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/testing/Student Answers.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testing/Test With Answers.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/testing/Test With Answers.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,6 +336,7 @@
       <workItem from="1578805894645" duration="1861000" />
       <workItem from="1578858106334" duration="765000" />
       <workItem from="1579201102627" duration="911000" />
+      <workItem from="1579202092392" duration="508000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -713,28 +716,28 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576889486430" />
-    <state width="1234" height="122" key="GridCell.Tab.0.bottom" timestamp="1579202015651">
+    <state width="1234" height="122" key="GridCell.Tab.0.bottom" timestamp="1579202724580">
       <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="122" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1579202015651" />
+    <state width="1234" height="122" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
     <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871011" />
-    <state width="1234" height="122" key="GridCell.Tab.0.center" timestamp="1579202015650">
+    <state width="1234" height="122" key="GridCell.Tab.0.center" timestamp="1579202724580">
       <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="122" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1579202015650" />
+    <state width="1234" height="122" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
     <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871010" />
-    <state width="1234" height="122" key="GridCell.Tab.0.left" timestamp="1579202015650">
+    <state width="1234" height="122" key="GridCell.Tab.0.left" timestamp="1579202724579">
       <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="122" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1579202015650" />
+    <state width="1234" height="122" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1579202724579" />
     <state width="1874" height="183" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
     <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871010" />
-    <state width="1234" height="122" key="GridCell.Tab.0.right" timestamp="1579202015651">
+    <state width="1234" height="122" key="GridCell.Tab.0.right" timestamp="1579202724580">
       <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state width="1234" height="122" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1579202015651" />
+    <state width="1234" height="122" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
     <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871011" />
     <state width="1874" height="339" key="GridCell.Tab.1.bottom" timestamp="1577941898731">
@@ -780,9 +783,10 @@
       <screen x="0" y="27" width="1280" height="772" />
     </state>
     <state x="265" y="192" width="746" height="463" key="git4idea.merge.GitPullDialog/0.27.1280.772@0.27.1280.772" timestamp="1579201981966" />
-    <state x="624" y="252" width="672" height="677" key="run.anything.popup" timestamp="1578858724508">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="416" y="192" width="672" height="497" key="run.anything.popup" timestamp="1579202636239">
+      <screen x="0" y="27" width="1280" height="772" />
     </state>
+    <state x="416" y="192" width="672" height="497" key="run.anything.popup/0.27.1280.772@0.27.1280.772" timestamp="1579202636239" />
     <state x="624" y="252" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1578858724508" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1578858248959">
       <screen x="0" y="27" width="1920" height="1053" />

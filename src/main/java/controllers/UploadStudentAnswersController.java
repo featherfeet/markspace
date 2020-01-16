@@ -21,14 +21,18 @@ public class UploadStudentAnswersController extends Controller {
         // Fetch the number of pages in the student answer file.
         Map<Integer, Integer> studentAnswerFilesNumberOfPages = persistentStorage.getStudentAnswerFilesNumberOfPages(user_id, test_id);
         int student_answer_file_number_of_pages = studentAnswerFilesNumberOfPages.get(student_answer_file_id);
+        // Fetch number of pages in test file.
+        Test test = persistentStorage.getTestById(user_id, test_id);
+        TestFile testFile = persistentStorage.getTestFileById(user_id, test.getAnswersTestFile());
+        int test_file_number_of_pages = testFile.getNumberOfPages();
         // Generate student answer objects for the student answer file.
         List<StudentAnswer> studentAnswers = new ArrayList<>();
         // For each page of the current student answer file, find all test questions and create student answer objects from them.
         for (int page = 0; page < student_answer_file_number_of_pages; page++) {
-            System.out.println("* Processing page " + page + " of student answer file.");
+            // System.out.println("* Processing page " + page + " of student answer file.");
             for (TestQuestion testQuestion : testQuestions) {
-                if (testQuestion.getPage() == page) {
-                    System.out.println("    * Found question " + testQuestion.getRegions()[0].getLabel() + ".");
+                if (testQuestion.getPage() == page % test_file_number_of_pages) {
+                    // System.out.println("    * Found question " + testQuestion.getRegions()[0].getLabel() + ".");
                     StudentAnswer studentAnswer = new StudentAnswer(-1, student_answer_file_id, "", testQuestion, "", testQuestion.getPoints(), page);
                     studentAnswers.add(studentAnswer);
                 }
