@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Moved starting/stopping the Spark server into separate threads so that the Swing GUI never locks up.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packaging/Home/lib/modules" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/Home/lib/modules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packaging/MarkSpace.app/Contents/Resources/AppIcon.png" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/MarkSpace.app/Contents/Resources/AppIcon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packaging/MarkSpace.app/PlugIns/Java.runtime/Contents/Home/lib/modules" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/MarkSpace.app/PlugIns/Java.runtime/Contents/Home/lib/modules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,6 +331,7 @@
       <workItem from="1578803798822" duration="1308000" />
       <workItem from="1578805894645" duration="1861000" />
       <workItem from="1578858106334" duration="765000" />
+      <workItem from="1579201102627" duration="637000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -686,10 +690,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="94" y="27" width="1816" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576300398166" />
-    <state x="213" y="174" width="1910" height="819" key="CommitChangelistDialog2" timestamp="1578858850859">
-      <screen x="0" y="27" width="1920" height="1053" />
+    <state x="0" y="19" width="1276" height="780" key="CommitChangelistDialog2" timestamp="1579201848520">
+      <screen x="0" y="27" width="1280" height="772" />
     </state>
-    <state x="0" y="106" key="CommitChangelistDialog2/0.27.1280.772@0.27.1280.772" timestamp="1576180095241" />
+    <state x="0" y="19" width="1276" height="780" key="CommitChangelistDialog2/0.27.1280.772@0.27.1280.772" timestamp="1579201848520" />
     <state x="0" y="146" width="1910" height="819" key="CommitChangelistDialog2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301587386" />
     <state x="213" y="174" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1578858850859" />
     <state width="537" height="466" key="DebuggerActiveHint" timestamp="1577928157820">
@@ -763,6 +767,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="581" y="235" width="748" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1577924369840" />
+    <state x="265" y="200" width="746" height="432" key="git4idea.merge.GitPullDialog" timestamp="1579201821709">
+      <screen x="0" y="27" width="1280" height="772" />
+    </state>
+    <state x="265" y="200" width="746" height="432" key="git4idea.merge.GitPullDialog/0.27.1280.772@0.27.1280.772" timestamp="1579201821709" />
     <state x="624" y="252" width="672" height="677" key="run.anything.popup" timestamp="1578858724508">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

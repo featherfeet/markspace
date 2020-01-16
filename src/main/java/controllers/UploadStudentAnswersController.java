@@ -25,8 +25,10 @@ public class UploadStudentAnswersController extends Controller {
         List<StudentAnswer> studentAnswers = new ArrayList<>();
         // For each page of the current student answer file, find all test questions and create student answer objects from them.
         for (int page = 0; page < student_answer_file_number_of_pages; page++) {
+            System.out.println("* Processing page " + page + " of student answer file.");
             for (TestQuestion testQuestion : testQuestions) {
                 if (testQuestion.getPage() == page) {
+                    System.out.println("    * Found question " + testQuestion.getRegions()[0].getLabel() + ".");
                     StudentAnswer studentAnswer = new StudentAnswer(-1, student_answer_file_id, "", testQuestion, "", testQuestion.getPoints(), page);
                     studentAnswers.add(studentAnswer);
                 }
