@@ -11,10 +11,14 @@ import security.PasswordSecurity;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.*;
 import java.sql.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -290,6 +294,14 @@ public class DatabaseStorage extends PersistentStorage {
             Path databasePath = Paths.get(System.getProperty("user.home"), "markspace.db");
             if (Files.notExists(databasePath)) {
                 System.out.println("MarkSpace Database at \"" + databasePath + "\" does not exist. Creating new database at that location.");
+                InputStream emptyDatabaseFile = ClassLoader.getSystemClassLoader().getResourceAsStream("markspace.db");
+                try {
+                    Files.copy(emptyDatabaseFile, databasePath);
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
             }
             System.out.println("Connecting to DB: " + databasePath);
             connection = DriverManager.getConnection("jdbc:sqlite:" + databasePath.toString());

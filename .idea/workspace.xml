@@ -4,15 +4,21 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Started fixing bug.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Changed packaging script to auto-generate an empty database with the correct schema. Moved database and schema-creation SQL script to resources folder. Added comments and more instructional output to the packaging script.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packaging/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packaging/package.sh" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/package.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/createschema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderQuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderStudentAnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderStudentAnswerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderTestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/markspace.db.example" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/markspace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/jquery/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/scripts/typescript/node_modules/@types/sizzle/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/markspace-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/markspace-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-markspace-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-markspace-1.0.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,7 +343,7 @@
       <workItem from="1578858106334" duration="765000" />
       <workItem from="1579201102627" duration="911000" />
       <workItem from="1579202092392" duration="508000" />
-      <workItem from="1579314031121" duration="2051000" />
+      <workItem from="1579314031121" duration="5415000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -605,7 +611,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579201852277</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Changed packaging script to auto-generate an empty database with the correct schema. Moved database and schema-creation SQL script to resources folder. Added comments and more instructional output to the packaging script.">
+      <created>1579324624247</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1579324624247</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,7 +672,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added support for the message_color session attribute, so that the software can set messages to be flashed on the next page to be a certain color (such as green/red to indicate success/failure)." />
     <MESSAGE value="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;)." />
     <MESSAGE value="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading." />
     <MESSAGE value="The /tests page now shows a list of uploaded student answer files with a button to upload more. Clicking on any of the already uploaded ones goes to /student_answer_file?student_answer_file_id=#, which sends back the raw PDF data for the user's browser to view." />
@@ -684,7 +696,8 @@
     <MESSAGE value="Changed message in Swing GUI." />
     <MESSAGE value="Moved starting/stopping the Spark server into separate threads so that the Swing GUI never locks up." />
     <MESSAGE value="Started fixing bug." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started fixing bug." />
+    <MESSAGE value="Changed packaging script to auto-generate an empty database with the correct schema. Moved database and schema-creation SQL script to resources folder. Added comments and more instructional output to the packaging script." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed packaging script to auto-generate an empty database with the correct schema. Moved database and schema-creation SQL script to resources folder. Added comments and more instructional output to the packaging script." />
   </component>
   <component name="WindowStateProjectService">
     <state x="451" y="120" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1575761859317">
@@ -703,12 +716,12 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="94" y="27" width="1816" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576300398166" />
-    <state x="0" y="19" width="1276" height="780" key="CommitChangelistDialog2" timestamp="1579201848520">
-      <screen x="0" y="27" width="1280" height="772" />
+    <state x="213" y="174" width="1276" height="780" key="CommitChangelistDialog2" timestamp="1579324624107">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="0" y="19" width="1276" height="780" key="CommitChangelistDialog2/0.27.1280.772@0.27.1280.772" timestamp="1579201848520" />
     <state x="0" y="146" width="1910" height="819" key="CommitChangelistDialog2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301587386" />
-    <state x="213" y="174" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1578858850859" />
+    <state x="213" y="174" width="1583" height="821" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1579324624107" />
     <state width="537" height="466" key="DebuggerActiveHint" timestamp="1577928157820">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -717,30 +730,30 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576889486430" />
-    <state width="1234" height="122" key="GridCell.Tab.0.bottom" timestamp="1579202724580">
-      <screen x="0" y="27" width="1280" height="772" />
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1579331186341">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871011" />
-    <state width="1234" height="122" key="GridCell.Tab.0.center" timestamp="1579202724580">
-      <screen x="0" y="27" width="1280" height="772" />
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1579331186341" />
+    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1579331186340">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871010" />
-    <state width="1234" height="122" key="GridCell.Tab.0.left" timestamp="1579202724579">
-      <screen x="0" y="27" width="1280" height="772" />
+    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1579331186340" />
+    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1579331186339">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1579202724579" />
     <state width="1874" height="183" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871010" />
-    <state width="1234" height="122" key="GridCell.Tab.0.right" timestamp="1579202724580">
-      <screen x="0" y="27" width="1280" height="772" />
+    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1579331186339" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1579331186340">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1578858871011" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1579331186340" />
     <state width="1874" height="339" key="GridCell.Tab.1.bottom" timestamp="1577941898731">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -770,25 +783,26 @@
     </state>
     <state x="124" y="36" width="1031" height="745" key="SettingsEditor/0.27.1280.772@0.27.1280.772" timestamp="1576007081058" />
     <state x="186" y="39" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1577929389638" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1578858855902">
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579324626021">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="370" y="211" key="Vcs.Push.Dialog.v2/0.27.1280.772@0.27.1280.772" timestamp="1576180097393" />
     <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301589448" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1578858855902" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1579324626021" />
     <state x="581" y="235" width="748" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1577924369840">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="581" y="235" width="748" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1577924369840" />
-    <state x="265" y="192" width="746" height="463" key="git4idea.merge.GitPullDialog" timestamp="1579201981966">
-      <screen x="0" y="27" width="1280" height="772" />
+    <state x="398" y="252" width="746" height="463" key="git4idea.merge.GitPullDialog" timestamp="1579325305155">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="265" y="192" width="746" height="463" key="git4idea.merge.GitPullDialog/0.27.1280.772@0.27.1280.772" timestamp="1579201981966" />
-    <state x="416" y="192" width="672" height="497" key="run.anything.popup" timestamp="1579202636239">
-      <screen x="0" y="27" width="1280" height="772" />
+    <state x="398" y="252" key="git4idea.merge.GitPullDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1579325305155" />
+    <state x="624" y="252" width="672" height="677" key="run.anything.popup" timestamp="1579331186364">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="416" y="192" width="672" height="497" key="run.anything.popup/0.27.1280.772@0.27.1280.772" timestamp="1579202636239" />
-    <state x="624" y="252" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1578858724508" />
+    <state x="624" y="252" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1579331186364" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1578858248959">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
