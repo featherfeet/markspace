@@ -12,6 +12,7 @@ import security.PasswordSecurity;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -282,10 +283,14 @@ public class DatabaseStorage extends PersistentStorage {
                 Class.forName("org.sqlite.JDBC");
             }
             catch (ClassNotFoundException e) {
+                System.out.println("Failed to load SQLite JDBC driver. Database unusable. This is a critical failure; the program will not work.");
                 e.printStackTrace();
                 return;
             }
             Path databasePath = Paths.get(System.getProperty("user.home"), "markspace.db");
+            if (Files.notExists(databasePath)) {
+                System.out.println("MarkSpace Database at \"" + databasePath + "\" does not exist. Creating new database at that location.");
+            }
             System.out.println("Connecting to DB: " + databasePath);
             connection = DriverManager.getConnection("jdbc:sqlite:" + databasePath.toString());
             connection.setAutoCommit(true);

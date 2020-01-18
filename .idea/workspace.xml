@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Started fixing bug.">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/markspace-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/markspace-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-markspace-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/original-markspace-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/Student Answers.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/testing/Student Answers.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing/Test With Answers.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/testing/Test With Answers.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packaging/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packaging/package.sh" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/package.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/createschema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/markspace.db.example" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/markspace.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,11 +114,11 @@
       <recent name="controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/scripts/typescript" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/scripts/create_new_test_2" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/scripts" />
       <recent name="$PROJECT_DIR$/src/main/resources/static/stylesheets" />
-      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -337,6 +337,7 @@
       <workItem from="1578858106334" duration="765000" />
       <workItem from="1579201102627" duration="911000" />
       <workItem from="1579202092392" duration="508000" />
+      <workItem from="1579314031121" duration="2051000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>

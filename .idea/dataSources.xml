@@ -15,5 +15,11 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="markspace.db" uuid="aa421468-dbe3-442a-9d1c-19bfccca7b6b">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/main/resources/markspace.db.example</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -11,5 +11,10 @@
       <user-name>root</user-name>
       <schema-mapping />
     </data-source>
+    <data-source name="markspace.db" uuid="aa421468-dbe3-442a-9d1c-19bfccca7b6b">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
+      <auth-required>false</auth-required>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>
