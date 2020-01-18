@@ -4,141 +4,8 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Changed packaging script to auto-generate an empty database with the correct schema. Moved database and schema-creation SQL script to resources folder. Added comments and more instructional output to the packaging script.">
-      <change afterPath="$PROJECT_DIR$/.idea/copyright/GPL.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/scopes/GPL.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/COPYING" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packaging/MarkSpace Splash Screen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packaging/MarkSpace Splash Screen.xcf" afterDir="false" />
+    <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added GNU GPL v3 license with associated menu items and source code notices. Added splash screen (with copyright/GPL notice). Changed version number to be 0.1.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packaging/MarkSpace.app/Contents/MacOS/launcher.sh" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/MarkSpace.app/Contents/MacOS/launcher.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packaging/launcher.sh" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/launcher.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packaging/package.sh" beforeDir="false" afterPath="$PROJECT_DIR$/packaging/package.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest2Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CreateNewTest2Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DeleteTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DeleteTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DownloadStudentScoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DownloadStudentScoresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/GetQuestionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GetQuestionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/GetStudentAnswersForTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GetStudentAnswersForTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/GradeTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/GradeTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderQuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderQuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderStudentAnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderStudentAnswerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/RenderTestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/RenderTestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ScoreStudentAnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ScoreStudentAnswerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/SignoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/SignoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/SignupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/SignupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/StudentAnswerFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/StudentAnswerFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/TestsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/TestsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/UploadStudentAnswersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ViewStudentScoresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ViewStudentScoresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/HashedPassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/HashedPassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/PasswordSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/PasswordSecurity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/SecurityParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/SecurityParameters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/DatabaseStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/PersistentStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/StudentAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/StudentAnswer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/StudentAnswerSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/StudentAnswerSet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/StudentScores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/StudentScores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/TestFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/TestFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/TestQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/UserPermission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/UserPermission.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/util/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/createschema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/create_new_test_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/create_new_test_1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/create_new_test_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/create_new_test_2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/grade_test.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/grade_test.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/tests.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/upload_student_answers.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/upload_student_answers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/stylesheets/view_student_scores.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/stylesheets/view_student_scores.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_1.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_1.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/create_new_test_2.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/grade_test.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/signup.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/test.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/upload_student_answers.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/upload_student_answers.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/view_student_scores.vm" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/view_student_scores.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main$StartServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main$StartServerThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main$StopServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main$StopServerThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/CreateNewTest1Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/CreateNewTest1Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/CreateNewTest2Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/CreateNewTest2Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/DeleteTestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/DeleteTestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/DownloadStudentScoresController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/DownloadStudentScoresController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/GetQuestionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/GetQuestionsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/GetStudentAnswersForTestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/GetStudentAnswersForTestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/GradeTestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/GradeTestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/IndexController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/RenderQuestionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/RenderQuestionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/RenderStudentAnswerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/RenderStudentAnswerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/RenderTestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/RenderTestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ScoreStudentAnswerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ScoreStudentAnswerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/SignoutController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/SignoutController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/SignupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/SignupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/StudentAnswerFileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/StudentAnswerFileController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/TestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/TestsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/TestsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/UploadStudentAnswersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controllers/ViewStudentScoresController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controllers/ViewStudentScoresController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/createschema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/createschema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/security/HashedPassword.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/security/HashedPassword.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/security/PasswordSecurity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/security/PasswordSecurity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/security/SecurityParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/security/SecurityParameters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/create_new_test_1.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/create_new_test_1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/create_new_test_2.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/create_new_test_2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/grade_test.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/grade_test.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/signup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/tests.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/tests.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/upload_student_answers.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/upload_student_answers.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/stylesheets/view_student_scores.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/stylesheets/view_student_scores.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/DatabaseStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/PersistentStorage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/StudentAnswer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/StudentAnswer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/StudentAnswerSet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/StudentAnswerSet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/StudentScores.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/StudentScores.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/TestFile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/TestFile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/TestQuestion$CanvasRectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/TestQuestion$CanvasRectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/TestQuestion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/TestQuestion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/storage/UserPermission.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/storage/UserPermission.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/create_new_test_1.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/create_new_test_1.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/create_new_test_2.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/create_new_test_2.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/grade_test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/grade_test.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/signup.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/signup.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/test.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/test.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/tests.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/tests.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/upload_student_answers.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/upload_student_answers.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/view_student_scores.vm" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/view_student_scores.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/util/Rectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/util/Rectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/markspace-1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-markspace-1.0.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -470,7 +337,7 @@
       <workItem from="1579202092392" duration="508000" />
       <workItem from="1579314031121" duration="5415000" />
       <workItem from="1579372980012" duration="833000" />
-      <workItem from="1579373915648" duration="2824000" />
+      <workItem from="1579373915648" duration="2939000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -745,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579324624247</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Added GNU GPL v3 license with associated menu items and source code notices. Added splash screen (with copyright/GPL notice). Changed version number to be 0.1.">
+      <created>1579376902578</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1579376902578</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -799,7 +673,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Added a homepage (at the URLs &quot;/&quot; and &quot;/index&quot;)." />
     <MESSAGE value="Added the /upload_student_answers page and corresponding database tables/controllers to upload scans of student answers to the database for later grading." />
     <MESSAGE value="The /tests page now shows a list of uploaded student answer files with a button to upload more. Clicking on any of the already uploaded ones goes to /student_answer_file?student_answer_file_id=#, which sends back the raw PDF data for the user's browser to view." />
     <MESSAGE value="Moved all controllers to their own package." />
@@ -824,7 +697,8 @@
     <MESSAGE value="Moved starting/stopping the Spark server into separate threads so that the Swing GUI never locks up." />
     <MESSAGE value="Started fixing bug." />
     <MESSAGE value="Changed packaging script to auto-generate an empty database with the correct schema. Moved database and schema-creation SQL script to resources folder. Added comments and more instructional output to the packaging script." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed packaging script to auto-generate an empty database with the correct schema. Moved database and schema-creation SQL script to resources folder. Added comments and more instructional output to the packaging script." />
+    <MESSAGE value="Added GNU GPL v3 license with associated menu items and source code notices. Added splash screen (with copyright/GPL notice). Changed version number to be 0.1." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added GNU GPL v3 license with associated menu items and source code notices. Added splash screen (with copyright/GPL notice). Changed version number to be 0.1." />
   </component>
   <component name="WindowStateProjectService">
     <state x="662" y="358" width="585" height="398" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579374771297">
@@ -861,34 +735,38 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="537" height="466" key="DebuggerActiveHint/0.27.1920.1053@0.27.1920.1053" timestamp="1577928157820" />
+    <state x="182" y="121" width="1536" height="879" key="DiffContextDialog" timestamp="1579376905935">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="182" y="121" width="1536" height="879" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1579376905935" />
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl" timestamp="1576889486430">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576889486430" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1579376849340">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1579376978305">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1579376849340" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1579376849339">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978305" />
+    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1579376978305">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1579376849339" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1579376849338">
+    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978305" />
+    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1579376978304">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1579202724579" />
     <state width="1874" height="183" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1579376849338" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1579376849339">
+    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978304" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1579376978305">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1579376849339" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978305" />
     <state width="1874" height="339" key="GridCell.Tab.1.bottom" timestamp="1577941898731">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -918,12 +796,12 @@
     </state>
     <state x="124" y="36" width="1031" height="745" key="SettingsEditor/0.27.1280.772@0.27.1280.772" timestamp="1576007081058" />
     <state x="200" y="176" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1579374544104" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579324626021">
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1579376908267">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="370" y="211" key="Vcs.Push.Dialog.v2/0.27.1280.772@0.27.1280.772" timestamp="1576180097393" />
     <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576301589448" />
-    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1579324626021" />
+    <state x="555" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1579376908267" />
     <state x="581" y="235" width="748" height="644" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1579375546487">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -933,11 +811,11 @@
     </state>
     <state x="265" y="192" width="746" height="463" key="git4idea.merge.GitPullDialog/0.27.1280.772@0.27.1280.772" timestamp="1579201981966" />
     <state x="398" y="252" key="git4idea.merge.GitPullDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1579325305155" />
-    <state x="624" y="252" width="672" height="677" key="run.anything.popup" timestamp="1579376635908">
+    <state x="624" y="252" width="672" height="677" key="run.anything.popup" timestamp="1579377811732">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="416" y="192" width="672" height="497" key="run.anything.popup/0.27.1280.772@0.27.1280.772" timestamp="1579202636239" />
-    <state x="624" y="252" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1579376635908" />
+    <state x="624" y="252" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1579377811732" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1578858248959">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

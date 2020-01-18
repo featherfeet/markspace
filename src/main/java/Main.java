@@ -104,15 +104,6 @@ public class Main extends JFrame implements ActionListener {
         aboutMenu.add(aboutMenuItem);
         aboutMenu.add(licenseMenuItem);
         setJMenuBar(menuBar);
-        // Configure the MacOS Swing appearance.
-        System.setProperty("apple.laf.useScreenMenuBar", "true");
-        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "MarkSpace Server Controller");
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (Exception e) {
-            System.out.println("Failed to set system look-and-feel on Swing GUI.");
-        }
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -131,6 +122,15 @@ public class Main extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
+        // Configure the MacOS Swing appearance.
+        System.setProperty("apple.laf.useScreenMenuBar", "true");
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "MarkSpace Server Controller");
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch (Exception e) {
+            System.out.println("Failed to set system look-and-feel on Swing GUI.");
+        }
         // Open Swing GUI.
         EventQueue.invokeLater(() -> {
             Main main_obj = new Main();
