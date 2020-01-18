@@ -6,8 +6,8 @@
 	<string>English</string>
 	<key>CFBundleExecutable</key>
 	<string>launcher.sh</string>
-	<!--<key>CFBundleIconFile</key>
-	<string>application.icns</string>-->
+	<key>CFBundleIconFile</key>
+	<string>MarkSpace</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
