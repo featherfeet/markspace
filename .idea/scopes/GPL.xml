@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="GPL" pattern="file:packaging/clean.sh||file:packaging/Info.plist||file:packaging/java.entitlements||file:packaging/launcher.sh||file:packaging/package.sh||file[markspace]:src/main/java/controllers//*||file[markspace]:src/main/java/security//*||file[markspace]:src/main/java/storage//*||file[markspace]:src/main/java/util//*||file:src/main/java/Main.java||file[markspace]:src/main/resources/templates//*||file[markspace]:src/main/resources/static/stylesheets//*||file:src/main/resources/createschema.sql||file:README.txt||file:pom.xml" />
+</component>

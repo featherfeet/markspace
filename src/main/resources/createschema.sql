@@ -1,8 +1,29 @@
+/*
+ * Copyright 2020 Oliver Trevor and Suchin Ravi.
+ *
+ * This file is part of MarkSpace.
+ *
+ * MarkSpace is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MarkSpace is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with MarkSpace.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 CREATE TABLE IF NOT EXISTS schema_version_data                -- The schema_version_data table specifies which revision this database schema is.
 (
     schema_version INT
 );
+
 CREATE UNIQUE INDEX schema_unique_index ON schema_version_data (schema_version); -- There can only ever be one row in the schema_version_data table.
+
 INSERT OR IGNORE INTO schema_version_data VALUES (1);         -- Schema revision 1.
 
 CREATE TABLE IF NOT EXISTS users                              -- The users table holds a record of all users of the application.

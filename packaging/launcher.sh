@@ -6,4 +6,4 @@ cd "$BASEDIR"
 cd ..
 cd ..
 
-./PlugIns/Java.runtime/Contents/Home/bin/java -Xdock:icon=./Contents/Resources/AppIcon.png -jar ./Java/markspace-1.0.jar
+./PlugIns/Java.runtime/Contents/Home/bin/java -Xdock:icon=./Contents/Resources/AppIcon.png -splash:./Contents/Resources/SplashScreen.png -jar ./Java/markspace-0.1.jar

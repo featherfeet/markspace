@@ -1,3 +1,22 @@
+/*
+ * Copyright 2020 Oliver Trevor and Suchin Ravi.
+ *
+ * This file is part of MarkSpace.
+ *
+ * MarkSpace is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MarkSpace is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with MarkSpace.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 /**
  * @file Main.java
  * This file is the entry point for the software. It sets up the Jetty web server, Spark routes, and any other configuration.
@@ -25,7 +44,6 @@ import java.util.Set;
 import javax.swing.*;
 
 import static spark.Spark.*;
-import static spark.Spark.stop;
 import static spark.debug.DebugScreen.*;
 
 public class Main extends JFrame implements ActionListener {
@@ -37,6 +55,8 @@ public class Main extends JFrame implements ActionListener {
     private JButton start_server_button;
     private JButton stop_server_button;
     private JLabel status_label;
+    private JMenuItem aboutMenuItem;
+    private JMenuItem licenseMenuItem;
 
     public Main() {
         initUI();
@@ -72,6 +92,18 @@ public class Main extends JFrame implements ActionListener {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         add(status_label, gridBagConstraints);
+        // Set up the menus and license viewer.
+        JMenuBar menuBar = new JMenuBar();
+        JMenu aboutMenu = new JMenu("About");
+        aboutMenu.getAccessibleContext().setAccessibleDescription("Information about the MarkSpace Grading software.");
+        menuBar.add(aboutMenu);
+        aboutMenuItem = new JMenuItem("About MarkSpace");
+        aboutMenuItem.addActionListener(this);
+        licenseMenuItem = new JMenuItem("License");
+        licenseMenuItem.addActionListener(this);
+        aboutMenu.add(aboutMenuItem);
+        aboutMenu.add(licenseMenuItem);
+        setJMenuBar(menuBar);
         // Configure the MacOS Swing appearance.
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         System.setProperty("com.apple.mrj.application.apple.menu.about.name", "MarkSpace Server Controller");
@@ -89,6 +121,12 @@ public class Main extends JFrame implements ActionListener {
         }
         else if (e.getSource() == stop_server_button) {
             new StopServerThread().start();
+        }
+        else if (e.getSource() == aboutMenuItem) {
+            JOptionPane.showMessageDialog(this, "MarkSpace is a computerized grading software package by Oliver Trevor and Suchin Ravi. It was developed in collaboration with  Mr. Joseph Friesen. Go to https://github.com/featherfeet/markspace.git to learn more.");
+        }
+        else if (e.getSource() == licenseMenuItem) {
+            JOptionPane.showMessageDialog(this, "MarkSpace and its source code are distributed under the GNU GPL v3. You should have received a copy of the GPL in the COPYING file of this program. If not, see https://www.gnu.org/licenses/gpl-3.0.txt for the license text.");
         }
     }
 
