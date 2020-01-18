@@ -55,11 +55,14 @@ cp MarkSpace\ Splash\ Screen.png MarkSpace/Contents/Resources/SplashScreen.png
 # Rename the app file into a .app directory.
 mv MarkSpace MarkSpace.app
 
+# Add the icon.
+./generate_icns.sh
+
 # Print instructions for adding the icon to the package.
-echo "MarkSpace.app has now been created. You now must manually add the MarkSpace logo."
-echo "Step 1: Open the \"MarkSpace Icon.png\" file in Preview (the image viewer on MacOS)."
-echo "Step 2: Press Command-A in Preview to select the image. Then press Command-C to copy the image data. This will take 1-2 seconds because the image data is not very compressed."
-echo "Step 3: Select the \"MarkSpace.app\" file in Finder. Press Command-I to bring up the Info window for the app."
-echo "Step 4: The top-left corner of the info window should show a default icon. Click on this default icon so that it becomes selected (it should have a blue outline when selected)."
-echo "Step 5: Press Command-V to paste the image data onto the selected icon."
-echo "Step 6: Close and re-open Finder, then double-click on the app. This should cause MacOS to reload the icon and display it. If not, rebooting the computer may be necessary to clear the icon cache."
+#echo "MarkSpace.app has now been created. You now must manually add the MarkSpace logo."
+#echo "Step 1: Open the \"MarkSpace Icon.png\" file in Preview (the image viewer on MacOS)."
+#echo "Step 2: Press Command-A in Preview to select the image. Then press Command-C to copy the image data. This will take 1-2 seconds because the image data is not very compressed."
+#echo "Step 3: Select the \"MarkSpace.app\" file in Finder. Press Command-I to bring up the Info window for the app."
+#echo "Step 4: The top-left corner of the info window should show a default icon. Click on this default icon so that it becomes selected (it should have a blue outline when selected)."
+#echo "Step 5: Press Command-V to paste the image data onto the selected icon."
+#echo "Step 6: Close and re-open Finder, then double-click on the app. This should cause MacOS to reload the icon and display it. If not, rebooting the computer may be necessary to clear the icon cache."
