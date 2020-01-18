@@ -46,6 +46,9 @@ cp launcher.sh MarkSpace/Contents/MacOS/
 # Copy the application info file into the app file.
 cp Info.plist MarkSpace/Contents/
 
+# Copy the icon into the app file. This is used for the -Xdock option to java, but NOT used for MacOS's own icon-setting (see instructions below).
+cp MarkSpace\ Icon.png MarkSpace/Contents/Resources/AppIcon.png
+
 # Rename the app file into a .app directory.
 mv MarkSpace MarkSpace.app
 
