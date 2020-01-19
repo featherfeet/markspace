@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cb2ca91b-0efd-42c2-b522-dc286dd949ff" name="Default" comment="Added GNU GPL v3 license with associated menu items and source code notices. Added splash screen (with copyright/GPL notice). Changed version number to be 0.1.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,6 +340,7 @@
       <workItem from="1579314031121" duration="5415000" />
       <workItem from="1579372980012" duration="833000" />
       <workItem from="1579373915648" duration="2939000" />
+      <workItem from="1579415481531" duration="710000" />
     </task>
     <task id="LOCAL-00001" summary="Seems to be able to upload stuff to the DB.">
       <created>1570411345365</created>
@@ -743,30 +746,30 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="742" y="305" width="424" height="491" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1576889486430" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1579376978305">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom" timestamp="1579416190621">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.bottom/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.bottom/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978305" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1579376978305">
+    <state width="1874" height="189" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1579416190621" />
+    <state width="1874" height="189" key="GridCell.Tab.0.center" timestamp="1579416190621">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.center/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.center/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978305" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1579376978304">
+    <state width="1874" height="189" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1579416190621" />
+    <state width="1874" height="189" key="GridCell.Tab.0.left" timestamp="1579416190620">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.left/0.27.1280.772@0.27.1280.772" timestamp="1579202724579" />
     <state width="1874" height="183" key="GridCell.Tab.0.left/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978304" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1579376978305">
+    <state width="1874" height="189" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1579416190620" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right" timestamp="1579416190621">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1234" height="122" key="GridCell.Tab.0.right/0.27.1280.772@0.27.1280.772" timestamp="1579202724580" />
     <state width="1874" height="183" key="GridCell.Tab.0.right/0.27.1920.1053/0.27.1920.1053@0.27.1920.1053" timestamp="1576392461375" />
-    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1579376978305" />
+    <state width="1874" height="189" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1579416190621" />
     <state width="1874" height="339" key="GridCell.Tab.1.bottom" timestamp="1577941898731">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -811,11 +814,11 @@
     </state>
     <state x="265" y="192" width="746" height="463" key="git4idea.merge.GitPullDialog/0.27.1280.772@0.27.1280.772" timestamp="1579201981966" />
     <state x="398" y="252" key="git4idea.merge.GitPullDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1579325305155" />
-    <state x="624" y="252" width="672" height="677" key="run.anything.popup" timestamp="1579377811732">
+    <state x="624" y="252" width="672" height="677" key="run.anything.popup" timestamp="1579416152390">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="416" y="192" width="672" height="497" key="run.anything.popup/0.27.1280.772@0.27.1280.772" timestamp="1579202636239" />
-    <state x="624" y="252" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1579377811732" />
+    <state x="624" y="252" width="672" height="677" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1579416152390" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1578858248959">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

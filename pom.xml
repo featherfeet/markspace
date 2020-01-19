@@ -23,9 +23,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <maven.version>0.0.2</maven.version>
+    </properties>
+
     <groupId>tech.olivertrevor.markspace</groupId>
     <artifactId>markspace</artifactId>
-    <version>0.1</version>
+    <version>${maven.version}</version>
     <build>
         <plugins>
             <plugin>
@@ -53,6 +57,42 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>l4j-gui</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>a
+                            <outfile>packaging/MarkSpace.exe</outfile>
+                            <jar>target/markspace-${maven.version}.jar</jar>
+                            <errTitle>MarkSpace</errTitle>
+                            <classPath>
+                                <mainClass>Main</mainClass>
+                            </classPath>
+                            <jre>
+                                <minVersion>1.11.0</minVersion>
+                            </jre>
+                            <versionInfo>
+                                <fileVersion>1.2.3.4</fileVersion>
+                                <txtFileVersion>${maven.version}</txtFileVersion>
+                                <fileDescription>The MarkSpace computerized grading software for Windows.</fileDescription>
+                                <copyright>Copyright 2020 Oliver Trevor and Suchin Ravi.</copyright>
+                                <productVersion>1.2.3.4</productVersion>
+                                <txtProductVersion>${maven.version}</txtProductVersion>
+                                <productName>MarkSpace</productName>
+                                <internalName>MarkSpace</internalName>
+                                <originalFilename>MarkSpace.exe</originalFilename>
+                            </versionInfo>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
