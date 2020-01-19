@@ -2,4 +2,5 @@
 *.vm linguist-detectable=true
 *.xml linguist-detectable=true
 *.ts linguist-detectable=true
+*.js linguist-detectable=false
 *.sql linguist-detectable=true
