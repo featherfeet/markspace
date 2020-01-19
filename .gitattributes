@@ -1,0 +1,5 @@
+*.java linguist-detectable=true
+*.vm linguist-detectable=true
+*.xml linguist-detectable=true
+*.ts linguist-detectable=true
+*.sql linguist-detectable=true
